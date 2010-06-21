@@ -111,6 +111,10 @@ var $ = (function(){
         createTableView: function(o){
             return Ti.UI.createTableView($.extend(o,{backgroundColor: "#555"}));
         },
+        createTableViewRow: function(o){
+        Ti.API.log(o);
+            return Ti.UI.createTableViewRow($.extend(o,{color: "#FFF"}));
+        },
         createScrollableView: function(o){
             return Ti.UI.createScrollableView($.extend(o,{backgroundColor: "#000"}));
         },

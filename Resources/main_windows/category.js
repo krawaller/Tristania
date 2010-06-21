@@ -42,7 +42,13 @@ function render(res){
         i++;
     }
     
-    var table = $.createTableView({data:data});
+    var table = $.createTableView({});
+    data.map(function(d){
+        table.appendRow($.createTableViewRow({
+            title: d.title,
+            info: d.info
+        }));
+    });
 
     table.addEventListener("click",function(e){
         var win = $.createWin({
