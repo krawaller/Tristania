@@ -1,0 +1,22 @@
+APP TODO-LIST
+
+GENERAL
+ * Centralise styling to utils.js
+
+PHOTO GALLERY
+ * Adjust image dimensions
+ * Make title show picnumber
+ * Add possibility to save pics
+ * Add info button
+ * Merge category.js with albumlist.js
+ 
+VIDEO SECTION
+ * Basic infrastructure
+ * Official Tristania channel
+ * Selected channel (with external data source)
+ 
+DISCOGRAPHY SECTION
+ * Add info
+ * Styling (html templates)
+ * Integrate band comments
+ * Voting interactivity
