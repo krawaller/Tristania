@@ -1,5 +1,5 @@
 
-var cats = [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}];
+var cats = [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24},{title:"Favourites",num:-666}];
 
 var data = [];
 
@@ -14,7 +14,7 @@ var table = Titanium.UI.createTableView({data:data});
 
 table.addEventListener("click",function(e){
     var win = Titanium.UI.createWindow({
-        url:'category.js',
+        url: e.rowData.info.num === -666 ? 'photoalbum.js' : 'category.js',
         title: e.rowData.info.title,
         info: e.rowData.info,
         backgroundColor:'#fff'

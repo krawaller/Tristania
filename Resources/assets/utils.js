@@ -88,6 +88,16 @@ var $ = (function(){
         },
         ajaxSetup: function(opts){
             $.extend(ajaxDefaults, opts);
+        },
+        msg: function(win,msg){
+            var label1 = Titanium.UI.createLabel({
+        	    color:'#999',
+        	    text:msg,
+            	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+    	        textAlign:'center',
+    	        width:'auto'
+            });
+            win.add(label1);
         }
     });
     
