@@ -35,18 +35,17 @@ function render(res){
         }
     }
     
-    var list = Titanium.UI.createTableView({data:data});
+    var list = $.createTableView({data:data});
     
     list.addEventListener("click",function(e){
-        var win = Titanium.UI.createWindow({
+        var win = $.createWin({
             url:'photoalbum.js',
             title: e.rowData.title,
-            info: e.rowData.info,
-            backgroundColor:'#fff'
+            info: e.rowData.info
         });
         Titanium.UI.currentTab.open(win);
     });
 
-    Titanium.UI.currentWindow.add(list);
+    win.add(list);
 }
     

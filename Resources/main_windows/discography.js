@@ -1,4 +1,6 @@
-Ti.API.log("GAHODSA");
+Ti.include("../assets/utils.js");
+
+var win = Ti.UI.currentWindow;
 
 var albums = [{
     title: "Widow's weeds",
@@ -86,9 +88,6 @@ for (var i=0;i<albums.length;i++){
     images.push("../pics/"+albums[i].pic);
 }
 
-Ti.API.log("HMM");
-Ti.API.log(images);
-
 // create coverflow view with images
 var view = Titanium.UI.createCoverFlowView({
 	images:images,/*.map(function(path){
@@ -101,16 +100,13 @@ var view = Titanium.UI.createCoverFlowView({
 	backgroundColor:'#000'
 });
 
-Ti.API.log("WUUUU!");
-
 view.addEventListener("click",function(e){
-    var a = albums[e.index], win = Titanium.UI.createWindow({
+    var a = albums[e.index], win = $.createWin({
         url:'album.js',
         title: a.title,
         albumData: a,
-        backgroundColor:'#fff'
     });
     Titanium.UI.currentTab.open(win);
 });
 
-Titanium.UI.currentWindow.add(view);
+win.add(view);

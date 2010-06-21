@@ -28,13 +28,13 @@ function buildRemoteGallery(res){
 function createGallery(picurls){
     var views = [],v;
     for (var i=0; i<picurls.length;i++){
-        v = Ti.UI.createImageView({
+        v = $.createImageView({
             url: picurls[i] // TODO - fix image size
         });
         views.push(v);
         urls.push(picurls[i]);
     }
-    var scrollView = Titanium.UI.createScrollableView({
+    var scrollView = $.createScrollableView({
         views:views,
     	showPagingControl:true,
     	pagingControlHeight:30,

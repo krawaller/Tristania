@@ -1,25 +1,27 @@
+Ti.include("../assets/utils.js");
 
 var html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/albuminfo.css' /></head><body>" + Titanium.UI.currentWindow.albumData.desc + 
            "</body></html";
+
+var win = Ti.UI.currentWindow;
 
 var flexSpace = Titanium.UI.createButton({
 	systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 });
 
-var tabbedbar = Titanium.UI.createTabbedBar({
+var tabbedbar = $.createTabbedBar({
 	labels:['Info', 'Tracks'],
-	backgroundColor:'maroon',
 	index:0
 });
 
-Titanium.UI.currentWindow.setToolbar([flexSpace,tabbedbar,flexSpace]);
+win.setToolbar([flexSpace,tabbedbar,flexSpace]);
 
 var webview = Titanium.UI.createWebView({
 	html: html
 });
 
 
-var tracks = Titanium.UI.currentWindow.albumData.tracks, data = [];
+var tracks = win.albumData.tracks, data = [];
 
 for (var i in tracks){
     data.push({
@@ -35,7 +37,7 @@ var view = Ti.UI.createView({});
 view.add(table);
 view.add(webview);
 
-Titanium.UI.currentWindow.add(view);
+win.add(view);
 
 tabbedbar.addEventListener("click",function(e){
     switch(e.index){
@@ -45,10 +47,9 @@ tabbedbar.addEventListener("click",function(e){
 });
 
 table.addEventListener("click",function(e){
-    var win = Titanium.UI.createWindow({
+    var win = $.createWin({
         url:'track.js',
         title: e.rowData.trackData.title,
-        backgroundColor:'#fff'
     });
     table.zIndex = 2;
     webview.zIndex = 1;

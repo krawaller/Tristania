@@ -42,14 +42,13 @@ function render(res){
         i++;
     }
     
-    var table = Titanium.UI.createTableView({data:data});
+    var table = $.createTableView({data:data});
 
     table.addEventListener("click",function(e){
-        var win = Titanium.UI.createWindow({
+        var win = $.createWin({
             url: e.rowData.info.albums ? 'albumlist.js' : 'category.js', // TODO - safe up this!
             title: e.rowData.info.name,
-            info: e.rowData.info,
-            backgroundColor:'#fff'
+            info: e.rowData.info
         });
         if (e.rowData.info.albums){
             Ti.API.log("WUUU album");

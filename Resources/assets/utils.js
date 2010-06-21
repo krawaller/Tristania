@@ -98,6 +98,24 @@ var $ = (function(){
     	        width:'auto'
             });
             win.add(label1);
+        },
+        createWin: function(o){
+            return Ti.UI.createWindow($.extend(o,{backgroundColor: "#000",translucent:false}))
+        },
+        createTab: function(o){
+            return Ti.UI.createTab(o);
+        },
+        createTabbedBar: function(o){
+            return Ti.UI.createTabbedBar($.extend(o,{backgroundColor: "#000"}))
+        },
+        createTableView: function(o){
+            return Ti.UI.createTableView($.extend(o,{backgroundColor: "#555"}));
+        },
+        createScrollableView: function(o){
+            return Ti.UI.createScrollableView($.extend(o,{backgroundColor: "#000"}));
+        },
+        createImageView: function(o){
+            return Ti.UI.createImageView($.extend(o,{backgroundColor: "#000"}));
         }
     });
     
