@@ -3,16 +3,6 @@ Ti.include("../assets/utils.js");
 var win = Ti.UI.currentWindow,
     urls = []; // TODO - really need this as global var? Hacky!
 
-if (win.info.num != -666){
-    $.ajax({
-        url: "http://query.yahooapis.com/v1/public/yql?q=select%20src%20from%20html%20where%20url%3D%22http%3A%2F%2Fmvonlonski.com%2Fcpg%2Fthumbnails.php%3Falbum%3D"+win.info.num+"%22%20and%20xpath%3D%22%2F%2Fimg%5B%40class%3D'image'%5D%22&format=json&callback=",
-        success: buildRemoteGallery
-    });
-}
-else
-{
-    createGallery(Ti.App.Properties.getList('favPics') || []);
-}
 
 function loadFavState(){
 Ti.API.log("DMADSA");
@@ -65,6 +55,8 @@ function createGallery(picurls){
 var saveButton = Ti.UI.createButton({
     image: '../pics/icon_unstar.png'
 });
+
+
 saveButton.addEventListener('click', function(e){
 Ti.API.log("DSA");
     var val = urls[win.sv.currentPage];
@@ -80,10 +72,10 @@ Ti.API.log(val);
     Ti.UI.createAlertDialog({ title: 'Favourite saved', message: 'Pic added to the Favourites gallery' }).show();
 });
 
+
 var deleteButton = Ti.UI.createButton({
     image: '../pics/icon_star.png'
 });
-
 deleteButton.addEventListener('click', function(e){
     var val = urls[win.sv.currentPage];
     var list = Ti.App.Properties.getList('favPics') || [];
@@ -95,3 +87,15 @@ deleteButton.addEventListener('click', function(e){
     win.rightNavButton = saveButton;
     Ti.UI.createAlertDialog({ title: 'Favourite erased', message: 'Pic removed from the Favourites gallery' }).show();
 });
+
+
+if (win.info.num != -666){
+    $.ajax({
+        url: "http://query.yahooapis.com/v1/public/yql?q=select%20src%20from%20html%20where%20url%3D%22http%3A%2F%2Fmvonlonski.com%2Fcpg%2Fthumbnails.php%3Falbum%3D"+win.info.num+"%22%20and%20xpath%3D%22%2F%2Fimg%5B%40class%3D'image'%5D%22&format=json&callback=",
+        success: buildRemoteGallery
+    });
+}
+else
+{
+    createGallery(Ti.App.Properties.getList('favPics') || []);
+}

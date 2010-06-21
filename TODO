@@ -9,6 +9,7 @@ PHOTO GALLERY
  * Add possibility to save pics
  * Add info button
  * Merge category.js with albumlist.js
+ * Make error msgs actually work :P
  
 VIDEO SECTION
  * Basic infrastructure
