@@ -1,7 +1,7 @@
 APP TODO-LIST
 
 GENERAL
- * Centralise styling to utils.js
+ x Centralise styling to utils.js
 
 PHOTO GALLERY
  * Adjust image dimensions

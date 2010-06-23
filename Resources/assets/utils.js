@@ -100,7 +100,7 @@ var $ = (function(){
             win.add(label1);
         },
         createWin: function(o){
-            return Ti.UI.createWindow($.extend(o,{backgroundColor: "#000",translucent:false}))
+            return Ti.UI.createWindow($.extend(o,{backgroundColor: "#000",barColor: "#AAA"}))
         },
         createTab: function(o){
             return Ti.UI.createTab(o);
@@ -114,6 +114,18 @@ var $ = (function(){
         createTableViewRow: function(o){
         Ti.API.log(o);
             return Ti.UI.createTableViewRow($.extend(o,{color: "#FFF"}));
+        },
+        createTableViewRowLabel: function(text){
+            return Titanium.UI.createLabel({
+        	    color:'#000',
+        	    text:text,
+        	    color: "#AAA",
+        	    right: 10,
+        	    width: "auto",
+            	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+    	        textAlign:'center',
+    	        width:'auto'
+            });
         },
         createScrollableView: function(o){
             return Ti.UI.createScrollableView($.extend(o,{backgroundColor: "#000"}));
