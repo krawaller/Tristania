@@ -5,10 +5,10 @@ GENERAL
 
 PHOTO GALLERY
  * Adjust image dimensions
- * Make title show picnumber
+ x Make title show picnumber
  * Add possibility to save pics
  * Add info button
- * Merge category.js with albumlist.js
+ * Merge category.js with albumlist.js?
  * Make error msgs actually work :P
  * Make menubar hide when image is clicked (like native photo gallery)
  
@@ -19,6 +19,7 @@ VIDEO SECTION
  
 DISCOGRAPHY SECTION
  * Add info
+ * Rethink navigation
  * Styling (html templates)
  * Integrate band comments
  * Voting interactivity

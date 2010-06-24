@@ -28,7 +28,8 @@ function render(res){
             var info = {
                 name: table.tr[0].td.span.a.strong.clean(),
                 num: table.tr[0].td.span.a.href.substr(21,666),
-                pics: table.tr[2].td[2].p.content.clean().match(/^\d*/)[0] 
+                pics: table.tr[2].td[2].p.content.clean().match(/^\d*/)[0],
+                desc: table.tr[2].td[2].p.content.clean().substr(-12,12) // TODO - change to regexp
             };
             data.push({
                 title: info.name + " ("+info.pics+")",
@@ -42,7 +43,6 @@ function render(res){
     list.addEventListener("click",function(e){
         var win = $.createWin({
             url:'photoalbum.js',
-            title: e.rowData.title,
             info: e.rowData.info
         });
         Titanium.UI.currentTab.open(win);
