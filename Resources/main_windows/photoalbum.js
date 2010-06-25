@@ -39,14 +39,6 @@ function updateView(){
     win.setTitle((win.sv.currentPage+1)+"/"+max);
 }
 
-function buildRemoteGallery(res){
-    var picurls = [];
-    for (var i=0; i<res.query.results.img.length;i++){
-        picurls.push("http://mvonlonski.com/cpg/" + res.query.results.img[i].src.replace("thumb_","")); // TODO - fix image size
-    }
-    createGallery(picurls);
-}
-
 function createGallery(picurls){
     var views = [],v;
     for (var i=0; i<picurls.length;i++){
@@ -69,6 +61,15 @@ function createGallery(picurls){
     win.sv = scrollView; // TODO - access this more dexterously
     updateView();
 }
+
+function buildRemoteGallery(res){
+    var picurls = [];
+    for (var i=0; i<res.query.results.img.length;i++){
+        picurls.push("http://mvonlonski.com/cpg/" + res.query.results.img[i].src.replace("thumb_","")); // TODO - fix image size
+    }
+    createGallery(picurls);
+}
+
 
 // main page logic - show favourites or load remote album
 if (win.info.num != -666){

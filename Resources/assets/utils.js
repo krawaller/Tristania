@@ -41,14 +41,17 @@ var defopts = {
         right: 10,
         width: "auto",
         font:{fontSize:20,fontFamily:'Helvetica Neue'},
-        textAlign:'center',
-        width:'auto'
+        textAlign:'center'
     },
+    "coverflowview":{
+        backgroundColor: "#000"
+    },
+    "webview": {},
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {},
     "main_windows/albumlist.js": {}
-}
+};
 
 String.prototype.clean = function(){ return this.replace(/\xA0/g, '').replace(/\s+/g, ' '); };
 
@@ -72,7 +75,6 @@ var $ = (function(){
             xhr.onload = function(){
                 try {
                     var response;
-                    //Ti.API.info(['responseText', this.responseText]);
                     switch (opts.dataType) {
                         case 'json':
                             Ti.API.info('parsing');
@@ -87,40 +89,35 @@ var $ = (function(){
                     opts.success.call(opts.context || xhr, response, xhr.status, xhr);
                 } 
                 catch (e) { Ti.API.error(['e', e]); }
-            }
+            };
             xhr.onerror = opts.error;
             xhr.open(opts.type, opts.url + (!opts.cache ? '?' + new Date().getTime() : ''));
             xhr.send(data);
         },
         ajaxSetup: function(opts){ $.merge(ajaxDefaults, opts); },
-        msg: function(win,msg){ win.add(Titanium.UI.createLabel($.merge({ text:msg }, defopts.winlabel, defopts.all))); },
+        msg: function(o){ win.add(Ti.UI.createLabel($.merge(o, defopts.winlabel, defopts.all))); },
         createWin: function(o){
-            return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ))
+            return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
         },
         createTab: function(o){
             return Ti.UI.createTab(o);
         },
         createTabbedBar: function(o){
-            return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all))
+            return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all));
         },
         createTableView: function(o){
-            var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all)),row;        
-            if (o.rows){          
-                o.rows.map(function(r){
-                    row = $.createTableViewRow(r);
-                    if (r.label){ row.add($.createTableViewRowLabel(r.label)); }
-                    table.appendRow(row);
-                });
+            var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all));        
+            if (o.rows){
+                o.rows.map(function(r){ table.appendRow($.createTableViewRow(r)); });
             }
             return table;
         },
         createTableViewRow: function(o){
-            return Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
+            var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
+            if (o.label){ row.add($.createTableViewRowLabel(o.label)); }
+            return row;
         },
         createTableViewRowLabel: function(o){
-            var arg = $.merge(o,defopts.tableviewrowlabel,defopts.all);
-            Ti.API.log("CREATING ROW LABEL");
-            Ti.API.log(arg);
             return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowlabel,defopts.all));
         },
         createScrollableView: function(o){
@@ -128,6 +125,12 @@ var $ = (function(){
         },
         createImageView: function(o){
             return Ti.UI.createImageView($.merge(o,defopts.imageview,defopts.all));
+        },
+        createCoverFlowView: function(o){
+            return Ti.UI.createCoverFlowView($.merge(o,defopts.coverflowview,defopts.all));
+        },
+        createWebView: function(o){
+            return Ti.UI.createWebView($.merge(o,defopts.webview,defopts.all));
         }
     });
     

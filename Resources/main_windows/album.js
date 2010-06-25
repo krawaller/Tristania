@@ -28,7 +28,7 @@ for (var i in tracks){
     });
 }
 
-var table = Titanium.UI.createTableView({data:data});
+var table = Ti.UI.createTableView({data:data});
 
 var view = Ti.UI.createView({});
 
@@ -47,7 +47,7 @@ tabbedbar.addEventListener("click",function(e){
 table.addEventListener("click",function(e){
     var win = $.createWin({
         url:'track.js',
-        title: e.rowData.trackData.title,
+        title: e.rowData.trackData.title
     });
     table.zIndex = 2;
     webview.zIndex = 1;

@@ -80,31 +80,19 @@ var albums = [{
     }]
 }];
 
-var images = [];
+var images = [], view;
 
-for (var i=0;i<albums.length;i++){
-    images.push("../pics/"+albums[i].pic);
-}
+albums.map(function(a){ images.push("../pics/"+a.pic); });
 
-// create coverflow view with images
-var view = Titanium.UI.createCoverFlowView({
-	images:images,/*.map(function(path){
-	    return Ti.UI.createImageView({
-	        height: 100,
-	        width: 100,
-	        url: path
-	    });
-	})*/
-	backgroundColor:'#000'
-});
+view = $.createCoverFlowView({ images:images });
 
 view.addEventListener("click",function(e){
     var a = albums[e.index], win = $.createWin({
         url:'album.js',
         title: a.title,
-        albumData: a,
+        albumData: a
     });
-    Titanium.UI.currentTab.open(win);
+    Ti.UI.currentTab.open(win);
 });
 
 win.add(view);
