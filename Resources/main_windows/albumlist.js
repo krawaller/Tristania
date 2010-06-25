@@ -16,7 +16,7 @@ function render(res){
         table = res.query.results.table[i];
         if (table.tr[0].td.span){ // last in uneven selection is bogus, need to test for existence
             var info = {
-                name: table.tr[0].td.span.a.strong.clean(),
+                name: table.tr[0].td.span.a.strong.clean(), // desc
                 num: table.tr[0].td.span.a.href.substr(21,666),
                 pics: table.tr[2].td[2].p.content.clean().match(/^\d*/)[0],
                 desc: table.tr[2].td[2].p.content.clean().substr(-12,12) // TODO - change to regexp

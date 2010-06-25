@@ -1,28 +1,10 @@
 Ti.include("../assets/utils.js");
 
+function favs(){ return Ti.App.Properties.getList('favPics') || []; }
+
 var win = Ti.UI.currentWindow,
     urls = [], // TODO - really need this as global var? Hacky!
-    max = win.info.num == -666 ? (Ti.App.Properties.getList('favPics') || []).length : win.info.pics,
-    saveButton = Ti.UI.createButton({ image: '../pics/icon_unstar.png' }),
-    deleteButton = Ti.UI.createButton({ image: '../pics/icon_star.png' });
-
-saveButton.addEventListener('click', function(e){
-    var val = urls[win.sv.currentPage];
-    if(!val){ return; }
-    var list = Ti.App.Properties.getList('favPics') || [];
-    list.indexOf(val) == -1 && list.push(val);
-    Ti.App.Properties.setList('favPics', list);
-    win.rightNavButton = deleteButton;
-    Ti.UI.createAlertDialog({ title: 'Favourite saved', message: 'Pic added to the Favourites gallery' }).show();
-});
-
-deleteButton.addEventListener('click', function(e){
-    var val = urls[win.sv.currentPage], list = Ti.App.Properties.getList('favPics') || [], idx;
-    (idx = list.indexOf(val)) != -1 && list.splice(idx, 1);
-    Ti.App.Properties.setList('favPics', list);
-    win.rightNavButton = saveButton;
-    Ti.UI.createAlertDialog({ title: 'Favourite erased', message: 'Pic removed from the Favourites gallery' }).show();
-});
+    max = win.info.num == -666 ? favs().length : win.info.pics;
 
 function toggleUI(){
     Ti.API.log("TOGGLE");
@@ -30,14 +12,7 @@ function toggleUI(){
 
 function updateView(){
     // update favourites button
-    var url = urls[win.sv.currentPage];
-    if ((Ti.App.Properties.getList('favPics') || []).indexOf(url) == -1) {
-        Ti.API.log("this url is not in list, setting save button");
-        win.rightNavButton = saveButton;
-    } else {   
-        Ti.API.log("this url is already in list, setting delete button");    
-        win.rightNavButton = deleteButton;
-    }
+    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
     // update title
     win.setTitle((win.sv.currentPage+1)+"/"+max);
 }
@@ -74,6 +49,70 @@ function buildRemoteGallery(res){
     createGallery(picurls);
 }
 
+var info = $.createButton({
+    systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
+    width: 18,
+    height: 19,
+    top: 15,
+    left: 15,
+    zIndex: 2,
+    backgroundImage: '../pics/info_light.png'
+});
+win.add(info);
+
+var fav = $.createButton({
+    width: 18,
+    height: 19,
+    top: 45,
+    left: 15,
+    zIndex: 2,
+    backgroundImage: '../pics/icon_unstar.png'
+});
+win.add(fav);
+
+var save = $.createButton({
+    width: 18,
+    height: 19,
+    top: 75,
+    left: 15,
+    zIndex: 2,
+    backgroundImage: '../pics/save.png'
+});
+win.add(save);
+
+info.addEventListener("click",function(){
+    Ti.UI.createAlertDialog({
+        title: 'Info',
+        message: "Album "+win.info.name+", last updated "+win.info.desc
+    }).show();
+});
+
+fav.addEventListener("click",function(){
+    var val = urls[win.sv.currentPage],
+        list = favs(),
+        idx = list.indexOf(val);
+    if (idx == -1){ // saving new pic
+        list.push(val);
+        Ti.UI.createAlertDialog({ title: 'Favourite stored', message: 'Pic added to the Favourites gallery' }).show();
+        fav.backgroundImage = '../pics/icon_star.png';
+    }
+    else {
+        list.splice(idx, 1);
+        Ti.UI.createAlertDialog({ title: 'Favourite erased', message: 'Pic removed to the Favourites gallery' }).show();
+        fav.backgroundImage = '../pics/icon_unstar.png';
+    }
+    Ti.App.Properties.setList('favPics', list);
+});
+
+save.addEventListener("click",function(){
+    try {
+        Ti.Media.saveToGallery(win.sv.views[win.sv.currentPage].toBlob());
+        Ti.UI.createAlertDialog({ title: 'Saved', message: 'Pic is now in your photo gallery' }).show();
+    }
+    catch(e){
+        Ti.UI.createAlertDialog({ title: 'Save failed', message: "Couldn't save pic to photo gallery! boo!" }).show();
+    }
+});
 
 // main page logic - show favourites or load remote album
 if (win.info.num != -666){
@@ -82,7 +121,6 @@ if (win.info.num != -666){
         success: buildRemoteGallery
     });
 }
-else
-{
-    createGallery(Ti.App.Properties.getList('favPics') || []);
+else {
+    createGallery(favs());
 }

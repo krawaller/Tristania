@@ -47,6 +47,7 @@ var defopts = {
         backgroundColor: "#000"
     },
     "webview": {},
+    "button": {},
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {
@@ -132,6 +133,9 @@ var $ = (function(){
         },
         createWebView: function(o){
             return Ti.UI.createWebView($.merge(o,defopts.webview,defopts.all));
+        },
+        createButton: function(o){
+            return Ti.UI.createButton($.merge(o,defopts.button,defopts.all));
         }
     });
     
