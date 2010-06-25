@@ -83,7 +83,7 @@ win.add(save);
 info.addEventListener("click",function(){
     Ti.UI.createAlertDialog({
         title: 'Info',
-        message: "Album "+win.info.name+", last updated "+win.info.desc
+        message: win.info.num == -666 ? "These are your favourit pics! Wee!" : "Album "+win.info.name+", last updated "+win.info.desc+". Yeah yeah, I will show more stuff here later, probably in a webview."
     }).show();
 });
 
