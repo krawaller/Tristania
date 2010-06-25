@@ -11,6 +11,7 @@ PHOTO GALLERY
  * Merge category.js with albumlist.js?
  * Make error msgs actually work :P
  * Make menubar hide when image is clicked (like native photo gallery)
+ x Make Favourites row show number of favourited pictures
  
 VIDEO SECTION
  * Basic infrastructure

@@ -24,6 +24,9 @@ deleteButton.addEventListener('click', function(e){
     Ti.UI.createAlertDialog({ title: 'Favourite erased', message: 'Pic removed from the Favourites gallery' }).show();
 });
 
+function toggleUI(){
+    Ti.API.log("TOGGLE");
+}
 
 function updateView(){
     // update favourites button
@@ -55,7 +58,8 @@ function createGallery(picurls){
     	maxZoomScale:2.0,
     	currentPage:0
     });
-    scrollView.addEventListener("scroll",function(e){ updateView(); });
+    scrollView.addEventListener("scroll", updateView );
+    scrollView.addEventListener("touch", toggleUI );
 
     win.add(scrollView);
     win.sv = scrollView; // TODO - access this more dexterously
@@ -64,9 +68,9 @@ function createGallery(picurls){
 
 function buildRemoteGallery(res){
     var picurls = [];
-    for (var i=0; i<res.query.results.img.length;i++){
-        picurls.push("http://mvonlonski.com/cpg/" + res.query.results.img[i].src.replace("thumb_","")); // TODO - fix image size
-    }
+    res.query.results.img.map(function(img){
+        picurls.push("http://mvonlonski.com/cpg/" + img.src.replace("thumb_","")); // TODO - fix image size
+    });
     createGallery(picurls);
 }
 

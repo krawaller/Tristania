@@ -49,7 +49,8 @@ var defopts = {
     "webview": {},
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
-    "main_windows/photoalbum.js": {},
+    "main_windows/photoalbum.js": {
+    },
     "main_windows/albumlist.js": {}
 };
 

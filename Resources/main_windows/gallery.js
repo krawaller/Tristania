@@ -8,7 +8,7 @@ function getREST(what){
 }
 
 function renderList(d){
-    var table, rows = [];
+    var rows = [],table;
     d.map(function(item){
         rows.push({
             title: item.title,
@@ -31,6 +31,7 @@ function renderList(d){
     });
     
     win.add(table);
+    win.table = table; // TODO - access more dexterously
 }
 
 function receiveData(res){
@@ -66,11 +67,27 @@ function receiveData(res){
     renderList(data);
 }
 
+var favrow; // TODO - do this without stupid global variable
 
+function updateFavourites(){
+    if (!win.table || win.info) {return;} // only need to do this for first screen. TODO - only do when favs have been changed!
+    if (favrow){
+        win.table.deleteRow(6,{});
+    }
+    favrow = $.createTableViewRow({
+        title: "Favourites",
+        info: {
+            title: "Favourites",
+            num: -666
+        },
+        label: { text: "("+(Ti.App.Properties.getList('favPics') || []).length+")"}
+    });
+    win.table.appendRow(favrow);
+}
 
 if (!win.info){ // gallery base, showing hardcoded categories.
     var data = [],
-        cats = [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24},{title:"Favourites",num:-666}];
+        cats = [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}];
     cats.map(function(item){
         data.push({
             title: item.title,
@@ -88,3 +105,6 @@ else{
         fail: function(e){ $.msg(win,"Network fail!"); }
     });
 }
+
+win.addEventListener("focus",updateFavourites);
+updateFavourites();
