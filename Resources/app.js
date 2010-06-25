@@ -12,6 +12,4 @@ tabGroup.addTab( $.createTab({ icon:'KS_nav_ui.png', title:'Pictures', window: $
 tabGroup.addTab( $.createTab({ icon:'KS_nav_ui.png', title:'Videos', window:$.createWin({ title:'Videos', url: "main_windows/vids.js" }) }) );  
 
 // open tab group
-tabGroup.open({
-    transition: Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-});
+tabGroup.open({ transition: Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });

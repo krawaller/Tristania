@@ -1,7 +1,5 @@
 Ti.include("../assets/utils.js");
 
-var win = Ti.UI.currentWindow;
-
 var albums = [{
     title: "Widow's weeds",
     desc: "<p>First album! Gothic and nice.<p>",

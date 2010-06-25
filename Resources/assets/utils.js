@@ -1,39 +1,5 @@
-function calculateDistance(p1, p2){
-    if(!(p1 && p2)){ return -1; }
-    var R = 6371;
-    var dLat = toRad((p1.lat - p2.lat));
-    var dLon = toRad((p1.lon - p2.lon));
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(p1.lat)) * Math.cos(toRad(p2.lat)) *
-    Math.sin(dLon / 2) *
-    Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-    return d;
-}
-
-function toRad(deg){
-    return deg * Math.PI / 180;
-}
-
-Number.prototype.dec = function(decimals){
-    var multiplier = Math.pow(10, decimals);
-    return Math.round(this * multiplier) / multiplier;
-};
-
-var $ = (function(){
-    var $ = {};
-    
-    
-    $.extend = function(destination, source){
-        for (var property in source) {
-            destination[property] = source[property];
-        }
-        return destination;
-    };
-    
-    var noop = function(){
-    }, ajaxDefaults = {
+var noop = function(){}, 
+    ajaxDefaults = {
         cache: true,
         data: {},
         error: function(e){
@@ -47,18 +13,62 @@ var $ = (function(){
         success: noop,
         type: 'GET',
         dataType: 'json'
-    }, slice = Array.prototype.slice;
-    
-    $.clone = function(arr){
-        return slice.call(arr);
+    }, 
+    slice = Array.prototype.slice, 
+    splice = Array.prototype.splice,
+    win = Ti.UI.currentWindow;
+
+var defopts = {
+ // ******************* All ******************
+    "all": { },
+ // ****************** Types *****************
+    "win": {
+        barColor: "#AAA",
+        backgroundColor: "#000"
+    },
+    "winlabel": {
+        color:'#999',
+       	font:{fontSize:20,fontFamily:'Helvetica Neue'},
+        textAlign:'center',
+        width:'auto'
+    },
+    "tab": {},
+    "tabbedbar": {},
+    "tableview": { backgroundColor: "#555" },
+    "tableviewrow": { color: "#FFF" },
+    "tableviewrowlabel": {
+        color: "#AAA",
+        right: 10,
+        width: "auto",
+        font:{fontSize:20,fontFamily:'Helvetica Neue'},
+        textAlign:'center',
+        width:'auto'
+    },
+ // ***************** Wins *******************
+    "main_windows/gallery.js": {},
+    "main_windows/photoalbum.js": {},
+    "main_windows/albumlist.js": {}
+}
+
+String.prototype.clean = function(){ return this.replace(/\xA0/g, '').replace(/\s+/g, ' '); };
+
+var $ = (function(){
+    var $ = {
+        merge: function(){    
+            for (var property in arguments[1]) {
+                if (!arguments[0].hasOwnProperty(property)){ arguments[0][property] = arguments[1][property]; }
+            }
+            splice.call(arguments,1,1);
+            return arguments.length === 1 ? arguments[0] : $.merge.apply(0,arguments);
+        },
+        clone: function(arr){ return slice.call(arr); }
     };
     
-    $.extend($, {
+    $.merge($, {
         ajax: function(inOpts){
-            var opts = $.extend($.extend({}, ajaxDefaults), inOpts), 
+            var opts = $.merge(inOpts, ajaxDefaults), 
                 xhr = Ti.Network.createHTTPClient(), 
-                data = $.extend(opts.data, opts.extendData || {});
-               
+                data = $.merge(opts.data, opts.extendData || {});
             xhr.onload = function(){
                 try {
                     var response;
@@ -74,76 +84,52 @@ var $ = (function(){
                             response = this.responseText;
                             break;
                     }
-
                     opts.success.call(opts.context || xhr, response, xhr.status, xhr);
                 } 
-                catch (e) {
-                    Ti.API.error(['e', e]);
-                }
+                catch (e) { Ti.API.error(['e', e]); }
             }
-            
             xhr.onerror = opts.error;
             xhr.open(opts.type, opts.url + (!opts.cache ? '?' + new Date().getTime() : ''));
             xhr.send(data);
         },
-        ajaxSetup: function(opts){
-            $.extend(ajaxDefaults, opts);
-        },
-        msg: function(win,msg){
-            var label1 = Titanium.UI.createLabel({
-        	    color:'#999',
-        	    text:msg,
-            	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-    	        textAlign:'center',
-    	        width:'auto'
-            });
-            win.add(label1);
-        },
+        ajaxSetup: function(opts){ $.merge(ajaxDefaults, opts); },
+        msg: function(win,msg){ win.add(Titanium.UI.createLabel($.merge({ text:msg }, defopts.winlabel, defopts.all))); },
         createWin: function(o){
-            return Ti.UI.createWindow($.extend(o,{backgroundColor: "#000",barColor: "#AAA"}))
+            return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ))
         },
         createTab: function(o){
             return Ti.UI.createTab(o);
         },
         createTabbedBar: function(o){
-            return Ti.UI.createTabbedBar($.extend(o,{backgroundColor: "#000"}))
+            return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all))
         },
         createTableView: function(o){
-            return Ti.UI.createTableView($.extend(o,{backgroundColor: "#555"}));
+            var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all)),row;        
+            if (o.rows){          
+                o.rows.map(function(r){
+                    row = $.createTableViewRow(r);
+                    if (r.label){ row.add($.createTableViewRowLabel(r.label)); }
+                    table.appendRow(row);
+                });
+            }
+            return table;
         },
         createTableViewRow: function(o){
-        Ti.API.log(o);
-            return Ti.UI.createTableViewRow($.extend(o,{color: "#FFF"}));
+            return Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
         },
-        createTableViewRowLabel: function(text){
-            return Titanium.UI.createLabel({
-        	    color:'#000',
-        	    text:text,
-        	    color: "#AAA",
-        	    right: 10,
-        	    width: "auto",
-            	font:{fontSize:20,fontFamily:'Helvetica Neue'},
-    	        textAlign:'center',
-    	        width:'auto'
-            });
+        createTableViewRowLabel: function(o){
+            var arg = $.merge(o,defopts.tableviewrowlabel,defopts.all);
+            Ti.API.log("CREATING ROW LABEL");
+            Ti.API.log(arg);
+            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowlabel,defopts.all));
         },
         createScrollableView: function(o){
-            return Ti.UI.createScrollableView($.extend(o,{backgroundColor: "#000"}));
+            return Ti.UI.createScrollableView($.merge(o,defopts.scrollableview,defopts.all));
         },
         createImageView: function(o){
-            return Ti.UI.createImageView($.extend(o,{backgroundColor: "#000"}));
+            return Ti.UI.createImageView($.merge(o,defopts.imageview,defopts.all));
         }
     });
     
     return $;
 })();
-
-
-
-
-          var reclean = /\xA0/g,
-		  	  restrip = /\s+/g;
-		  	  
-		  String.prototype.clean = function(){
-		  	  return this.replace(reclean, '').replace(restrip, ' ');
-		  };

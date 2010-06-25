@@ -1,6 +1,6 @@
 Ti.include("../assets/utils.js");
 
-var win = Ti.UI.currentWindow, 
+var // win = Ti.UI.currentWindow, 
     spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG });
 
 function getREST(what){
@@ -43,17 +43,15 @@ function receiveData(res){
 
 
 function renderList(d){
-    var table = $.createTableView({}), row;
+    var table, rows = [];
     d.map(function(item){
-        row = $.createTableViewRow({
+        rows.push({
             title: item.title,
-            info: item.info
+            info: item.info,
+            label: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
         });
-        if (item.info.albums){
-            row.add($.createTableViewRowLabel("("+item.info.albums+"/"+item.info.pics+")"));
-        }
-        table.appendRow(row);
     });
+    table = $.createTableView({rows: rows});
 
     table.addEventListener("click",function(e){
         var win = $.createWin({
@@ -64,14 +62,7 @@ function renderList(d){
             info: e.rowData.info,
             transparent: e.rowData.info.num === -666
         });
-        Titanium.UI.currentTab.open(win);
-    });
-    
-    table.addEventListener("dblclick",function(e){
-        Ti.UI.createAlertDialog({
-            title: 'Info',
-            message: e.rowData.info.desc
-        }).show();
+        Ti.UI.currentTab.open(win);
     });
     
     win.add(table);

@@ -2,7 +2,7 @@ Ti.include("../assets/utils.js");
 
 var win = Ti.UI.currentWindow,
     urls = [], // TODO - really need this as global var? Hacky!
-    max = win.info.num == -666 ? Ti.App.Properties.getList('favPics').length : win.info.pics,
+    max = win.info.num == -666 ? (Ti.App.Properties.getList('favPics') || []).length : win.info.pics,
     saveButton = Ti.UI.createButton({ image: '../pics/icon_unstar.png' }),
     deleteButton = Ti.UI.createButton({ image: '../pics/icon_star.png' });
 

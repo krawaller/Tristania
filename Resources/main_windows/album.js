@@ -3,8 +3,6 @@ Ti.include("../assets/utils.js");
 var html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/albuminfo.css' /></head><body>" + Titanium.UI.currentWindow.albumData.desc + 
            "</body></html";
 
-var win = Ti.UI.currentWindow;
-
 var flexSpace = Titanium.UI.createButton({
 	systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
 });
