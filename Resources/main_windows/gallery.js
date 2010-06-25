@@ -95,6 +95,7 @@ if (!win.info){ // gallery base, showing hardcoded categories.
         });
     });
     renderList(data);
+    win.addEventListener("focus",updateFavourites);
 }
 else{ 
     win.add(spinner);
@@ -106,5 +107,4 @@ else{
     });
 }
 
-win.addEventListener("focus",updateFavourites);
 updateFavourites();

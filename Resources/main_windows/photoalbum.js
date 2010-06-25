@@ -4,7 +4,12 @@ function favs(){ return Ti.App.Properties.getList('favPics') || []; }
 
 var win = Ti.UI.currentWindow,
     urls = [], // TODO - really need this as global var? Hacky!
-    max = win.info.num == -666 ? favs().length : win.info.pics;
+    max = win.info.num == -666 ? favs().length : win.info.pics,
+    scrollView,
+    infoView = $.createWebView({
+        zIndex: 0,
+        opacity: 0 // <-- Remove hack when Titanium honors z-indexes
+    });
 
 function toggleUI(){
     Ti.API.log("TOGGLE");
@@ -26,7 +31,7 @@ function createGallery(picurls){
         views.push(v);
         urls.push(picurls[i]);
     }
-    var scrollView = $.createScrollableView({
+    scrollView = $.createScrollableView({
         views:views,
     	showPagingControl:true,
     	pagingControlHeight:30,
@@ -60,6 +65,16 @@ var info = $.createButton({
 });
 win.add(info);
 
+infoView.addEventListener('click', function(){
+    win.animate({ 
+        view: scrollView, 
+        transition: Ti.UI.iPhone.AnimationStyle.CURL_UP
+    });
+    info.zIndex = 2;
+    fav.zIndex = 2;
+    save.zIndex = 2;
+});
+
 var fav = $.createButton({
     width: 18,
     height: 19,
@@ -81,10 +96,15 @@ var save = $.createButton({
 win.add(save);
 
 info.addEventListener("click",function(){
-    Ti.UI.createAlertDialog({
+    infoView.html = "<html><body><p>MOOO</p><p>MOOO</p><p>MOOO</p><p>MOOO</p></body></html>";
+    win.animate({ 
+        view: infoView, 
+        transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
+    });
+   /* Ti.UI.createAlertDialog({
         title: 'Info',
         message: win.info.num == -666 ? "These are your favourit pics! Wee!" : "Album "+win.info.name+", last updated "+win.info.desc+". Yeah yeah, I will show more stuff here later, probably in a webview."
-    }).show();
+    }).show(); */
 });
 
 fav.addEventListener("click",function(){
@@ -115,6 +135,9 @@ save.addEventListener("click",function(){
 });
 
 // main page logic - show favourites or load remote album
+
+infoView.opacity = 1; // <-- Remove hack when Titanium honors z-indexes
+
 if (win.info.num != -666){
     $.ajax({
         url: "http://query.yahooapis.com/v1/public/yql?q=select%20src%20from%20html%20where%20url%3D%22http%3A%2F%2Fmvonlonski.com%2Fcpg%2Fthumbnails.php%3Falbum%3D"+win.info.num+"%22%20and%20xpath%3D%22%2F%2Fimg%5B%40class%3D'image'%5D%22&format=json&callback=",
