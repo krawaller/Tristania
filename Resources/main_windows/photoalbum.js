@@ -96,7 +96,10 @@ var save = $.createButton({
 win.add(save);
 
 info.addEventListener("click",function(){
-    infoView.html = "<html><body><p>MOOO</p><p>MOOO</p><p>MOOO</p><p>MOOO</p></body></html>";
+    infoView.html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/picinfo.css' /></head><body>" + 
+                    "<h2>Picture</h2><dl><dt>URL</dt><dd>"+urls[win.sv.currentPage]+"</dd></dl>"+
+                    "<h2>Album</h2><dl><dt>Name</dt><dd>"+win.info.title+"</dd></dl>"+
+                    "</body></html";
     win.animate({ 
         view: infoView, 
         transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
@@ -136,7 +139,7 @@ save.addEventListener("click",function(){
 
 // main page logic - show favourites or load remote album
 
-infoView.opacity = 1; // <-- Remove hack when Titanium honors z-indexes
+infoView.opacity = 0.8; // <-- Remove hack when Titanium honors z-indexes
 
 if (win.info.num != -666){
     $.ajax({

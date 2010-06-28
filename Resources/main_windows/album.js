@@ -1,6 +1,10 @@
 Ti.include("../assets/utils.js");
 
-var html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/albuminfo.css' /></head><body>" + Titanium.UI.currentWindow.albumData.desc + 
+var html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/albuminfo.css' /></head><body>" + 
+           "<img class='albumpic' src='pics/"+win.albumData.pic+"' onclick='openalbum("+win.albumData.scanalbum+");' />"+ 
+           "<dl><dt>Year</dt><dd>"+win.albumData.year+"</dd>"+
+           "<dt>Description</dt><dd>"+win.albumData.desc + "</dd>"+
+           "</dl>"+
            "</body></html";
 
 var flexSpace = Titanium.UI.createButton({
@@ -13,6 +17,15 @@ var tabbedbar = $.createTabbedBar({
 });
 
 win.setToolbar([flexSpace,tabbedbar,flexSpace]);
+
+function openalbum(which){
+        Ti.UI.currentTab.open($.createWin({ // TODO - correct tab!
+            url:'photoalbum.js',
+            info: {
+                num: which
+            }
+        }));
+}
 
 var webview = Titanium.UI.createWebView({
 	html: html

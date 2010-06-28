@@ -1,3 +1,6 @@
-p {
-    background-color: yellow;
+img.albumpic {
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin: 0 10px;
 }
