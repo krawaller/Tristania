@@ -15,7 +15,8 @@ var infohtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><l
     lyricsview = Titanium.UI.createWebView({ html: lyricshtml }),
     view = Ti.UI.createView({});
 
-win.setToolbar([flexSpace,tabbedbar,flexSpace]);
+//win.setToolbar([flexSpace,tabbedbar,flexSpace]);
+win.rightNavButton = tabbedbar;
 view.add(lyricsview);
 view.add(infoview);
 win.add(view);

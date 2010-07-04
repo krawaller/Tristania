@@ -9,7 +9,7 @@ var albums = [{
     lineup: ["Vibeke","Morten","Einar"],
     tracks: [{
         title: "Evenfall",
-        lyrics: "<p>Dark though embrace my bleeding heart</p>",
+        lyrics: "<p>Dark thou embrace my bleeding heart</p>",
         info: "<p>Bla bla whatever</p>"
     },{
         title: "Angellore",
