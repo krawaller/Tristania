@@ -161,8 +161,49 @@ var $ = (function(){
         },
         createButton: function(o){
             return Ti.UI.createButton($.merge(o,defopts.button,defopts.all));
+        },
+        getMemberList: function(conds){
+            var ret = [];
+            m:for(var m in data.members){
+                if (conds) {
+                    for(var p in conds){
+                        Ti.API.log(p);
+                        Ti.API.log(conds[p]);
+                        Ti.API.log(data.members[m][p]);
+                        if (conds[p] != data.members[m][p]){
+                            continue m;
+                        }
+                    }
+                }
+                ret.push({id:m,title:data.members[m].name});
+            }
+            return ret;
+        },
+        getMember: function(id){
+            return data.members[id];
         }
     });
+    
+    
+    // TODO - fix this poop, store as serialised text, update when necessary
+    var data = {
+        "members": {
+            "ole": {
+                current: true,
+                name: "Ole",
+                info: "<p>mooooomo moo mo</p>"
+            },
+            "tarald": {
+                current: true,
+                name: "Tarald",
+                info: "<p>drumm drumm drumm</p>"
+            },
+            "sveinterje": {
+                name: "Svein-Terje",
+                info: "<p>Svenke benke lalala!</p>",
+            }
+        },
+    }
     
     return $;
 })();

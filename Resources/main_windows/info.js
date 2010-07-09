@@ -1,25 +1,6 @@
 Ti.include("../assets/utils.js");
 //$.msg({ text:'Info!' });
 
-
-var bioinfo = {
-    "Band":[{
-        title: "History",
-        info: "gagagaga"
-    }],
-    "Members":[{
-        title: "Anders",
-        info: "Mooo"
-    },{
-        title: "Ole",
-        info: "tönt"
-    }],
-    "Former members":[{
-        title: "Svein-Terje",
-        info: "wuuuu stropp"
-    }]
-}
-
 var view = $.createView({}),
     news = $.createView({backgroundColor: "000"}),
     biolist = $.createView({});
@@ -42,13 +23,12 @@ tabbedbar.addEventListener("click",function(e){
 
 news.add($.createLabel({top:50, left: 15, color: "#FFF", text:"newssss"}));
 
-var tinfo = {sections:[]};
-for(var s in bioinfo){
-    tinfo.sections.push({
-        headerTitle: s,
-        datarows: bioinfo[s]
-    });
-}
+var tinfo = {
+    sections: [ { headerTitle:"Members", datarows: $.getMemberList({current:true}) },
+                {headerTitle: "Former members", datarows: $.getMemberList({current:undefined}) }
+    ]
+};
+
 var table = $.createTableView(tinfo);
 biolist.add(table);
 
@@ -60,3 +40,22 @@ table.addEventListener("click",function(e){
     win.data = e.rowData.def;
     Ti.UI.currentTab.open(win);
 });
+
+
+var bioinfo = {
+    "Band":[{
+        title: "History",
+        info: "gagagaga"
+    }],
+    "Members":[{
+        title: "Anders",
+        info: "Mooo"
+    },{
+        title: "Ole",
+        info: "tönt"
+    }],
+    "Former members":[{
+        title: "Svein-Terje",
+        info: "wuuuu stropp"
+    }]
+}
