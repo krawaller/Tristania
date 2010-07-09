@@ -8,7 +8,7 @@ var infohtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><l
 	    systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
     }),
     tabbedbar = $.createTabbedBar({
-	    labels:['Info', 'Lyrics'],
+	labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"}],
         index:0
     }),
     infoview = $.createWebView({ html: infohtml }),
