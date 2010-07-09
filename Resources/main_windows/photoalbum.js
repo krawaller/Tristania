@@ -26,7 +26,9 @@ function createGallery(picurls){
     var views = [],v;
     for (var i=0; i<picurls.length;i++){
         v = $.createImageView({
-            url: picurls[i] // TODO - fix image size
+            url: picurls[i], // TODO - fix image size
+            width:  320,
+    		height: 336
         });
         views.push(v);
         urls.push(picurls[i]);
