@@ -33,7 +33,9 @@ var defopts = {
         width:'auto'
     },
     "tab": {},
-    "tabbedbar": {},
+    "tabbedbar": {
+        backgroundColor: "#555"
+    },
     "tableview": { backgroundColor: "#555" },
     "tableviewrow": { color: "#FFF" },
     "tableviewrowlabel": {
@@ -42,6 +44,8 @@ var defopts = {
         width: "auto",
         font:{fontSize:20,fontFamily:'Helvetica Neue'},
         textAlign:'center'
+    },
+    "tableviewsection": {
     },
     "coverflowview":{
         backgroundColor: "#000"
@@ -108,7 +112,12 @@ var $ = (function(){
             return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all));
         },
         createTableView: function(o){
-            var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all));        
+            var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all));
+            if (o.sections){
+                var sects = [];
+                o.sections.map(function(s){ sects.push($.createTableViewSection(s)); });
+                table.setData(sects);
+            }
             if (o.rows){
                 o.rows.map(function(r){ table.appendRow($.createTableViewRow(r)); });
             }
@@ -117,10 +126,18 @@ var $ = (function(){
         createTableViewRow: function(o){
             var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
             if (o.label){ row.add($.createTableViewRowLabel(o.label)); }
+            row.def = o;
             return row;
         },
         createTableViewRowLabel: function(o){
             return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowlabel,defopts.all));
+        },
+        createTableViewSection: function(o){
+            var s = Ti.UI.createTableViewSection($.merge(o,defopts.tableviewsection,defopts.all))
+            if (o.datarows){
+                o.datarows.map(function(r){ s.add($.createTableViewRow(r)); });
+            };
+            return s;
         },
         createScrollableView: function(o){
             return Ti.UI.createScrollableView($.merge(o,defopts.scrollableview,defopts.all));

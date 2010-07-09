@@ -39,15 +39,24 @@ var albums = [{
     scanalbum: 164,
     year: 2001,
     lineup: ["Vibeke","Anders","Einar"],
-    tracks: [{
-        title: "The Shining Path",
-        lyrics: "<p>Sacrifice her life for fire!</p>",
-        info: "<p>megatuff</p>"
-    },{
-        title: "Selling Out",
-        lyrics: "<p>I'm selling out!</p>",
-        info: "<p>Bla bladmsaodmoas weeeee!</p>"
-    }]
+    tracks: { sections: [{ headerTitle: "Main tracks",datarows: 
+        [{
+            title: "The Shining Path",
+            lyrics: "<p>Sacrifice her life for fire!</p>",
+            info: "<p>megatuff</p>"
+        },{
+            title: "Selling Out",
+            lyrics: "<p>I'm selling out!</p>",
+            info: "<p>Bla bladmsaodmoas weeeee!</p>"
+        }]
+        },{
+            headerTitle: "Bonus tracks",datarows:[{
+                title: "The Modern End",
+                lyrics: "<p>Let's celebrate the modern end!</p>",
+                info: "<p>Seigmen cover</p>"
+            }]
+        }]
+    }
 },{
     title: "Ashes",
     desc: "<p>Awesome album!<p>",

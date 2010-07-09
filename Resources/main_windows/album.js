@@ -35,7 +35,7 @@ var webview = Titanium.UI.createWebView({
 
 
 var tracks = win.albumData.tracks, data = [];
-
+/*
 for (var i in tracks){
     data.push({
         title: tracks[i].title,
@@ -48,8 +48,22 @@ for (var i in tracks){
         }
     });
 }
-
 var table = $.createTableView({rows:data});
+*/
+
+
+var tinfo;
+if (!tracks.sections){
+    tinfo = {
+        rows: tracks
+    }
+}
+else {
+    tinfo = tracks;
+}
+
+var table = $.createTableView(tinfo);
+
 
 var view = Ti.UI.createView({});
 
@@ -66,12 +80,13 @@ tabbedbar.addEventListener("click",function(e){
 });
 
 table.addEventListener("click",function(e){
+Ti.API.log(e.rowData);
     var win = $.createWin({
         url:'track.js',
-        title: e.rowData.trackData.title
+        title: e.rowData.def.title
     });
     table.zIndex = 2;
     webview.zIndex = 1;
-    win.trackData = e.rowData.trackData;
+    win.trackData = e.rowData.def;
     Titanium.UI.currentTab.open(win);
 });

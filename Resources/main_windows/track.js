@@ -1,8 +1,8 @@
 Ti.include("../assets/utils.js");
 
-var infohtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/trackinfo.css' /></head><body>" + Titanium.UI.currentWindow.trackData.info + 
+var infohtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/trackinfo.css' /></head><body>" + win.trackData.info + 
                "</body></html",
-    lyricshtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/lyrics.css' /></head><body>" + Titanium.UI.currentWindow.trackData.lyrics + 
+    lyricshtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/lyrics.css' /></head><body>" + win.trackData.lyrics + 
                "</body></html",
     flexSpace = Titanium.UI.createButton({
 	    systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
