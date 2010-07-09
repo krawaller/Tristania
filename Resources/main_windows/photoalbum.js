@@ -4,25 +4,25 @@ function favs(){ return Ti.App.Properties.getList('favPics') || []; }
 
 var start;
 win.addEventListener('touchstart', function(e){
-	Ti.API.info(['touchstart', e]);
 	start = { x: e.x, y: e.y, at: new Date().getTime() };
 })
 
 var navHidden = false;
 win.addEventListener('touchend', function(e){
-	if(start && (new Date().getTime() - start.at) > 100 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
+	if(start && (new Date().getTime() - start.at) > 30 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
 		if(navHidden){
+			// Might need to change the order of these to get the best result
 			win.showNavBar();
 			win.showTabBar();
 			Titanium.UI.iPhone.showStatusBar();
 			win.sv.showPagingControl = true;
 			info.opacity = fav.opacity = save.opacity = 1;
 		} else {
+			info.opacity = fav.opacity = save.opacity = 0;
 			win.hideNavBar();
 			win.hideTabBar();
 			Titanium.UI.iPhone.hideStatusBar();
 			win.sv.showPagingControl = false;
-			info.opacity = fav.opacity = save.opacity = 0;
 		}
 		navHidden = !navHidden;
 	}

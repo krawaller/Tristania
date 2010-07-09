@@ -40,7 +40,10 @@ function render(res){
     list.addEventListener("click",function(e){
         Ti.UI.currentTab.open($.createWin({
             url:'photoalbum.js',
-            info: e.rowData.info
+            info: e.rowData.info,
+            orientationModes: [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT],
+        	tabBarHidden: true,
+        	translucent: true
         }));
     });
 
