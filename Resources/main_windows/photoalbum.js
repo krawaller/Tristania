@@ -9,20 +9,21 @@ win.addEventListener('touchstart', function(e){
 
 var navHidden = false;
 win.addEventListener('touchend', function(e){
-	if(start && (new Date().getTime() - start.at) > 30 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
+	if(start && (new Date().getTime() - start.at) > 10 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
 		if(navHidden){
 			// Might need to change the order of these to get the best result
+			win.sv.showPagingControl = true;
 			win.showNavBar();
 			win.showTabBar();
 			Titanium.UI.iPhone.showStatusBar();
-			win.sv.showPagingControl = true;
+			
 			info.opacity = fav.opacity = save.opacity = 1;
 		} else {
 			info.opacity = fav.opacity = save.opacity = 0;
+			win.sv.showPagingControl = false;
 			win.hideNavBar();
 			win.hideTabBar();
 			Titanium.UI.iPhone.hideStatusBar();
-			win.sv.showPagingControl = false;
 		}
 		navHidden = !navHidden;
 	}
