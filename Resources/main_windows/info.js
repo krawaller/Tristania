@@ -50,4 +50,13 @@ for(var s in bioinfo){
     });
 }
 var table = $.createTableView(tinfo);
-bio.add(table);
+biolist.add(table);
+
+table.addEventListener("click",function(e){
+    var win = $.createWin({
+        url:'bio.js',
+        title: e.rowData.def.title
+    });
+    win.data = e.rowData.def;
+    Ti.UI.currentTab.open(win);
+});
