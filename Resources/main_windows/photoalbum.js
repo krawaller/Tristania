@@ -2,6 +2,32 @@ Ti.include("../assets/utils.js");
 
 function favs(){ return Ti.App.Properties.getList('favPics') || []; }
 
+var start;
+win.addEventListener('touchstart', function(e){
+	Ti.API.info(['touchstart', e]);
+	start = { x: e.x, y: e.y, at: new Date().getTime() };
+})
+
+var navHidden = false;
+win.addEventListener('touchend', function(e){
+	if(start && (new Date().getTime() - start.at) > 100 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
+		if(navHidden){
+			win.showNavBar();
+			win.showTabBar();
+			Titanium.UI.iPhone.showStatusBar();
+			win.sv.showPagingControl = true;
+			info.opacity = fav.opacity = save.opacity = 1;
+		} else {
+			win.hideNavBar();
+			win.hideTabBar();
+			Titanium.UI.iPhone.hideStatusBar();
+			win.sv.showPagingControl = false;
+			info.opacity = fav.opacity = save.opacity = 0;
+		}
+		navHidden = !navHidden;
+	}
+})
+
 var win = Ti.UI.currentWindow,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
@@ -28,7 +54,7 @@ function createGallery(picurls){
         v = $.createImageView({
             image: picurls[i], // TODO - fix image size
             width:  320,
-    		height: 336
+    		height: 480
         });
         views.push(v);
         urls.push(picurls[i]);
@@ -60,7 +86,7 @@ var info = $.createButton({
     systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
     width: 18,
     height: 19,
-    top: 15,
+    top: 55,
     left: 15,
     zIndex: 2,
     backgroundImage: '../pics/info_light.png'
@@ -80,7 +106,7 @@ infoView.addEventListener('click', function(){
 var fav = $.createButton({
     width: 18,
     height: 19,
-    top: 45,
+    top: 85,
     left: 15,
     zIndex: 2,
     backgroundImage: '../pics/icon_unstar.png'
@@ -90,7 +116,7 @@ win.add(fav);
 var save = $.createButton({
     width: 18,
     height: 19,
-    top: 75,
+    top: 115,
     left: 15,
     zIndex: 2,
     backgroundImage: '../pics/save.png'

@@ -25,7 +25,10 @@ function renderList(d){
                  'gallery.js', // TODO - safe up this!
             title: e.rowData.info.name,
             info: e.rowData.info,
-            transparent: e.rowData.info.num === -666
+            transparent: e.rowData.info.num === -666,
+            orientationModes: [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT],
+            tabBarHidden: true,
+            translucent:true
         });
         Ti.UI.currentTab.open(win);
     });
