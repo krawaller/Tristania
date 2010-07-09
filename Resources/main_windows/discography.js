@@ -2,6 +2,7 @@ Ti.include("../assets/utils.js");
 
 var albums = [{
     title: "Widow's weeds",
+    shorttitle: "WW",
     desc: "<p>First album! Gothic and nice.<p>",
     pic: "tristania-ww.jpg",
     year: 1997,
@@ -18,6 +19,7 @@ var albums = [{
     }]
 },{
     title: "Beyond the Veil",
+    shorttitle: "BtV",
     desc: "<p>Cult album!<p>",
     pic: "tristania-btv.jpg",
     year: 1998,
@@ -34,6 +36,7 @@ var albums = [{
     }]
 },{
     title: "World of Glass",
+    shorttitle: "WoG",
     desc: "<p>Rules!<p>",
     pic: "tristania-world.jpg",
     scanalbum: 164,
@@ -59,6 +62,7 @@ var albums = [{
     }
 },{
     title: "Ashes",
+    shorttitle: "Ashes",
     desc: "<p>Awesome album!<p>",
     pic: "tristania-ashes.jpg",
     scanalbum: 165,
@@ -75,6 +79,7 @@ var albums = [{
     }]
 },{
     title: "Illumination",
+    shorttitle: "Ilmntn",
     desc: "<p>Atmospheric!<p>",
     pic: "tristania-illumination.jpg",
     scanalbum: 166,
@@ -91,6 +96,7 @@ var albums = [{
     }]
 },{
     title: "Rubicon",
+    shorttitle: "Rbcn",
     desc: "<p>The new album! Woo!<p>",
     pic: "tristania-rubicon.jpg",
     scanalbum: 194,
@@ -116,7 +122,7 @@ view = $.createCoverFlowView({ images:images });
 view.addEventListener("click",function(e){
     var a = albums[e.index], win = $.createWin({
         url:'album.js',
-        title: a.title,
+        title: a.shorttitle,
         albumData: a
     });
     Ti.UI.currentTab.open(win);

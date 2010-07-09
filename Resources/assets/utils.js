@@ -52,6 +52,8 @@ var defopts = {
     },
     "webview": {},
     "button": {},
+    "view": {},
+    "label": {},
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {
@@ -105,6 +107,9 @@ var $ = (function(){
         createWin: function(o){
             return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
         },
+        createLabel: function(o){
+            return Ti.UI.createLabel($.merge(o,defopts.label,defopts.all));
+        },
         createTab: function(o){
             return Ti.UI.createTab(o);
         },
@@ -150,6 +155,9 @@ var $ = (function(){
         },
         createWebView: function(o){
             return Ti.UI.createWebView($.merge(o,defopts.webview,defopts.all));
+        },
+        createView: function(o){
+            return Ti.UI.createView($.merge(o,defopts.view,defopts.all));
         },
         createButton: function(o){
             return Ti.UI.createButton($.merge(o,defopts.button,defopts.all));
