@@ -85,12 +85,10 @@ var $ = (function(){
                     var response;
                     switch (opts.dataType) {
                         case 'json':
-                            Ti.API.info('parsing');
                             response = JSON.parse(this.responseText);
                             break;
                             
                         default:
-                            Ti.API.info('noparse');
                             response = this.responseText;
                             break;
                     }
