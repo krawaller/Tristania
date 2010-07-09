@@ -1,9 +1,11 @@
 Ti.include("../assets/utils.js");
 
+var albumData = $.getAlbum(win.albumId);
+
 var html = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/albuminfo.css' /></head><body>" + 
-           "<img class='albumpic' src='pics/"+win.albumData.pic+"' />"+ 
-           "<dl><dt>Year</dt><dd>"+win.albumData.year+"</dd>"+
-           "<dt>Description</dt><dd>"+win.albumData.desc + "</dd>"+
+           "<img class='albumpic' src='pics/"+albumData.pic+"' />"+ 
+           "<dl><dt>Year</dt><dd>"+albumData.year+"</dd>"+
+           "<dt>Description</dt><dd>"+albumData.desc + "</dd>"+
            "</dl>"+
            "</body></html";
 // onclick='openalbum("+win.albumData.scanalbum+");'
@@ -34,23 +36,7 @@ var webview = Titanium.UI.createWebView({
 });
 
 
-var tracks = win.albumData.tracks, data = [];
-/*
-for (var i in tracks){
-    data.push({
-        title: tracks[i].title,
-        trackData: tracks[i],
-        left: 20, // TODO - doesn't work! how offset title to the right?
-        label: {
-            text: (Number(i)+1),
-            right: undefined,
-            left: 10
-        }
-    });
-}
-var table = $.createTableView({rows:data});
-*/
-
+var tracks = albumData.tracks, data = [];
 
 var tinfo;
 if (!tracks.sections){
