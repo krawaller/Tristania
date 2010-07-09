@@ -65,7 +65,7 @@ else {
 var table = $.createTableView(tinfo);
 
 
-var view = Ti.UI.createView({});
+var view = $.createView({});
 
 view.add(table);
 view.add(webview);
