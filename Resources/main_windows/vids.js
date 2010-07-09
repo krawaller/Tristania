@@ -67,7 +67,8 @@ function renderList(vids){
 }
 
 var webview = Ti.UI.createWebView({
-	url: '../views/videos.html'
+	url: '../views/videos.html',
+	background: '#555'
 });
 
 win.add(webview);
