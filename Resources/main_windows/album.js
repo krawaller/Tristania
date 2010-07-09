@@ -36,16 +36,20 @@ var webview = Titanium.UI.createWebView({
 });
 
 
-var tracks = albumData.tracks, data = [];
-
 var tinfo;
-if (!tracks.sections){
+if (albumData.bonustracks){
     tinfo = {
-        rows: tracks
-    }
+        sections: [{
+            headerTitle: "Main tracks",
+            datarows: $.getTracks(albumData.tracks)
+        },{
+            headerTitle: "Bonus tracks",
+            datarows: $.getTracks(albumData.bonustracks)
+        }]
+    };
 }
 else {
-    tinfo = tracks;
+    tinfo = { rows: $.getTracks(albumData.tracks) }
 }
 
 var table = $.createTableView(tinfo);

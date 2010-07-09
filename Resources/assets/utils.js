@@ -196,6 +196,19 @@ var $ = (function(){
         },
         getAlbum: function(id){
             return data.discography[id];
+        },
+        getTracks: function(arr){
+            var ret= [];
+            arr.map(function(t){
+                ret.push({
+                    id: t,
+                    title: data.tracks[t].title
+                });
+            });
+            return ret;
+        },
+        getTrack: function(id){
+            return data.tracks[id];
         }
     });
     
@@ -227,15 +240,7 @@ var $ = (function(){
                 year: 1997,
                 scanalbum: 162,
                 lineup: ["Vibeke","Morten","Einar"],
-                tracks: [{
-                    title: "Evenfall",
-                    lyrics: "<p>Dark thou embrace my bleeding heart</p>",
-                    info: "<p>Bla bla whatever</p>"
-                },{
-                    title: "Angellore",
-                    lyrics: "<p>Angellore!</p>",
-                    info: "<p>Bla bla weeeee!</p>"
-                }]
+                tracks: ["evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress"]
             },
             btv: {
                 title: "Beyond the Veil",
@@ -245,15 +250,7 @@ var $ = (function(){
                 year: 1998,
                 scanalbum: 163,
                 lineup: ["Vibeke","Morten","Einar"],
-                tracks: [{
-                    title: "Angina",
-                    lyrics: "<p>My carrion kind!</p>",
-                    info: "<p>wuuu!</p>"
-                },{
-                    title: "Heretique",
-                    lyrics: "<p>Lost in sacrilege!</p>",
-                    info: "<p>Tuff!</p>"
-                }]
+                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","angina","heretique","dementia"]
             },
             wog: {
                 title: "World of Glass",
@@ -263,24 +260,8 @@ var $ = (function(){
                 scanalbum: 164,
                 year: 2001,
                 lineup: ["Vibeke","Anders","Einar"],
-                tracks: { sections: [{ headerTitle: "Main tracks",datarows: 
-                    [{
-                        title: "The Shining Path",
-                        lyrics: "<p>Sacrifice her life for fire!</p>",
-                        info: "<p>megatuff</p>"
-                    },{
-                        title: "Selling Out",
-                        lyrics: "<p>I'm selling out!</p>",
-                        info: "<p>Bla bladmsaodmoas weeeee!</p>"
-                    }]
-                    },{
-                        headerTitle: "Bonus tracks",datarows:[{
-                            title: "The Modern End",
-                            lyrics: "<p>Let's celebrate the modern end!</p>",
-                            info: "<p>Seigmen cover</p>"
-                        }]
-                    }]
-                }
+                tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
+                bonustracks: ["themodernend"]
             },
             ashes: {
                 title: "Ashes",
@@ -290,15 +271,8 @@ var $ = (function(){
                 scanalbum: 165,
                 year: 2004,
                 lineup: ["Vibeke","Anders","Einar","Kjetil"],
-                tracks: [{
-                    title: "Libre",
-                    lyrics: "<p>For we have denominated the devil</p>",
-                    info: "<p>ascool sång</p>"
-                },{
-                    title: "Shadowman",
-                    lyrics: "<p>He holds the pain!</p>",
-                    info: "<p>Så grymt bra låt!</p>"
-                }]
+                tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
+                bonustracks: ["thegate"]
             },
             illumination: {
                 title: "Illumination",
@@ -308,15 +282,8 @@ var $ = (function(){
                 scanalbum: 166,
                 year: 2006,
                 lineup: ["Vibeke","Anders","Einar"],
-                tracks: [{
-                    title: "Mercyside",
-                    lyrics: "<p>The surface is smooth and cold but underneath the blood always boils!</p>",
-                    info: "<p>Grym live!</p>"
-                },{
-                    title: "The Ravens",
-                    lyrics: "<p>I will not kneel!</p>",
-                    info: "<p>fräck!</p>"
-                }]
+                tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
+                bonustracks: ["inthewake","abinitio"]
             },
             rubicon: {
                 title: "Rubicon",
@@ -326,15 +293,184 @@ var $ = (function(){
                 scanalbum: 194,
                 year: 2010,
                 lineup: ["Mariangela","Ole","Gyri","Tarald"],
-                tracks: [{
-                    title: "Year of the Rat",
-                    lyrics: "<p>Woooo rat!</p>",
-                    info: "<p>Läcker!</p>"
-                },{
-                    title: "Magical fix",
-                    lyrics: "<p>Magical fix! Magical fix! Magical fix!</p>",
-                    info: "<p>Tung!</p>"
-                }]
+                tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illumination"],
+                bonustracks: ["theemeraldpiper"]
+            }
+        },
+        tracks: {
+            evenfall: {
+                title: "Evenfall"
+            },
+            paleenchantress: {
+                title: "Pale Enchantress"
+            },
+            decemberelegy: {
+                title: "December Elegy"
+            },
+            midwintertears: {
+                title: "Midwintertears"
+            },
+            angellore: {
+                title: "Angellore"
+            },
+            mylostlenore: {
+                title: "My Lost Lenore"
+            },
+            wastelandscaress: {
+                title: "Wasteland's Caress"
+            },
+            beyondtheveil: {
+                title: "Beyond the Veil"
+            },
+            aphelion: {
+                title: "Aphelion"
+            },
+            asequelofdecay: {
+                title: "A Sequel of Decay"
+            },
+            opusrelinque: {
+                title: "Opus Relinque"
+            },
+            letheanriver: {
+                title: "Lethean River"
+            },
+            ofruinsandarednightfall: {
+                title: "Of Ruins and a Red Nightfall"
+            },
+            angina: {
+                title: "Angina"
+            },
+            heretique: {
+                title: "Heretique"
+            },
+            dementia: {
+                title: "Dementia"
+            },
+            theshiningpath: {
+                title: "The Shining Path"
+            },
+            wormwood: {
+                title: "Wormwood"
+            },
+            tendertriponearth: {
+                title: "Tender Trip on Earth"
+            },
+            lost: {
+                title: "Lost"
+            },
+            deadlocked: {
+                title: "Deadlocked"
+            },
+            sellingout: {
+                title: "Selling Out"
+            },
+            hatredgrows: {
+                title: "Hatred Grows"
+            },
+            worldofglass: {
+                title: "World of Glass"
+            },
+            crusheddreams: {
+                title: "Crushed Dreams"
+            },
+            themodernend: {
+                title: "The Modern End"
+            },
+            libre:{
+                title: "Libre"
+            },
+            equilibrium:{
+                title: "Equilibrium"
+            },
+            thewretched:{
+                title: "The Wretched"
+            },
+            cure:{
+                title: "Cure"
+            },
+            circus:{
+                title: "Circus"
+            },
+            shadowman:{
+                title: "Shadowman"
+            },
+            endogenesis:{
+                title: "Endogenesis"
+            },
+            bird:{
+                title: "Bird"
+            },
+            thegate:{
+                title: "The Gate"
+            },
+            mercyside:{
+                title: "Mercyside"
+            },
+            sanguinesky:{
+                title: "Sanguine Sky"
+            },
+            openground:{
+                title: "Open Ground"
+            },
+            theravens:{
+                title: "The Ravens"
+            },
+            destinationdeparture:{
+                title: "Destination Departure"
+            },
+            down:{
+                title: "Down"
+            },
+            fate:{
+                title: "Fate"
+            },
+            lotus:{
+                title: "Lotus"
+            },
+            sacrilege:{
+                title: "Sacrilege"
+            },
+            deadlands:{
+                title: "Deadlands"
+            },
+            inthewake:{
+                title: "In the Wake"
+            },
+            abinitio:{
+                title: "Ab Initio"
+            },
+            yearoftherat:{
+                title: "Year of the Rat"
+            },
+            protection:{
+                title: "Protection"
+            },
+            patriotgames:{
+                title: "Patriot Games"
+            },
+            thepassing:{
+                title: "The Passing"
+            },
+            exile:{
+                title: "Exile"
+            },
+            sirens:{
+                title: "Sirens"
+            },
+            vulture:{
+                title: "Vulture"
+            },
+            amnesia:{
+                title: "Amnesia"
+            },
+            magicalfix:{
+                title: "Magical Fix"
+            },
+            illumination:{
+                title: "Illumination"
+            },
+            theemeraldpiper:{
+                title: "The Emerald Piper"
             }
         }
     }
