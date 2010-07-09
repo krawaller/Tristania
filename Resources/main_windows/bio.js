@@ -1,3 +1,3 @@
 Ti.include("../assets/utils.js");
 win.backButtonTitle = "Bio";
-$.msg({text: win.data.info})
+$.msg({text: $.getMember(win.data.id).info})
