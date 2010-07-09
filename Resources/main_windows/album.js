@@ -13,7 +13,7 @@ var flexSpace = Titanium.UI.createButton({
 });
 
 var tabbedbar = $.createTabbedBar({
-	labels:['Info', 'Tracks'],
+	labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_tracks.png"}],
 	index:0
 });
 
