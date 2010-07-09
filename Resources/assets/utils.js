@@ -162,14 +162,14 @@ var $ = (function(){
         createButton: function(o){
             return Ti.UI.createButton($.merge(o,defopts.button,defopts.all));
         },
+        
+    // ************ DATA FUNCTIONS **********************
+        
         getMemberList: function(conds){
             var ret = [];
             m:for(var m in data.members){
                 if (conds) {
                     for(var p in conds){
-                        Ti.API.log(p);
-                        Ti.API.log(conds[p]);
-                        Ti.API.log(data.members[m][p]);
                         if (conds[p] != data.members[m][p]){
                             continue m;
                         }
@@ -181,28 +181,161 @@ var $ = (function(){
         },
         getMember: function(id){
             return data.members[id];
+        },
+        getAlbums: function(){
+            var ret = [];
+            for(var a in data.discography){
+                ret.push({
+                    id: a,
+                    pic: data.discography[a].pic,
+                    shorttitle: data.discography[a].shorttitle
+                });
+            }
+            return ret;
+        },
+        getAlbum: function(id){
+            return data.discography[id];
         }
     });
     
     
     // TODO - fix this poop, store as serialised text, update when necessary
     var data = {
-        "members": {
-            "ole": {
+        members: {
+            ole: {
                 current: true,
                 name: "Ole",
                 info: "<p>mooooomo moo mo</p>"
             },
-            "tarald": {
+            tarald: {
                 current: true,
                 name: "Tarald",
                 info: "<p>drumm drumm drumm</p>"
             },
-            "sveinterje": {
+            sveinterje: {
                 name: "Svein-Terje",
                 info: "<p>Svenke benke lalala!</p>",
             }
         },
+        discography: {
+            ww: {
+                title: "Widow's weeds",
+                shorttitle: "WW",
+                desc: "<p>First album! Gothic and nice.<p>",
+                pic: "tristania-ww.jpg",
+                year: 1997,
+                scanalbum: 162,
+                lineup: ["Vibeke","Morten","Einar"],
+                tracks: [{
+                    title: "Evenfall",
+                    lyrics: "<p>Dark thou embrace my bleeding heart</p>",
+                    info: "<p>Bla bla whatever</p>"
+                },{
+                    title: "Angellore",
+                    lyrics: "<p>Angellore!</p>",
+                    info: "<p>Bla bla weeeee!</p>"
+                }]
+            },
+            btv: {
+                title: "Beyond the Veil",
+                shorttitle: "BtV",
+                desc: "<p>Cult album!<p>",
+                pic: "tristania-btv.jpg",
+                year: 1998,
+                scanalbum: 163,
+                lineup: ["Vibeke","Morten","Einar"],
+                tracks: [{
+                    title: "Angina",
+                    lyrics: "<p>My carrion kind!</p>",
+                    info: "<p>wuuu!</p>"
+                },{
+                    title: "Heretique",
+                    lyrics: "<p>Lost in sacrilege!</p>",
+                    info: "<p>Tuff!</p>"
+                }]
+            },
+            wog: {
+                title: "World of Glass",
+                shorttitle: "WoG",
+                desc: "<p>Rules!<p>",
+                pic: "tristania-world.jpg",
+                scanalbum: 164,
+                year: 2001,
+                lineup: ["Vibeke","Anders","Einar"],
+                tracks: { sections: [{ headerTitle: "Main tracks",datarows: 
+                    [{
+                        title: "The Shining Path",
+                        lyrics: "<p>Sacrifice her life for fire!</p>",
+                        info: "<p>megatuff</p>"
+                    },{
+                        title: "Selling Out",
+                        lyrics: "<p>I'm selling out!</p>",
+                        info: "<p>Bla bladmsaodmoas weeeee!</p>"
+                    }]
+                    },{
+                        headerTitle: "Bonus tracks",datarows:[{
+                            title: "The Modern End",
+                            lyrics: "<p>Let's celebrate the modern end!</p>",
+                            info: "<p>Seigmen cover</p>"
+                        }]
+                    }]
+                }
+            },
+            ashes: {
+                title: "Ashes",
+                shorttitle: "Ashes",
+                desc: "<p>Awesome album!<p>",
+                pic: "tristania-ashes.jpg",
+                scanalbum: 165,
+                year: 2004,
+                lineup: ["Vibeke","Anders","Einar","Kjetil"],
+                tracks: [{
+                    title: "Libre",
+                    lyrics: "<p>For we have denominated the devil</p>",
+                    info: "<p>ascool sång</p>"
+                },{
+                    title: "Shadowman",
+                    lyrics: "<p>He holds the pain!</p>",
+                    info: "<p>Så grymt bra låt!</p>"
+                }]
+            },
+            illumination: {
+                title: "Illumination",
+                shorttitle: "Ilmntn",
+                desc: "<p>Atmospheric!<p>",
+                pic: "tristania-illumination.jpg",
+                scanalbum: 166,
+                year: 2006,
+                lineup: ["Vibeke","Anders","Einar"],
+                tracks: [{
+                    title: "Mercyside",
+                    lyrics: "<p>The surface is smooth and cold but underneath the blood always boils!</p>",
+                    info: "<p>Grym live!</p>"
+                },{
+                    title: "The Ravens",
+                    lyrics: "<p>I will not kneel!</p>",
+                    info: "<p>fräck!</p>"
+                }]
+            },
+            rubicon: {
+                title: "Rubicon",
+                shorttitle: "Rbcn",
+                desc: "<p>The new album! Woo!<p>",
+                pic: "tristania-rubicon.jpg",
+                scanalbum: 194,
+                year: 2010,
+                lineup: ["Mariangela","Ole","Gyri","Tarald"],
+                tracks: [{
+                    title: "Year of the Rat",
+                    lyrics: "<p>Woooo rat!</p>",
+                    info: "<p>Läcker!</p>"
+                },{
+                    title: "Magical fix",
+                    lyrics: "<p>Magical fix! Magical fix! Magical fix!</p>",
+                    info: "<p>Tung!</p>"
+                }]
+            }
+        }
     }
     
     return $;
