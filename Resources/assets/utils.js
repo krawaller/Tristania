@@ -50,6 +50,9 @@ var defopts = {
     "coverflowview":{
         backgroundColor: "#000"
     },
+    "imageview": {
+    	defaultImage: "../pics/image_loader.png"
+    },
     "webview": {},
     "button": {},
     "view": {},
