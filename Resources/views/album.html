@@ -7,16 +7,18 @@
         <script type="text/javascript" src="../assets/html.utils.js"></script>
         <style type="text/css" src="all.css"></style>
         <style type="text/css">
-        	.biopic {
-        	    max-height: 400px;
-        	    max-width: 300px;
-        	}
+img.albumpic {
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin: 0 10px;
+}
         </style>
         <script type="text/tmpl" id="template">
-            <img class="biopic" src="../pics/bio_<#=bio.id#>.jpg" />
-            <p>Name: <#=bio.name#></p>
-            <p>Role: <#=bio.role#></p>
-            <p>Member: <#=bio.member#></p>
+           <img class='albumpic' src='../pics/<#=album.pic#>' />
+           <dl><dt>Year</dt><dd><#=album.year#></dd>
+           <dt>Description</dt><dd><#=album.desc#></dd>
+           </dl>
         </script>
     </head>
 
@@ -28,6 +30,7 @@
             template = $('template').textContent;
 
         function render(e){
+            Ti.API.log(e);
             wrapper.innerHTML = tmpl(template, e);
         }
         </script>

@@ -7,27 +7,27 @@
         <script type="text/javascript" src="../assets/html.utils.js"></script>
         <style type="text/css" src="all.css"></style>
         <style type="text/css">
-        	.biopic {
-        	    max-height: 400px;
-        	    max-width: 300px;
-        	}
+body {
+    padding-top: 40px;
+}
         </style>
         <script type="text/tmpl" id="template">
-            <img class="biopic" src="../pics/bio_<#=bio.id#>.jpg" />
-            <p>Name: <#=bio.name#></p>
-            <p>Role: <#=bio.role#></p>
-            <p>Member: <#=bio.member#></p>
+           <dl><dt>Title</dt><dd><#=pic.title#></dd>
+           <dt>URL</dt><dd><#=pic.url#></dd>
+           </dl>
         </script>
     </head>
 
     <body>
         <div id="wrapper"><div class="loading">Loading...</div></div>
+        <p>Moo</p>
+        <p>Hooooooo</p>
         <script type="text/javascript">
-
         var wrapper = $('wrapper'),
             template = $('template').textContent;
 
         function render(e){
+            Ti.API.log(["dsadsa",e]);
             wrapper.innerHTML = tmpl(template, e);
         }
         </script>
