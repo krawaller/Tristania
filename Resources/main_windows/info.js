@@ -25,7 +25,7 @@ news.add($.createLabel({top:50, left: 15, color: "#FFF", text:"newssss"}));
 
 var tinfo = {
     sections: [ { headerTitle:"Members", datarows: $.getMemberList({current:true}) },
-                {headerTitle: "Former members", datarows: $.getMemberList({current:undefined}) }
+                { headerTitle: "Former members", datarows: $.getMemberList({current:undefined}) }
     ]
 };
 
@@ -41,21 +41,3 @@ table.addEventListener("click",function(e){
     Ti.UI.currentTab.open(win);
 });
 
-
-var bioinfo = {
-    "Band":[{
-        title: "History",
-        info: "gagagaga"
-    }],
-    "Members":[{
-        title: "Anders",
-        info: "Mooo"
-    },{
-        title: "Ole",
-        info: "tönt"
-    }],
-    "Former members":[{
-        title: "Svein-Terje",
-        info: "wuuuu stropp"
-    }]
-}

@@ -47,6 +47,12 @@ var defopts = {
     },
     "tableviewsection": {
     },
+    "tableheaderview": {
+    },
+    "tableheaderlabel": {
+        backgroundColor: "#FFF",
+        color: "#000"
+    },
     "coverflowview":{
         backgroundColor: "#000"
     },
@@ -139,6 +145,10 @@ var $ = (function(){
             return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowlabel,defopts.all));
         },
         createTableViewSection: function(o){
+            var h = $.createView( $.merge({  }, defopts.tableheaderview ));
+            h.add( $.createLabel( $.merge({ backgroundColor: o.headerBackgroundColor, color: o.headerColor, text: o.headerTitle }, defopts.tableheaderlabel )) );
+            o.headerView = h;
+            delete o.headerTitle;
             var s = Ti.UI.createTableViewSection($.merge(o,defopts.tableviewsection,defopts.all))
             if (o.datarows){
                 o.datarows.map(function(r){ s.add($.createTableViewRow(r)); });
@@ -176,12 +186,12 @@ var $ = (function(){
                         }
                     }
                 }
-                ret.push({id:m,title:data.members[m].name});
+                ret.push({id:m,title:data.members[m].name,label:data.members[m].role});
             }
             return ret;
         },
         getMember: function(id){
-            return data.members[id];
+            return $.merge({id:id},data.members[id]);
         },
         getAlbums: function(){
             var ret = [];
@@ -218,17 +228,84 @@ var $ = (function(){
         members: {
             ole: {
                 current: true,
-                name: "Ole",
+                name: "Ole Vistnes",
+                role: "Bass, backing vocals",
+                member: "2008 &rarr; present",
                 info: "<p>mooooomo moo mo</p>"
+            },
+            kenneth: {
+                name: "Kenneth Olsson",
+                role: "Drums",
+                member: "1997 &rarr; 2010"
             },
             tarald: {
                 current: true,
-                name: "Tarald",
+                name: "Tarald Lie",
+                role: "Drums",
+                member: "2010 &rarr; present",
                 info: "<p>drumm drumm drumm</p>"
             },
             sveinterje: {
-                name: "Svein-Terje",
+                name: "Svein-Terje Solvang",
                 info: "<p>Svenke benke lalala!</p>",
+                member: "2005 &rarr; 2008",
+                role: "Guitars"
+            },
+            gyri: {
+                name: "Gyri Losnegaard",
+                member: "2009 &rarr; present",
+                role: "Guitars",
+                current: true
+            },
+            einar: {
+                name: "Einar Moen",
+                member: "1997 &rarr; present",
+                role: "Keyboards",
+                current: true
+            },
+            kjetili: {
+                name: "Kjetil Ingebrethsen",
+                member: "2002 &rarr; 2006",
+                role: "Growls"
+            },
+            morten: {
+                name: "Morten Veland",
+                member: "1997 &rarr; 2000",
+                role: "Guitars, growls"
+            },
+            osten: {
+                name: "Østen Bergøy",
+                member: "2001 &rarr; present",
+                role: "Clean vocals",
+                current: true
+            },
+            rune: {
+                name: "Rune Østerhus",
+                member: "1997 &rarr; 2009",
+                role: "Bass"
+            },
+            mary: {
+                name: "Mariangela Demurtas",
+                member: "2007 &rarr; present",
+                current: true,
+                role: "Vocals"
+            },
+            vibeke: {
+                name: "Vibeke Stene",
+                member: "1997 &rarr; 2007",
+                role: "Vocals"
+            },
+            anders: {
+                name: "Anders Høyvik Hidle",
+                member: "1997 &rarr; present",
+                role: "Guitars, vocals",
+                current: true
+            },
+            kjetiln: {
+                name: "Kjetil Nordhus",
+                member: "2010 &rarr; present",
+                current: true,
+                role: "Clean vocals"
             }
         },
         discography: {

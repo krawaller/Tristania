@@ -32,7 +32,7 @@ function render(what){
 							duration: entry.media$group.yt$duration.seconds,
 						    description: entry.media$group.media$description.$t,
 						    thumbnail: entry.media$group.media$thumbnail[0].url
-						}
+						};
 					});
 					renderList(vids);
 			    }
@@ -47,7 +47,7 @@ function render(what){
 						return {
 							title: entry.title,
 							id: entry.vid
-						}
+						};
 					});
 					renderList(vids);
 			    }
