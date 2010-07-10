@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+        <title>Profile</title>
+
+        <script type="text/javascript" src="../assets/html.utils.js"></script>
+        <style type="text/css">
+        	html, body {
+        		margin: 0;
+				padding: 0;
+				font-family: "Lucida Grande", Helvetica;
+				background-color: #555;
+				color: #fff;
+				font-size: 13px;
+				font-weight: bold;
+        	}
+        	.biopic {
+        	    max-height: 400px;
+        	    max-width: 300px;
+        	}
+        </style>
+        <script type="text/tmpl" id="template">
+            <img class="biopic" src="../pics/bio_<#=bio.id#>.jpg" />
+            <p>Name: <#=bio.name#></p>
+            <p>Role: <#=bio.role#></p>
+            <p>Member: <#=bio.member#></p>
+        </script>
+    </head>
+
+    <body>
+        <div id="wrapper"><div class="loading">Loading...</div></div>
+        <script type="text/javascript">
+
+        var wrapper = $('wrapper'),
+            template = $('template').textContent;
+
+        function render(e){
+            wrapper.innerHTML = tmpl(template, e);
+        }
+        </script>
+    </body>
+</html>
