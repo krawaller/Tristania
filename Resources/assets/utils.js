@@ -218,7 +218,7 @@ var $ = (function(){
             return ret;
         },
         getTrack: function(id){
-            return data.tracks[id];
+            return $.merge({id:id},data.tracks[id]);
         }
     });
     

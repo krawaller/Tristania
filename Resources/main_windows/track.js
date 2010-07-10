@@ -1,12 +1,27 @@
 Ti.include("../assets/utils.js");
 Ti.include("../assets/lyrics.js");
 
+var id = win.data.id,
+    track = $.getTrack(id),
+    lyr = lyrics[id],
+    webview = Ti.UI.createWebView({ url: '../views/track.html', background: '#555' });
+
+Ti.API.log([id,track]);
+
+webview.addEventListener("load",function(){ webview.evalJS("render({ track: "+JSON.stringify(track)+", lyrics: "+JSON.stringify(lyr)+"})"); });
+win.add(webview);
+
+
+
+
+/*
+
 Ti.API.log(win.trackData);
 
-var track = $.getTrack(win.trackData.id),
+var track = $.getTrack(win.data.id),
     text = "";
 
-lyrics[win.trackData.id].map(function(p){
+lyrics[win.data.id].map(function(p){
     var t = "";
     p.map(function(l){
         t += l + "<br/>";
@@ -41,3 +56,5 @@ tabbedbar.addEventListener("click",function(e){
         case 1: view.animate({view:lyricsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
     }
 });
+
+*/

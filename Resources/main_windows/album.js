@@ -77,6 +77,6 @@ Ti.API.log(e.rowData);
     });
     table.zIndex = 2;
     webview.zIndex = 1;
-    win.trackData = e.rowData.def;
+    win.data = e.rowData.def;
     Titanium.UI.currentTab.open(win);
 });
