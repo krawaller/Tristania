@@ -10,7 +10,7 @@ view.addEventListener("click",function(e){
     var a = albums[e.index], win = $.createWin({
         url:'album.js',
         title: a.shorttitle,
-        albumId: a.id
+        data: { id: a.id }
     });
     Ti.UI.currentTab.open(win);
 });
