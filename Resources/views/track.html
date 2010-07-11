@@ -5,10 +5,11 @@
         <title>Profile</title>
 
         <script type="text/javascript" src="../assets/html.utils.js"></script>
-        <style type="text/css" src="all.css"></style>
+        <link rel="stylesheet" type="text/css" href="all.css" />
         <style type="text/css">
         </style>
         <script type="text/tmpl" id="template">
+          <div class='tbox'>
             <p><#=track.title#></p>
             
             <# for(var i=0;i<lyrics.length;i++){ #>
@@ -18,6 +19,7 @@
                 <# }; #>
                 </p>
 	        <# }; #>
+	      </div>
         </script>
     </head>
 

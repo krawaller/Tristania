@@ -2,8 +2,20 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Lucida Grande", Helvetica;
-    background-color: #555;
+    background-color: "#555";
     color: #fff;
     font-size: 13px;
     font-weight: bold;
+}
+
+.tbox {
+    border: 1px solid black;
+    background-color: #CCC;
+    margin: 3px;
+    margin-bottom: 1em;
+}
+
+.bigpic {
+    max-height: 400px;
+    max-width: 300px;
 }

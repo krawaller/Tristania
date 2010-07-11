@@ -5,18 +5,16 @@
         <title>Profile</title>
 
         <script type="text/javascript" src="../assets/html.utils.js"></script>
-        <style type="text/css" src="all.css"></style>
+        <link rel="stylesheet" type="text/css" href="all.css" />
         <style type="text/css">
-        	.biopic {
-        	    max-height: 400px;
-        	    max-width: 300px;
-        	}
         </style>
         <script type="text/tmpl" id="template">
-            <img class="biopic" src="../pics/bio_<#=bio.id#>.jpg" />
+          <div class='tbox'>
+            <img class="bigpic" src="../pics/bio_<#=bio.id#>.jpg" />
             <p>Name: <#=bio.name#></p>
             <p>Role: <#=bio.role#></p>
             <p>Member: <#=bio.member#></p>
+          </div>
         </script>
     </head>
 

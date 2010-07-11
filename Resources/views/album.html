@@ -5,20 +5,16 @@
         <title>Profile</title>
 
         <script type="text/javascript" src="../assets/html.utils.js"></script>
-        <style type="text/css" src="all.css"></style>
+        <link rel="stylesheet" type="text/css" href="all.css" />
         <style type="text/css">
-img.albumpic {
-    height: 50px;
-    width: 50px;
-    float: right;
-    margin: 0 10px;
-}
         </style>
         <script type="text/tmpl" id="template">
-           <img class='albumpic' src='../pics/<#=album.pic#>' />
+          <div class='tbox'>
+           <img class='bigpic' src='../pics/<#=album.pic#>' />
            <dl><dt>Year</dt><dd><#=album.year#></dd>
            <dt>Description</dt><dd><#=album.desc#></dd>
            </dl>
+         </div>
         </script>
     </head>
 
