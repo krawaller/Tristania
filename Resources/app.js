@@ -19,3 +19,5 @@ tabGroup.open({ transition: Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
 var x = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory+"/test.txt").read().text;
 Ti.API.log(x);
 */
+
+Ti.API.log( ["WUUU",$.getTrack("beyondtheveil"),"MOOO", $.getTrack("angellore"), "dslöakdsa", $.getTrack("circus") ] );

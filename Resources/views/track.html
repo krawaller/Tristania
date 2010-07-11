@@ -15,11 +15,32 @@
             <# if (track.albums && track.albums.length){ #>
                 <dt>Appears on:</dt>
                 <# var txt = ""; for(var i=0; i<track.albums.length; i++){ 
-                    txt+= H.renderAlbumLink(track.albums[i]);
+                    txt+= H.renderAlbumLink(track.albums[i]) + " ";
                 }; #>
                 <dd><#=txt#></dd>
             <# }; #>
               <dt>Length:</dt><dd><#= track.length #></dd>
+              <dt>Music:</dt>
+                <# if (!track.music) { #>
+                  <dd>Tristania</dd>
+                <#} else { var txt = ""; for(var i=0; i<track.music.length; i++){ 
+                    txt+= H.renderMemberLink(track.music[i]) +" ";
+                  } #>
+                  <dd><#=txt#></dd>
+                <# } #>
+              <dt>Lyrics:</dt>
+              <# if (track.instrumental){ #>
+                <dd>Instrumental</dd>
+              <# } else { #>
+                <# if (!track.lyrics) { #>
+                  <dd>Tristania</dd>
+                <#} else { var txt = ""; for(var i=0; i<track.lyrics.length; i++){ 
+                    txt+= H.renderMemberLink(track.lyrics[i]) + " ";
+                  } #>
+                  <dd><#=txt#></dd>
+                <# } #>
+                
+              <# } #>
             </dl>
 	      </div>
          <# if(track.presentation){ #>

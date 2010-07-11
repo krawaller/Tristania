@@ -191,7 +191,8 @@ var $ = (function(){
             return ret;
         },
         getMember: function(id){
-            return $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.members[id]);
+            var member = data.members[id];
+            return !member ? 0 : $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.members[id]);
         },
         getAlbums: function(){
             var ret = [];
@@ -222,14 +223,26 @@ var $ = (function(){
             return ret;
         },
         getTrack: function(id){
-            var albums = [];
+            var albums = [], credits = {}, track = data.tracks[id], m;
             $.getAlbums().map(function(a){
                 a = $.getAlbum(a.id); // need full data
                 if (a.tracks.indexOf(id) != -1 || (a.bonustracks && a.bonustracks.indexOf(id) != -1)){
-                    albums.push(a);
+                    albums.push({
+                        id: a.id,
+                        title: a.title
+                    });
                 }
             });
-            return $.merge({id:id, albums: albums, presentation: $.getPresentation(id), comments: $.getComments(id)},data.tracks[id]);
+           ["music","lyrics"].map(function(c){
+                if (track[c]){
+                    credits[c] = [];
+                    track[c].map(function(mid){
+                        m = $.getMember(mid);
+                        credits[c].push( m ? { name: m.name, id: m.id } : mid );
+                    });
+                }
+            });
+            return $.merge({id:id, albums: albums, music: credits.music, lyrics: credits.lyrics, presentation: $.getPresentation(id), comments: $.getComments(id)},track);
         },
         getNews: function(){
             return data.news;
@@ -436,7 +449,8 @@ var $ = (function(){
         tracks: {
             preludium: {
                 title: "Preludium",
-                length: "1:09"
+                length: "1:09",
+                instrumental: true
             },
             evenfall: {
                 title: "Evenfall",
@@ -444,11 +458,11 @@ var $ = (function(){
             },
             paleenchantress: {
                 title: "Pale Enchantress",
-                length: "6:32"
+                length: "6:32",
             },
             decemberelegy: {
                 title: "December Elegy",
-                length: "7:31"
+                length: "7:31",
             },
             midwintertears: {
                 title: "Midwintertears",
@@ -468,91 +482,133 @@ var $ = (function(){
             },
             postludium: {
                 title: "Postludium",
-                length: "1:10"
+                length: "1:10",
+                instrumental: true
             },
             beyondtheveil: {
                 title: "Beyond the Veil",
-                length: "6:37"
+                length: "6:37",
+                music: ["morten","einar"],
+                lyrics: ["morten","einar"]
             },
             aphelion: {
                 title: "Aphelion",
-                length: "7:50"
+                length: "7:50",
+                music: ["morten"],
+                lyrics: ["morten"]
             },
             asequelofdecay: {
                 title: "A Sequel of Decay",
-                length: "6:33"
+                length: "6:33",
+                music: ["morten","einar"],
+                lyrics: ["morten"]
             },
             opusrelinque: {
                 title: "Opus Relinque",
-                length: "6:08"
+                length: "6:08",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             letheanriver: {
                 title: "Lethean River",
-                length: "5:56"
+                length: "5:56",
+                music: ["morten","einar"],
+                lyrics: ["morten"]
             },
             ofruinsandarednightfall: {
                 title: "Of Ruins and a Red Nightfall",
-                length: "6:22"
+                length: "6:22",
+                music: ["morten"],
+                lyrics: ["morten"]
             },
             simbelmyne: {
                 title: "Simbelmynë",
-                length: "1:00"
+                length: "1:00",
+                music: ["einar"],
+                instrumental: true
             },
             angina: {
                 title: "Angina",
-                length: "4:39"
+                length: "4:39",
+                music: ["morten"],
+                lyrics: ["morten"]
             },
             heretique: {
                 title: "Heretique",
-                length: "4:51"
+                length: "4:51",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             dementia: {
                 title: "Dementia",
-                length: "2:21"
+                length: "2:21",
+                music: ["einar"],
+                lyrics: ["einar"]
             },
             theshiningpath: {
                 title: "The Shining Path",
-                length: "6:46"
+                length: "6:46",
+                music: ["anders","einar"],
+                lyrics: ["einar","osten"]
             },
             wormwood: {
                 title: "Wormwood",
-                length: "5:56"
+                length: "5:56",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             tendertriponearth: {
                 title: "Tender Trip on Earth",
-                length: "5:18"
+                length: "5:18",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             lost: {
                 title: "Lost",
-                length: "6:03"
+                length: "6:03",
+                music: ["anders","einar"],
+                lyrics: ["Pete Johansen"]
             },
             deadlocked: {
                 title: "Deadlocked",
-                length: "5:56"
+                length: "5:56",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             sellingout: {
                 title: "Selling Out",
-                length: "6:19"
+                length: "6:19",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             hatredgrows: {
                 title: "Hatred Grows",
-                length: "6:20"
+                length: "6:20",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             worldofglass: {
                 title: "World of Glass",
-                length: "5:26"
+                length: "5:26",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             crusheddreams: {
                 title: "Crushed Dreams",
-                length: "7:41"
+                length: "7:41",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             themodernend: {
                 title: "The Modern End",
-                length: "4:45"
+                length: "4:45",
+                music: ["Seigmen"],
+                lyrics: ["Seigmen"]
             },
             libre:{
                 title: "Libre",
-                length: "4:30"
+                length: "4:30",
+                lyrics: ["Kjartan Hermansen"]
             },
             equilibrium:{
                 title: "Equilibrium",
@@ -568,7 +624,8 @@ var $ = (function(){
             },
             circus:{
                 title: "Circus",
-                length: "5:09"
+                length: "5:09",
+                lyrics: ["Kjartan Hermansen"]
             },
             shadowman:{
                 title: "Shadowman",
@@ -588,43 +645,63 @@ var $ = (function(){
             },
             mercyside:{
                 title: "Mercyside",
-                length: "4:39"
+                length: "4:39",
+                music: ["anders","einar","Waldemar Sorychta"],
+                lyrics: ["osten"]
             },
             sanguinesky:{
                 title: "Sanguine Sky",
-                length: "3:50"
+                length: "3:50",
+                music: ["anders","einar"],
+                lyrics: ["Kjartan Hermansen"]
             },
             openground:{
                 title: "Open Ground",
-                length: "4:40"
+                length: "4:40",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             theravens:{
                 title: "The Ravens",
-                length: "5:06"
+                length: "5:06",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             destinationdeparture:{
                 title: "Destination Departure",
-                length: "4:34"
+                length: "4:34",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             down:{
                 title: "Down",
-                length: "4:32"
+                length: "4:32",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             fate:{
                 title: "Fate",
-                length: "4:59"
+                length: "4:59",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             lotus:{
                 title: "Lotus",
-                length: "5:08"
+                length: "5:08",
+                music: ["anders","einar"],
+                lyrics: ["osten"]
             },
             sacrilege:{
                 title: "Sacrilege",
-                length: "4:15"
+                length: "4:15",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             deadlands:{
                 title: "Deadlands",
-                length: "6:39"
+                length: "6:39",
+                music: ["anders","einar"],
+                lyrics: ["einar"]
             },
             inthewake:{
                 title: "In the Wake",
