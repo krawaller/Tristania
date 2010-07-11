@@ -1,41 +1,38 @@
 Ti.include("../assets/utils.js");
-//$.msg({ text:'Info!' });
 
-var view = $.createView({}),
-    webview = Ti.UI.createWebView({ url: '../views/news.html' });
-    biolist = $.createView({});
-    tabbedbar = $.createTabbedBar({
-	    labels:['News', 'Bio'],
-        index:0
-    }),
-    news = $.getNews();
-
-webview.addEventListener("load",function(){ webview.evalJS("render({ news: "+JSON.stringify(news)+"})"); });
+//webview.addEventListener("load",function(){ webview.evalJS("render({ news: "+JSON.stringify(news)+"})"); });
     
-win.rightNavButton = tabbedbar;
-view.add(biolist);
-view.add(webview);
-win.add(view);
 
-tabbedbar.addEventListener("click",function(e){
-    switch(e.index){
-        case 0: view.animate({view:webview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-        case 1: view.animate({view:biolist,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-    }
+    // ********* News section code ****************************
+    
+var news = $.getNews(),
+    newsview = $.createView({}),
+    newstable = $.createTableView({rows: news});
+
+newsview.add(newstable);
+
+newstable.addEventListener("click",function(e){
+    var win = $.createWin({
+        url:'news.js' //,
+        //title: e.rowData.def.title
+    });
+    win.data = { news: e.rowData.def };
+    Ti.UI.currentTab.open(win);
 });
+
 
     // ******** Biography section code ************************
 
 var tinfo = {
-    sections: [ { headerTitle:"Members", datarows: $.getMemberList({current:true}) },
-                { headerTitle: "Former members", datarows: $.getMemberList({current:undefined}) }
-    ]
-};
+        sections: [ { headerTitle:"Members", datarows: $.getMemberList({current:true}) },
+                    { headerTitle: "Former members", datarows: $.getMemberList({current:undefined}) } ]
+    },
+    bioview =  $.createView({}),
+    biotable = $.createTableView(tinfo);
 
-var table = $.createTableView(tinfo);
-biolist.add(table);
+bioview.add(biotable);
 
-table.addEventListener("click",function(e){
+biotable.addEventListener("click",function(e){
     var win = $.createWin({
         url:'bio.js',
         title: e.rowData.def.title
@@ -44,3 +41,22 @@ table.addEventListener("click",function(e){
     Ti.UI.currentTab.open(win);
 });
 
+    // ************* Main win code ****************************
+    
+var view = $.createView({}),
+    tabbedbar = $.createTabbedBar({
+	    labels:['News', 'Bio'],
+        index:0
+    });
+
+view.add(bioview);
+view.add(newsview);
+win.add(view);
+win.rightNavButton = tabbedbar;
+
+tabbedbar.addEventListener("click",function(e){
+    switch(e.index){
+        case 0: view.animate({view:newsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+        case 1: view.animate({view:bioview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+    }
+});

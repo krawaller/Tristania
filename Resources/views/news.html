@@ -8,13 +8,12 @@
         <link rel="stylesheet" type="text/css" href="all.css" />
         <style type="text/css">
         </style>
-        <script type="text/tmpl" id="template">            
-            <# for(var i=0;i<news.length;i++){ #>
-                <div class='tbox'>
-                <h2><#= news[i].date #></h2>
-                <div><#= news[i].content #></div>
-                </div>
-	        <# }; #>
+        <script type="text/tmpl" id="template">
+              <div class='tbox'>
+                <h2><#= news.title #></h2>
+                <p>Posted at <#= news.date #></p>
+                <div><#= news.content #></div>
+              </div>
         </script>
     </head>
 

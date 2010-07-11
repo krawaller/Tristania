@@ -230,15 +230,19 @@ var $ = (function(){
     var data = {
         news: [{
             date: "2010-07-20",
+            title: "Wahahah!",
             content: "<p>Moo wee huhuhu!</p>"
         },{
             date: "2010-06-30",
+            title: "ojoj! nuså!",
             content: "<p>Jojojo!</p><p>Men bla bla bla också!</p>"
         },{
             date: "2010-06-05",
+            title: "Nu händer det grejjer!",
             content: "<p>bla bla mooooooo</p>"
         },{
             date: "2010-06-02",
+            title: "hihi!",
             content: "<p>gwihiiii</p>"
         }],
         members: {
