@@ -5,7 +5,7 @@ var start,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
-    picView = $.createView({ backgroundColor: "#000" }),
+    picView = $.createView({}),
     infoView = $.createWebView({ url: "../views/image.html" }),
     info = $.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,

@@ -12,10 +12,7 @@ var news = $.getNews(),
 newsview.add(newstable);
 
 newstable.addEventListener("click",function(e){
-    var win = $.createWin({
-        url:'news.js' //,
-        //title: e.rowData.def.title
-    });
+    var win = $.createWin({ url:'news.js' });
     win.data = { news: e.rowData.def };
     Ti.UI.currentTab.open(win);
 });
@@ -33,10 +30,7 @@ var tinfo = {
 bioview.add(biotable);
 
 biotable.addEventListener("click",function(e){
-    var win = $.createWin({
-        url:'bio.js',
-        title: e.rowData.def.title
-    });
+    var win = $.createWin({ url:'bio.js' });
     win.data = e.rowData.def;
     Ti.UI.currentTab.open(win);
 });

@@ -1,5 +1,7 @@
 Ti.include("../assets/utils.js");
 
+win.title = win.info ? win.info.title : "Gallery";
+
 var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG });
 
 function getREST(what){
@@ -23,11 +25,10 @@ function renderList(d){
             url: e.rowData.info.num === -666 ? 'photoalbum.js' : 
                  e.rowData.info.albums ? 'albumlist.js' : 
                  'gallery.js', // TODO - safe up this!
-            title: e.rowData.info.name,
+       //     title: e.rowData.info.name,
             info: e.rowData.info,
             transparent: e.rowData.info.num === -666
         });
-        Ti.API.info(['url', win.url]);
         if(win.url == 'photoalbum.js'){
             win.orientationModes = [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT];
             win.tabBarHidden = true;

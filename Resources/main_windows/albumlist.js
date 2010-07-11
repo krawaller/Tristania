@@ -1,5 +1,7 @@
 Ti.include("../assets/utils.js");
 
+win.title = win.info.title || "Photoalbums";
+
 var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG });
 
 function render(res){

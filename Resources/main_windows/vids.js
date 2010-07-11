@@ -1,15 +1,15 @@
 Ti.include("../assets/utils.js");
-$.msg({ text:'Videos!' });
 
-var spinner = Ti.UI.createActivityIndicator({
-    style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG
-});
+win.title = "Videos";
 
-var OFFICIAL = 0, PICKED = 1;
-var tabbedbar = $.createTabbedBar({
-    labels:['Official', 'Picked'],
-    index:0
-});
+var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG }),
+    OFFICIAL = 0, 
+    PICKED = 1,
+    tabbedbar = $.createTabbedBar({
+        labels:['Official', 'Picked'],
+        index:0
+    }),
+    webview = $.createWebView({ url: '../views/videos.html' });
 
 win.rightNavButton = tabbedbar;
 
@@ -65,11 +65,6 @@ function renderList(vids){
 	win.remove(spinner);
 	spinner.hide();
 }
-
-var webview = Ti.UI.createWebView({
-	url: '../views/videos.html',
-	background: '#555'
-});
 
 win.add(webview);
 webview.addEventListener('load', function(){

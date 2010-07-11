@@ -7,6 +7,8 @@ var id = win.data.id;
 var track = $.getTrack(id),
     trackview = Ti.UI.createWebView({ url: '../views/track.html' });
 
+win.title = track.title;
+
 trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: "+JSON.stringify(track)+" })"); });
 
 

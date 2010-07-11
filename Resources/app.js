@@ -7,10 +7,10 @@ Titanium.UI.setBackgroundColor('#000');
 var tabGroup = Titanium.UI.createTabGroup();
 
 tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_info.png', title:'Info', window: $.createWin({ title:'Info', url: "main_windows/info.js" }) }) );  
-tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_discography.png', title:'Discography', window: $.createWin({ title:'Discography', url: "main_windows/discography.js" }) }) );  
-tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_pictures.png', title:'Gallery', window: $.createWin({ title:'Gallery', url: "main_windows/gallery.js" }) }) );  
-tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_videos.png', title:'Videos', window:$.createWin({ title:'Videos', url: "main_windows/vids.js" }) }) );  
-tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_community.png', title:'Community', window:$.createWin({ title:'Community', url: "main_windows/community.js" }) }) );  
+tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_discography.png', title:'Discography', window: $.createWin({ url: "main_windows/discography.js" }) }) );  
+tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_pictures.png', title:'Gallery', window: $.createWin({ url: "main_windows/gallery.js" }) }) );  
+tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_videos.png', title:'Videos', window:$.createWin({ url: "main_windows/vids.js" }) }) );  
+tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_community.png', title:'Community', window:$.createWin({ url: "main_windows/community.js" }) }) );  
 
 // open tab group
 tabGroup.open({ transition: Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });

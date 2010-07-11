@@ -6,7 +6,8 @@ var album = $.getAlbum(win.data.id),
     webview,
     view = $.createView({}),
     table;
-
+    
+win.title = album.shorttitle;
 
     // Set up navigation between views
 
@@ -40,11 +41,7 @@ else {
 table = $.createTableView(tinfo);
 
 table.addEventListener("click",function(e){
-Ti.API.log(e.rowData);
-    var win = $.createWin({
-        url:'track.js',
-        title: e.rowData.def.title
-    });
+    var win = $.createWin({ url:'track.js' });
     table.zIndex = 2;
     webview.zIndex = 1;
     win.data = e.rowData.def;
