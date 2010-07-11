@@ -61,3 +61,12 @@ Array.prototype.remove = function(obj){
     }
     return this;
 };
+
+H = {
+  renderAlbumLink: function(a){
+    return "<a href='#' class='tlink' cat='album' targetid='"+a.id+"'>"+a.title+"</a>";
+  },
+  renderMemberLink: function(b){
+    return "<a href='#' class='tlink' cat='bio' targetid='"+b.id+"'>"+b.name+"</a>";
+  }
+}

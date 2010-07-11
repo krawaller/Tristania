@@ -11,23 +11,32 @@
         <script type="text/tmpl" id="template">
           <div class='tbox'>
            <img class='bigpic' src='../pics/<#=album.pic#>' />
+          </div>
+          <div class='tbox'>
+           <h2>Info</h2>
            <dl><dt>Year</dt><dd><#=album.year#></dd>
            <dt>Description</dt><dd><#=album.desc#></dd>
+           <dt>Lineup</dt><dd>
+             <# for(var i=0; i<album.lineup.length; i++){ var m = album.lineup[i]; #>
+               <span><#= H.renderMemberLink(m) #> </span> 
+             <# } #>
+           </dd>
            </dl>
          </div>
          <# if(album.presentation){ #>
            <div class='tbox'>
+             <h2>Presentation</h2>
              <#= album.presentation #>
            </div>
-         <# }; #>
+         <# } #>
          <# if(album.comments){ #>
              <# for(var i=0; i<album.comments.length; i++){ var c = album.comments[i]; #>
                  <div class='tbox'>
                     <h2><#= c.name #> says:</h2>
                     <#= c.content #>
                  </div>
-             <# }; #>
-         <# }; #>
+             <# } #>
+         <# } #>
         </script>
     </head>
 

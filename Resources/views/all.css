@@ -15,6 +15,11 @@ html, body {
     margin-bottom: 1em;
 }
 
+.tbox > h2 {
+    color: red;
+    font-weight: bold;
+}
+
 .bigpic {
     max-height: 400px;
     max-width: 300px;

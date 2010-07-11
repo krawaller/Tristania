@@ -11,12 +11,16 @@
         <script type="text/tmpl" id="template">
           <div class='tbox'>
             <img class="bigpic" src="../pics/bio_<#=bio.id#>.jpg" />
+          </div>
+          <div class='tbox'>
+            <h2>Data</h2>
             <p>Name: <#=bio.name#></p>
             <p>Role: <#=bio.role#></p>
             <p>Member: <#=bio.member#></p>
           </div>
          <# if(bio.presentation){ #>
            <div class='tbox'>
+             <h2>Presentation</h2>
              <#= bio.presentation #>
            </div>
          <# }; #>

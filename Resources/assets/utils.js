@@ -205,7 +205,11 @@ var $ = (function(){
             return ret;
         },
         getAlbum: function(id){
-            return $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.discography[id]);
+            var a = data.discography[id], lineup = [];
+            a.lineup.map(function(who){
+                lineup.push($.getMember(who));
+            });
+            return $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id), lineup: lineup},a);
         },
         getTracks: function(arr){
             var ret= [];
@@ -218,7 +222,14 @@ var $ = (function(){
             return ret;
         },
         getTrack: function(id){
-            return $.merge({id:id, comments: $.getComments(id)},data.tracks[id]);
+            var albums = [];
+            $.getAlbums().map(function(a){
+                a = $.getAlbum(a.id); // need full data
+                if (a.tracks.indexOf(id) != -1 || (a.bonustracks && a.bonustracks.indexOf(id) != -1)){
+                    albums.push(a);
+                }
+            });
+            return $.merge({id:id, albums: albums, comments: $.getComments(id)},data.tracks[id]);
         },
         getNews: function(){
             return data.news;
@@ -370,7 +381,7 @@ var $ = (function(){
                 pic: "tristania-ww.jpg",
                 year: 1997,
                 scanalbum: 162,
-                lineup: ["Vibeke","Morten","Einar"],
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
                 tracks: ["evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress"]
             },
             beyondtheveil: {
@@ -380,7 +391,7 @@ var $ = (function(){
                 pic: "tristania-btv.jpg",
                 year: 1998,
                 scanalbum: 163,
-                lineup: ["Vibeke","Morten","Einar"],
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
                 tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","angina","heretique","dementia"]
             },
             worldofglass: {
@@ -390,7 +401,7 @@ var $ = (function(){
                 pic: "tristania-world.jpg",
                 scanalbum: 164,
                 year: 2001,
-                lineup: ["Vibeke","Anders","Einar"],
+                lineup: ["vibeke","einar","rune","anders","kenneth","osten"],
                 tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
                 bonustracks: ["themodernend"]
             },
@@ -401,7 +412,7 @@ var $ = (function(){
                 pic: "tristania-ashes.jpg",
                 scanalbum: 165,
                 year: 2004,
-                lineup: ["Vibeke","Anders","Einar","Kjetil"],
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje","kjetili"],
                 tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
                 bonustracks: ["thegate"]
             },
@@ -412,7 +423,7 @@ var $ = (function(){
                 pic: "tristania-illumination.jpg",
                 scanalbum: 166,
                 year: 2006,
-                lineup: ["Vibeke","Anders","Einar"],
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje"],
                 tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
                 bonustracks: ["inthewake","abinitio"]
             },
@@ -423,7 +434,7 @@ var $ = (function(){
                 pic: "tristania-rubicon.jpg",
                 scanalbum: 194,
                 year: 2010,
-                lineup: ["Mariangela","Ole","Gyri","Tarald"],
+                lineup: ["mary","kjetiln","einar","ole","anders","tarald","osten","gyri"],
                 tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illumination"],
                 bonustracks: ["theemeraldpiper"]
             }

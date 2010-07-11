@@ -10,7 +10,15 @@
         </style>
         <script type="text/tmpl" id="template">
           <div class='tbox'>
-            <p><#=track.title#></p>
+            <h2>Info</h2>
+            <# if (track.albums && track.albums.length){ #>
+                <span>Appears on:
+                <# for(var i=0; i<track.albums.length; i++){ #>
+                    <span><#= H.renderAlbumLink(track.albums[i]) #> </span>
+                <# }; #>
+                </span>
+            <# }; #>
+            <p>Moo!</p>
 	      </div>
          <# if(track.comments){ #>
              <# for(var i=0; i<track.comments.length; i++){ var c = track.comments[i]; #>
