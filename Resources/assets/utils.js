@@ -229,7 +229,7 @@ var $ = (function(){
                     albums.push(a);
                 }
             });
-            return $.merge({id:id, albums: albums, comments: $.getComments(id)},data.tracks[id]);
+            return $.merge({id:id, albums: albums, presentation: $.getPresentation(id), comments: $.getComments(id)},data.tracks[id]);
         },
         getNews: function(){
             return data.news;
@@ -377,27 +377,24 @@ var $ = (function(){
             widowsweeds: {
                 title: "Widow's weeds",
                 shorttitle: "WW",
-                desc: "<p>First album! Gothic and nice.<p>",
                 pic: "tristania-ww.jpg",
-                year: 1997,
+                year: 1998,
                 scanalbum: 162,
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress"]
+                tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"]
             },
             beyondtheveil: {
                 title: "Beyond the Veil",
                 shorttitle: "BtV",
-                desc: "<p>Cult album!<p>",
                 pic: "tristania-btv.jpg",
-                year: 1998,
+                year: 1999,
                 scanalbum: 163,
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","angina","heretique","dementia"]
+                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"]
             },
             worldofglass: {
                 title: "World of Glass",
                 shorttitle: "WoG",
-                desc: "<p>Rules!<p>",
                 pic: "tristania-world.jpg",
                 scanalbum: 164,
                 year: 2001,
@@ -408,10 +405,9 @@ var $ = (function(){
             ashes: {
                 title: "Ashes",
                 shorttitle: "Ashes",
-                desc: "<p>Awesome album!<p>",
                 pic: "tristania-ashes.jpg",
                 scanalbum: 165,
-                year: 2004,
+                year: 2005,
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje","kjetili"],
                 tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
                 bonustracks: ["thegate"]
@@ -419,10 +415,9 @@ var $ = (function(){
             illumination: {
                 title: "Illumination",
                 shorttitle: "Ilmntn",
-                desc: "<p>Atmospheric!<p>",
                 pic: "tristania-illumination.jpg",
                 scanalbum: 166,
-                year: 2006,
+                year: 2007,
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje"],
                 tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
                 bonustracks: ["inthewake","abinitio"]
@@ -430,7 +425,6 @@ var $ = (function(){
             rubicon: {
                 title: "Rubicon",
                 shorttitle: "Rbcn",
-                desc: "<p>The new album! Woo!<p>",
                 pic: "tristania-rubicon.jpg",
                 scanalbum: 194,
                 year: 2010,
@@ -440,179 +434,249 @@ var $ = (function(){
             }
         },
         tracks: {
+            preludium: {
+                title: "Preludium",
+                length: "1:09"
+            },
             evenfall: {
-                title: "Evenfall"
+                title: "Evenfall",
+                length: "6:54"
             },
             paleenchantress: {
-                title: "Pale Enchantress"
+                title: "Pale Enchantress",
+                length: "6:32"
             },
             decemberelegy: {
-                title: "December Elegy"
+                title: "December Elegy",
+                length: "7:31"
             },
             midwintertears: {
-                title: "Midwintertears"
+                title: "Midwintertears",
+                length: "8:32"
             },
             angellore: {
-                title: "Angellore"
+                title: "Angellore",
+                length: "7:17"
             },
             mylostlenore: {
-                title: "My Lost Lenore"
+                title: "My Lost Lenore",
+                length: "6:23"
             },
             wastelandscaress: {
-                title: "Wasteland's Caress"
+                title: "Wasteland's Caress",
+                length: "7:40"
+            },
+            postludium: {
+                title: "Postludium",
+                length: "1:10"
             },
             beyondtheveil: {
-                title: "Beyond the Veil"
+                title: "Beyond the Veil",
+                length: "6:37"
             },
             aphelion: {
-                title: "Aphelion"
+                title: "Aphelion",
+                length: "7:50"
             },
             asequelofdecay: {
-                title: "A Sequel of Decay"
+                title: "A Sequel of Decay",
+                length: "6:33"
             },
             opusrelinque: {
-                title: "Opus Relinque"
+                title: "Opus Relinque",
+                length: "6:08"
             },
             letheanriver: {
-                title: "Lethean River"
+                title: "Lethean River",
+                length: "5:56"
             },
             ofruinsandarednightfall: {
-                title: "Of Ruins and a Red Nightfall"
+                title: "Of Ruins and a Red Nightfall",
+                length: "6:22"
+            },
+            simbelmyne: {
+                title: "Simbelmynë",
+                length: "1:00"
             },
             angina: {
-                title: "Angina"
+                title: "Angina",
+                length: "4:39"
             },
             heretique: {
-                title: "Heretique"
+                title: "Heretique",
+                length: "4:51"
             },
             dementia: {
-                title: "Dementia"
+                title: "Dementia",
+                length: "2:21"
             },
             theshiningpath: {
-                title: "The Shining Path"
+                title: "The Shining Path",
+                length: "6:46"
             },
             wormwood: {
-                title: "Wormwood"
+                title: "Wormwood",
+                length: "5:56"
             },
             tendertriponearth: {
-                title: "Tender Trip on Earth"
+                title: "Tender Trip on Earth",
+                length: "5:18"
             },
             lost: {
-                title: "Lost"
+                title: "Lost",
+                length: "6:03"
             },
             deadlocked: {
-                title: "Deadlocked"
+                title: "Deadlocked",
+                length: "5:56"
             },
             sellingout: {
-                title: "Selling Out"
+                title: "Selling Out",
+                length: "6:19"
             },
             hatredgrows: {
-                title: "Hatred Grows"
+                title: "Hatred Grows",
+                length: "6:20"
             },
             worldofglass: {
-                title: "World of Glass"
+                title: "World of Glass",
+                length: "5:26"
             },
             crusheddreams: {
-                title: "Crushed Dreams"
+                title: "Crushed Dreams",
+                length: "7:41"
             },
             themodernend: {
-                title: "The Modern End"
+                title: "The Modern End",
+                length: "4:45"
             },
             libre:{
-                title: "Libre"
+                title: "Libre",
+                length: "4:30"
             },
             equilibrium:{
-                title: "Equilibrium"
+                title: "Equilibrium",
+                length: "5:49"
             },
             thewretched:{
-                title: "The Wretched"
+                title: "The Wretched",
+                length: "7:00"
             },
             cure:{
-                title: "Cure"
+                title: "Cure",
+                length: "5:59"
             },
             circus:{
-                title: "Circus"
+                title: "Circus",
+                length: "5:09"
             },
             shadowman:{
-                title: "Shadowman"
+                title: "Shadowman",
+                length: "6:31"
             },
             endogenesis:{
-                title: "Endogenesis"
+                title: "Endogenesis",
+                length: "7:35"
             },
             bird:{
-                title: "Bird"
+                title: "Bird",
+                length: "5:09"
             },
             thegate:{
-                title: "The Gate"
+                title: "The Gate",
+                length: "6:45"
             },
             mercyside:{
-                title: "Mercyside"
+                title: "Mercyside",
+                length: "4:39"
             },
             sanguinesky:{
-                title: "Sanguine Sky"
+                title: "Sanguine Sky",
+                length: "3:50"
             },
             openground:{
-                title: "Open Ground"
+                title: "Open Ground",
+                length: "4:40"
             },
             theravens:{
-                title: "The Ravens"
+                title: "The Ravens",
+                length: "5:06"
             },
             destinationdeparture:{
-                title: "Destination Departure"
+                title: "Destination Departure",
+                length: "4:34"
             },
             down:{
-                title: "Down"
+                title: "Down",
+                length: "4:32"
             },
             fate:{
-                title: "Fate"
+                title: "Fate",
+                length: "4:59"
             },
             lotus:{
-                title: "Lotus"
+                title: "Lotus",
+                length: "5:08"
             },
             sacrilege:{
-                title: "Sacrilege"
+                title: "Sacrilege",
+                length: "4:15"
             },
             deadlands:{
-                title: "Deadlands"
+                title: "Deadlands",
+                length: "6:39"
             },
             inthewake:{
-                title: "In the Wake"
+                title: "In the Wake",
+                length: "4:08"
             },
             abinitio:{
-                title: "Ab Initio"
+                title: "Ab Initio",
+                length: "5:44"
             },
             yearoftherat:{
-                title: "Year of the Rat"
+                title: "Year of the Rat",
+                length: "?:??"
             },
             protection:{
-                title: "Protection"
+                title: "Protection",
+                length: "?:??"
             },
             patriotgames:{
-                title: "Patriot Games"
+                title: "Patriot Games",
+                length: "?:??"
             },
             thepassing:{
-                title: "The Passing"
+                title: "The Passing",
+                length: "?:??"
             },
             exile:{
-                title: "Exile"
+                title: "Exile",
+                length: "?:??"
             },
             sirens:{
-                title: "Sirens"
+                title: "Sirens",
+                length: "?:??"
             },
             vulture:{
-                title: "Vulture"
+                title: "Vulture",
+                length: "?:??"
             },
             amnesia:{
-                title: "Amnesia"
+                title: "Amnesia",
+                length: "?:??"
             },
             magicalfix:{
-                title: "Magical Fix"
+                title: "Magical Fix",
+                length: "?:??"
             },
             illumination:{
-                title: "Illumination"
+                title: "Illumination",
+                length: "?:??"
             },
             theemeraldpiper:{
-                title: "The Emerald Piper"
+                title: "The Emerald Piper",
+                length: "?:??"
             }
         }
     }

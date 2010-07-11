@@ -14,3 +14,8 @@ tabGroup.addTab( $.createTab({ icon:'pics/icon_tab_community.png', title:'Commun
 
 // open tab group
 tabGroup.open({ transition: Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
+
+/*
+var x = Titanium.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory+"/test.txt").read().text;
+Ti.API.log(x);
+*/

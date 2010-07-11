@@ -14,9 +14,8 @@
           </div>
           <div class='tbox'>
            <h2>Info</h2>
-           <dl><dt>Year</dt><dd><#=album.year#></dd>
-           <dt>Description</dt><dd><#=album.desc#></dd>
-           <dt>Lineup</dt><dd>
+           <dl><dt>Year:</dt><dd><#=album.year#></dd>
+           <dt>Lineup:</dt><dd>
              <# for(var i=0; i<album.lineup.length; i++){ var m = album.lineup[i]; #>
                <span><#= H.renderMemberLink(m) #> </span> 
              <# } #>

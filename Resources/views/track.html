@@ -11,15 +11,23 @@
         <script type="text/tmpl" id="template">
           <div class='tbox'>
             <h2>Info</h2>
+            <dl>
             <# if (track.albums && track.albums.length){ #>
-                <span>Appears on:
-                <# for(var i=0; i<track.albums.length; i++){ #>
-                    <span><#= H.renderAlbumLink(track.albums[i]) #> </span>
-                <# }; #>
-                </span>
+                <dt>Appears on:</dt>
+                <# var txt = ""; for(var i=0; i<track.albums.length; i++){ 
+                    txt+= H.renderAlbumLink(track.albums[i]);
+                }; #>
+                <dd><#=txt#></dd>
             <# }; #>
-            <p>Moo!</p>
+              <dt>Length:</dt><dd><#= track.length #></dd>
+            </dl>
 	      </div>
+         <# if(track.presentation){ #>
+           <div class='tbox'>
+             <h2>Presentation</h2>
+             <#= track.presentation #>
+           </div>
+         <# }; #>
          <# if(track.comments){ #>
              <# for(var i=0; i<track.comments.length; i++){ var c = track.comments[i]; #>
                  <div class='tbox'>
