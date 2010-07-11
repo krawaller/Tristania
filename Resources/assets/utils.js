@@ -219,12 +219,28 @@ var $ = (function(){
         },
         getTrack: function(id){
             return $.merge({id:id},data.tracks[id]);
+        },
+        getNews: function(){
+            return data.news;
         }
     });
     
     
     // TODO - fix this poop, store as serialised text, update when necessary
     var data = {
+        news: [{
+            date: "2010-07-20",
+            content: "<p>Moo wee huhuhu!</p>"
+        },{
+            date: "2010-06-30",
+            content: "<p>Jojojo!</p><p>Men bla bla bla också!</p>"
+        },{
+            date: "2010-06-05",
+            content: "<p>bla bla mooooooo</p>"
+        },{
+            date: "2010-06-02",
+            content: "<p>gwihiiii</p>"
+        }],
         members: {
             ole: {
                 current: true,
