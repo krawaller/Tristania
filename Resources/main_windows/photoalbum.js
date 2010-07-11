@@ -5,30 +5,30 @@ var start,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
-    picView = $.createView({}),
+    picView = $.createView({ backgroundColor: "#000" }),
     infoView = $.createWebView({ url: "../views/image.html" }),
     info = $.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
         width: 18,
         height: 19,
         top: 55,
-        left: 15,
+        left: 25,
         zIndex: 2,
         backgroundImage: '../pics/info_light.png'
     }),
     fav = $.createButton({
         width: 18,
         height: 19,
-        top: 85,
-        left: 15,
+        top: 105,
+        left: 25,
         zIndex: 2,
         backgroundImage: '../pics/icon_unstar.png'
     }),
     save = $.createButton({
         width: 18,
         height: 19,
-        top: 115,
-        left: 15,
+        top: 155,
+        left: 25,
         zIndex: 2,
         backgroundImage: '../pics/save.png'
     });
