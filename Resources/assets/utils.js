@@ -191,7 +191,7 @@ var $ = (function(){
             return ret;
         },
         getMember: function(id){
-            return $.merge({id:id},data.members[id]);
+            return $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.members[id]);
         },
         getAlbums: function(){
             var ret = [];
@@ -205,7 +205,7 @@ var $ = (function(){
             return ret;
         },
         getAlbum: function(id){
-            return data.discography[id];
+            return $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.discography[id]);
         },
         getTracks: function(arr){
             var ret= [];
@@ -218,16 +218,50 @@ var $ = (function(){
             return ret;
         },
         getTrack: function(id){
-            return $.merge({id:id},data.tracks[id]);
+            return $.merge({id:id, comments: $.getComments(id)},data.tracks[id]);
         },
         getNews: function(){
             return data.news;
+        },
+        getPresentation: function(id){
+            return data.presentations[id];
+        },
+        getComments: function(id){
+            var comments = data.comments[id];
+            if (comments){ // TODO - should only do this when we update!
+                for(var c in comments){
+                    comments[c].name = $.getMember(comments[c].by).name;
+                }
+            }
+            return data.comments[id];
         }
     });
     
     
     // TODO - fix this poop, store as serialised text, update when necessary
     var data = {
+        comments: {
+            widowsweeds: [{
+                by: "ole",
+                content: "<p>I like this album. Very different from what we do now, but still!</p>"
+            },{
+                by: "anders",
+                content: "<p>But it shows that we were 17 at the time... :P</p>"
+            }],
+            evenfall: [{
+                by: "einar",
+                content: "<p>Nah, don't like this one, and the video they made is horrid...</p>"
+            }]
+        },
+        presentations: {
+            widowsweeds: "<p>First full length album, really nice! Wee! Woo!</p>",
+            beyondtheveil: "<p>Cult album, really neat, hehe weeee!</p>",
+            worldofglass: "<p>First after Morten's departure. Still standing strong!</p>",
+            ashes: "<p>Long awaited WoG followup. Rulezzz!</p>",
+            illumination: "<p>Last Vibeke album, she left immediately after completion.</p><p>Brilliant album! Vorph guest growls.</p>",
+            rubicon: "<p>The new album! Woooo!</p>",
+            ole: "<p>Nice guy! Also heavily involved in composing.</p>"
+        },
         news: [{
             date: "2010-07-20",
             title: "Wahahah!",
@@ -329,7 +363,7 @@ var $ = (function(){
             }
         },
         discography: {
-            ww: {
+            widowsweeds: {
                 title: "Widow's weeds",
                 shorttitle: "WW",
                 desc: "<p>First album! Gothic and nice.<p>",
@@ -339,7 +373,7 @@ var $ = (function(){
                 lineup: ["Vibeke","Morten","Einar"],
                 tracks: ["evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress"]
             },
-            btv: {
+            beyondtheveil: {
                 title: "Beyond the Veil",
                 shorttitle: "BtV",
                 desc: "<p>Cult album!<p>",
@@ -349,7 +383,7 @@ var $ = (function(){
                 lineup: ["Vibeke","Morten","Einar"],
                 tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","angina","heretique","dementia"]
             },
-            wog: {
+            worldofglass: {
                 title: "World of Glass",
                 shorttitle: "WoG",
                 desc: "<p>Rules!<p>",

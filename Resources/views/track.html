@@ -12,6 +12,14 @@
           <div class='tbox'>
             <p><#=track.title#></p>
 	      </div>
+         <# if(track.comments){ #>
+             <# for(var i=0; i<track.comments.length; i++){ var c = track.comments[i]; #>
+                 <div class='tbox'>
+                    <h2><#= c.name #> says:</h2>
+                    <#= c.content #>
+                 </div>
+             <# }; #>
+         <# }; #>
         </script>
     </head>
 

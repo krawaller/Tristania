@@ -61,5 +61,3 @@ Array.prototype.remove = function(obj){
     }
     return this;
 };
-
-

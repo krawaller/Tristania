@@ -15,6 +15,19 @@
            <dt>Description</dt><dd><#=album.desc#></dd>
            </dl>
          </div>
+         <# if(album.presentation){ #>
+           <div class='tbox'>
+             <#= album.presentation #>
+           </div>
+         <# }; #>
+         <# if(album.comments){ #>
+             <# for(var i=0; i<album.comments.length; i++){ var c = album.comments[i]; #>
+                 <div class='tbox'>
+                    <h2><#= c.name #> says:</h2>
+                    <#= c.content #>
+                 </div>
+             <# }; #>
+         <# }; #>
         </script>
     </head>
 
