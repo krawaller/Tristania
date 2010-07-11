@@ -1,60 +1,41 @@
 Ti.include("../assets/utils.js");
-Ti.include("../assets/lyrics.js");
-
-var id = win.data.id,
-    track = $.getTrack(id),
-    lyr = lyrics[id],
-    webview = Ti.UI.createWebView({ url: '../views/track.html', background: '#555' });
-
-Ti.API.log([id,track]);
-
-webview.addEventListener("load",function(){ webview.evalJS("render({ track: "+JSON.stringify(track)+", lyrics: "+JSON.stringify(lyr)+"})"); });
-win.add(webview);
+var id = win.data.id;
 
 
+    // ************************* Trackinfo code *******************
+    
+var track = $.getTrack(id),
+    trackview = Ti.UI.createWebView({ url: '../views/track.html' });
+
+trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: "+JSON.stringify(track)+" })"); });
 
 
-/*
+    // ************************ Lyrics code ***********************
 
-Ti.API.log(win.trackData);
+Ti.include("../assets/lyrics.js"); // creates global var lyrics
 
-var track = $.getTrack(win.data.id),
-    text = "";
+var lyr = lyrics[id],
+    lyricsview = Ti.UI.createWebView({ url: '../views/lyrics.html' });
 
-lyrics[win.data.id].map(function(p){
-    var t = "";
-    p.map(function(l){
-        t += l + "<br/>";
-    });
-    text += "<p>"+t+"</p>";
-});
+lyricsview.addEventListener("load",function(){ lyricsview.evalJS("render({ lyrics: "+JSON.stringify(lyr)+" })"); });
 
-var infohtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/trackinfo.css' /></head><body>" + win.trackData.title + 
-               "</body></html",
-    lyricshtml = "<html><head><link rel='stylesheet' href='css/tristania.css' /><link rel='stylesheet' href='css/lyrics.css' /></head><body>" + text + 
-               "</body></html",
-    flexSpace = Titanium.UI.createButton({
-	    systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
-    }),
-    tabbedbar = $.createTabbedBar({
+
+    // *********************** Main page code *********************
+
+var tabbedbar = $.createTabbedBar({
 	labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"}],
         index:0
     }),
-    infoview = $.createWebView({ html: infohtml }),
-    lyricsview = Titanium.UI.createWebView({ html: lyricshtml }),
-    view = Ti.UI.createView({});
-
-//win.setToolbar([flexSpace,tabbedbar,flexSpace]);
+    view = $.createView({});
+    
 win.rightNavButton = tabbedbar;
 view.add(lyricsview);
-view.add(infoview);
+view.add(trackview);
 win.add(view);
 
 tabbedbar.addEventListener("click",function(e){
     switch(e.index){
-        case 0: view.animate({view:infoview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+        case 0: view.animate({view:trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
         case 1: view.animate({view:lyricsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
     }
 });
-
-*/
