@@ -55,9 +55,9 @@ var defopts = {
     },
     "tableviewsection": {
     },
-    "tableheaderview": {
+    "tableviewheaderview": {
     },
-    "tableheaderlabel": {
+    "tableviewheaderlabel": {
         backgroundColor: "#FFF",
         color: "#000"
     },
