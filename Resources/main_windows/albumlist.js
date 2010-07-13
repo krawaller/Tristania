@@ -34,7 +34,7 @@ function render(res){
         rows.push({
             title: item.title,
             info: item.info,
-            label: { text:"("+item.info.pics+")" }
+            sidelabel: { text:"("+item.info.pics+")" }
         });
     });
     list = $.createTableView({rows:rows});

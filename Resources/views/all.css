@@ -12,10 +12,11 @@ html, body {
     border: 1px solid white;
     border-radius: 5px 5px 5px 5px;
     background-color: #CCC;
-    margin: 5px;
+    margin: 7px;
     margin-bottom: 1em;
-    padding: 5px;
+    padding: 7px;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000), to(#CCC));
+    text-shadow: #000 0 0 2px;
 }
 
 .tbox > h2 {
@@ -26,5 +27,7 @@ html, body {
 
 .bigpic {
     max-height: 400px;
-    max-width: 300px;
+    max-width: 280px;
+    display: block;
+    margin: 1em auto;
 }

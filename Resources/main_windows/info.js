@@ -7,7 +7,13 @@ Ti.include("../assets/utils.js");
     
 var news = $.getNews(),
     newsview = $.createView({}),
-    newstable = $.createTableView({rows: news});
+    newstable;
+    
+news.map(function(n){n.sublabel = n.date});
+newstable = $.createTableView({rows: news});
+
+    
+  
 
 newsview.add(newstable);
 

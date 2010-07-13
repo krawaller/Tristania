@@ -15,7 +15,7 @@ function renderList(d){
         rows.push({
             title: item.title,
             info: item.info,
-            label: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
+            sidelabel: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
         });
     });
     table = $.createTableView({rows: rows});

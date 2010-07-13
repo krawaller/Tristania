@@ -36,13 +36,21 @@ var defopts = {
     "tabbedbar": {
         backgroundColor: "#555"
     },
-    "tableview": { backgroundColor: "#555" },
+    "tableview": { backgroundColor: "#000", borderColor: "#000", borderWidth: 0 },
     "tableviewrow": { color: "#FFF" },
-    "tableviewrowlabel": {
+    "tableviewrowsidelabel": {
         color: "#AAA",
         right: 10,
         width: "auto",
         font:{fontSize:20,fontFamily:'Helvetica Neue'},
+        textAlign:'center'
+    },
+    "tableviewrowsublabel": {
+        color: "#AAA",
+        bottom: -30,
+        left: 10,
+        width: "auto",
+        font:{fontSize:10,fontFamily:'Helvetica Neue'},
         textAlign:'center'
     },
     "tableviewsection": {
@@ -124,6 +132,7 @@ var $ = (function(){
             return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all));
         },
         createTableView: function(o){
+        Ti.API.log(["table!",o]);
             var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all));
             if (o.sections){
                 var sects = [];
@@ -136,17 +145,28 @@ var $ = (function(){
             return table;
         },
         createTableViewRow: function(o){
+        Ti.API.log(["row!",o]);
             var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
-            if (o.label){ row.add($.createTableViewRowLabel(o.label)); }
+            if (o.sidelabel){ row.add($.createTableViewRowSideLabel(o.sidelabel)); }
+            if (o.sublabel){ row.add($.createTableViewRowSubLabel(o.sublabel)); }
             row.def = o;
             return row;
         },
-        createTableViewRowLabel: function(o){
-            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowlabel,defopts.all));
+        createTableViewRowSideLabel: function(o){
+            if (typeof o === "string"){
+                o = { text: o };
+            }
+            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowsidelabel,defopts.all));
+        },
+        createTableViewRowSubLabel: function(o){
+            if (typeof o === "string"){
+                o = { text: o };
+            }
+            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowsublabel,defopts.all));
         },
         createTableViewSection: function(o){
-            var h = $.createView( $.merge({  }, defopts.tableheaderview ));
-            h.add( $.createLabel( $.merge({ backgroundColor: o.headerBackgroundColor, color: o.headerColor, text: o.headerTitle }, defopts.tableheaderlabel )) );
+            var h = $.createView( $.merge({  }, defopts.tableviewheaderview ));
+            h.add( $.createLabel( $.merge({ text: o.headerTitle }, defopts.tableviewheaderlabel )) );
             o.headerView = h;
             delete o.headerTitle;
             var s = Ti.UI.createTableViewSection($.merge(o,defopts.tableviewsection,defopts.all))
