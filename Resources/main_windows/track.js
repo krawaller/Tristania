@@ -5,11 +5,11 @@ var id = win.data.id;
     // ************************* Trackinfo code *******************
     
 var track = $.getTrack(id),
-    trackview = Ti.UI.createWebView({ url: '../views/track.html' });
+    trackview = $.createKraWebView({templateFile: "track.tmpl", data: track}); //Ti.UI.createWebView({ url: '../views/track.html' });
 
 win.title = track.title;
 
-trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: "+JSON.stringify(track)+" })"); });
+// trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: "+JSON.stringify(track)+" })"); });
 
 
     // ************************ Lyrics code ***********************
@@ -17,9 +17,9 @@ trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: 
 Ti.include("../assets/lyrics.js"); // creates global var lyrics
 
 var lyr = lyrics[id],
-    lyricsview = Ti.UI.createWebView({ url: '../views/lyrics.html' });
+    lyricsview = $.createKraWebView({templateFile: "lyrics.tmpl",data: lyr}); //Ti.UI.createWebView({ url: '../views/lyrics.html' });
 
-lyricsview.addEventListener("load",function(){ lyricsview.evalJS("render({ lyrics: "+JSON.stringify(lyr)+" })"); });
+//lyricsview.addEventListener("load",function(){ lyricsview.evalJS("render({ lyrics: "+JSON.stringify(lyr)+" })"); });
 
 
     // *********************** Main page code *********************

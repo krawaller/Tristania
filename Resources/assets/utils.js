@@ -59,9 +59,9 @@ var defopts = {
     "imageview": {
     	defaultImage: "../pics/image_loader.png"
     },
-    "webview": {},
+    "webview": { backgroundColor: "#000" },
     "button": {},
-    "view": {},
+    "view": { backgroundColor: "#000"},
     "label": {},
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
@@ -172,6 +172,13 @@ var $ = (function(){
         },
         createButton: function(o){
             return Ti.UI.createButton($.merge(o,defopts.button,defopts.all));
+        },
+        createKraWebView: function(o){
+            var webview = $.createWebView({url: "../views/"+ (o.masterPageFile || "_masterpage.html")}),
+                template = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory+"/views/"+o.templateFile).read().text,
+                opts = { template: template, data: {data: o.data} };
+            webview.addEventListener("load",function(){ webview.evalJS("render("+JSON.stringify(opts)+")"); });
+            return webview;
         },
         
     // ************ DATA FUNCTIONS **********************

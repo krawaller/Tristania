@@ -14,9 +14,11 @@
           </div>
           <div class='tbox'>
             <h2>Data</h2>
-            <p>Name: <#=bio.name#></p>
-            <p>Role: <#=bio.role#></p>
-            <p>Member: <#=bio.member#></p>
+            <dl>
+              <dt>Name:</dt><dd><#=bio.name#></dd>
+              <dt>Role:</dt><dd><#=bio.role#></dd>
+              <dt>Member:</dt><dd><#=bio.member#></dd>
+            </dl>
           </div>
          <# if(bio.presentation){ #>
            <div class='tbox'>

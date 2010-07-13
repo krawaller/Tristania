@@ -2,22 +2,26 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Lucida Grande", Helvetica;
-    background-color: "#555";
+    background-color: #000;
     color: #fff;
     font-size: 13px;
     font-weight: bold;
 }
 
 .tbox {
-    border: 1px solid black;
+    border: 1px solid white;
+    border-radius: 5px 5px 5px 5px;
     background-color: #CCC;
-    margin: 3px;
+    margin: 5px;
     margin-bottom: 1em;
+    padding: 5px;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000), to(#CCC));
 }
 
 .tbox > h2 {
     color: red;
     font-weight: bold;
+    font-style: italic;
 }
 
 .bigpic {

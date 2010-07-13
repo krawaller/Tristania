@@ -53,8 +53,9 @@ view.add(table);
 
     // Build the webview with info
 
-webview = $.createWebView({url:  '../views/album.html'});
-webview.addEventListener("load",function(){ webview.evalJS("render({ album: "+JSON.stringify(album)+"})"); });
+//webview = $.createWebView({url:  '../views/album.html'});
+//webview.addEventListener("load",function(){ webview.evalJS("render({ album: "+JSON.stringify(album)+"})"); });
+webview = $.createKraWebView({templateFile:"album.tmpl",data: album});
 view.add(webview);
 
 

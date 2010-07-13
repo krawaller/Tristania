@@ -1,0 +1,27 @@
+          <div class='tbox'>
+           <img class='bigpic' src='../pics/<#=data.pic#>' />
+          </div>
+          <div class='tbox'>
+           <h2>Info</h2>
+           <dl><dt>Year:</dt><dd><#=data.year#></dd>
+           <dt>Lineup:</dt><dd>
+             <# for(var i=0; i<data.lineup.length; i++){ var m = data.lineup[i]; #>
+               <span><#= H.renderMemberLink(m) #> </span> 
+             <# } #>
+           </dd>
+           </dl>
+         </div>
+         <# if(data.presentation){ #>
+           <div class='tbox'>
+             <h2>Presentation</h2>
+             <#= data.presentation #>
+           </div>
+         <# } #>
+         <# if(data.comments){ #>
+             <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
+                 <div class='tbox'>
+                    <h2><#= c.name #> says:</h2>
+                    <#= c.content #>
+                 </div>
+             <# } #>
+         <# } #>

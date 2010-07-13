@@ -6,6 +6,7 @@ var start,
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
     picView = $.createView({ backgroundColor: "#000" }),
+    //infoView = $.createKraWebView({templateFile: "image.tmpl", data: {}}),
     infoView = $.createWebView({ url: "../views/image.html" }),
     info = $.createButton({
         systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
@@ -41,7 +42,7 @@ win.add(picView);
 
 win.addEventListener('touchstart', function(e){
 	start = { x: e.x, y: e.y, at: new Date().getTime() };
-})
+});
 
 win.addEventListener('touchend', function(e){
 	if(start && (new Date().getTime() - start.at) > 10 && (Math.abs(e.x-start.x) + Math.abs(e.y-start.y)) < 20){
@@ -62,7 +63,7 @@ win.addEventListener('touchend', function(e){
 		}
 		navHidden = !navHidden;
 	}
-})
+});
 
     // *************** Favourites code *************************************
 
@@ -116,6 +117,7 @@ info.addEventListener("click",function(){
         title: win.info.title,
         url: urls[win.sv.currentPage]
     };
+    //infoView.evalJS("reRender({ data: "+JSON.stringify(pic)+"})");
     infoView.evalJS("render({ pic: "+JSON.stringify(pic)+"})");
 //    infoView.opacity = 0.8;
     win.animate({ 
