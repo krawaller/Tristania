@@ -12,11 +12,13 @@ function getREST(what){
 function renderList(d){
     var rows = [],table;
     d.map(function(item){
-        rows.push({
-            title: item.title,
-            info: item.info,
-            sidelabel: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
-        });
+        if (!item.info.albums || (item.info.albums && item.info.pics>0)){ // skip empty lists
+            rows.push({
+                title: item.title,
+                info: item.info,
+                sidelabel: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
+            });
+        }
     });
     table = $.createTableView({rows: rows});
 
@@ -87,7 +89,7 @@ function updateFavourites(){
             title: "Favourites",
             num: -666
         },
-        label: { text: "("+(Ti.App.Properties.getList('favPics') || []).length+")"}
+        sidelabel: { text: "("+(Ti.App.Properties.getList('favPics') || []).length+")"}
     });
     win.table.appendRow(favrow);
 }

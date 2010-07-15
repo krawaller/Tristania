@@ -122,8 +122,11 @@ var $ = (function(){
         createWin: function(o){
             return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
         },
-        createLabel: function(o){
-            return Ti.UI.createLabel($.merge(o,defopts.label,defopts.all));
+        createLabel: function(o,add){
+            if (typeof o === "string"){
+                o = { text: o };
+            }
+            return Ti.UI.createLabel($.merge(o,add || {}, defopts.label,defopts.all));
         },
         createTab: function(o){
             return Ti.UI.createTab(o);
@@ -145,22 +148,10 @@ var $ = (function(){
         },
         createTableViewRow: function(o){
             var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
-            if (o.sidelabel){ row.add($.createTableViewRowSideLabel(o.sidelabel)); }
-            if (o.sublabel){ row.add($.createTableViewRowSubLabel(o.sublabel)); }
+            if (o.sidelabel){ row.add($.createLabel(o.sidelabel,defopts.tableviewrowsidelabel)); }
+            if (o.sublabel){ row.add($.createLabel(o.sublabel,defopts.tableviewrowsublabel)); }
             row.def = o;
             return row;
-        },
-        createTableViewRowSideLabel: function(o){
-            if (typeof o === "string"){
-                o = { text: o };
-            }
-            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowsidelabel,defopts.all));
-        },
-        createTableViewRowSubLabel: function(o){
-            if (typeof o === "string"){
-                o = { text: o };
-            }
-            return Titanium.UI.createLabel($.merge(o,defopts.tableviewrowsublabel,defopts.all));
         },
         createTableViewSection: function(o){
             var h = $.createView( $.merge({  }, defopts.tableviewheaderview ));
