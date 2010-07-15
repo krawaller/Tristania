@@ -64,12 +64,12 @@ Array.prototype.remove = function(obj){
 
 H = {
   renderAlbumLink: function(a){
-    return "<a href='#' class='tlink' cat='album' targetid='"+a.id+"'>"+a.title+"</a>";
+    return "<span>"+a.title+"</span>"; //"<a href='#' class='tlink' cat='album' targetid='"+a.id+"'>"+a.title+"</a>";
   },
   renderMemberLink: function(b){
     if (typeof b === "string"){
       return "<span>"+b+"</span>"
     }
-    return "<a href='#' class='tlink' cat='bio' targetid='"+b.id+"'>"+b.name+"</a>";
+    return "<span>"+b.name+"</span>"; //"<a href='#' class='tlink' cat='bio' targetid='"+b.id+"'>"+b.name+"</a>";
   }
 }

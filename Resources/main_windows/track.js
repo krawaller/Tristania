@@ -14,30 +14,32 @@ win.title = track.title;
 
     // ************************ Lyrics code ***********************
 
-Ti.include("../assets/lyrics.js"); // creates global var lyrics
+if (!track.instrumental){
+    Ti.include("../assets/lyrics.js"); // creates global var lyrics
+    var lyr = lyrics[id],
+        lyricsview = $.createKraWebView({templateFile: "lyrics.tmpl",data: lyr}), //Ti.UI.createWebView({ url: '../views/lyrics.html' });
+        tabbedbar = $.createTabbedBar({
+	    labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"}],
+            index:0
+        });
 
-var lyr = lyrics[id],
-    lyricsview = $.createKraWebView({templateFile: "lyrics.tmpl",data: lyr}); //Ti.UI.createWebView({ url: '../views/lyrics.html' });
+    
+    win.rightNavButton = tabbedbar;
+    view = $.createView({});
+    win.add(view);
+    view.add(lyricsview);    
+    view.add(trackview);
+
+    tabbedbar.addEventListener("click",function(e){
+        switch(e.index){
+            case 0: view.animate({view:trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+            case 1: view.animate({view:lyricsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+        }
+    });
+} else {
+    win.add(trackview);
+}
 
 //lyricsview.addEventListener("load",function(){ lyricsview.evalJS("render({ lyrics: "+JSON.stringify(lyr)+" })"); });
 
 
-    // *********************** Main page code *********************
-
-var tabbedbar = $.createTabbedBar({
-	labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"}],
-        index:0
-    }),
-    view = $.createView({});
-    
-win.rightNavButton = tabbedbar;
-view.add(lyricsview);
-view.add(trackview);
-win.add(view);
-
-tabbedbar.addEventListener("click",function(e){
-    switch(e.index){
-        case 0: view.animate({view:trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-        case 1: view.animate({view:lyricsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-    }
-});

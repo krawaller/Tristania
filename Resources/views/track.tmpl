@@ -9,27 +9,32 @@
                 <dd><#=txt#></dd>
             <# }; #>
               <dt>Length:</dt><dd><#= data.length #></dd>
-              <dt>Music:</dt>
+              <dt>Music:</dt><dd>
                 <# if (!data.music) { #>
-                  <dd>Tristania</dd>
-                <#} else { var txt = ""; for(var i=0; i<data.music.length; i++){ 
-                    txt+= H.renderMemberLink(data.music[i]) +" ";
-                  } #>
-                  <dd><#=txt#></dd>
+                 Tristania
+                 <#} else { #>
+                  <ul>
+                  <# for(var i=0; data.music.length>i; i++){ #>
+                    <li><#=H.renderMemberLink(data.music[i]) #></li>
+                  <# } #>
+                  </ul>
                 <# } #>
-              <dt>Lyrics:</dt>
-              <# if (data.instrumental){ #>
-                <dd>Instrumental</dd>
-              <# } else { #>
+              </dd>  
+              <dt>Lyrics:</dt><dd>
+               <# if (data.instrumental) { #>
+                Instrumental
+               <# } else { #>
                 <# if (!data.lyrics) { #>
-                  <dd>Tristania</dd>
-                <#} else { var txt = ""; for(var i=0; i<data.lyrics.length; i++){ 
-                    txt+= H.renderMemberLink(data.lyrics[i]) + " ";
-                  } #>
-                  <dd><#=txt#></dd>
+                 Tristania
+                 <#} else { #>
+                  <ul>
+                  <# for(var i=0; data.lyrics.length>i; i++){ #>
+                    <li><#=H.renderMemberLink(data.lyrics[i]) #></li>
+                  <# } #>
+                  </ul>
                 <# } #>
-                
-              <# } #>
+               <# } #>
+               </dd>
             </dl>
 	      </div>
          <# if(data.presentation){ #>

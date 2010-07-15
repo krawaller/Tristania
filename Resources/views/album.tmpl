@@ -4,11 +4,11 @@
           <div class='tbox'>
            <h2>Info</h2>
            <dl><dt>Year:</dt><dd><#=data.year#></dd>
-           <dt>Lineup:</dt><dd>
+           <dt>Lineup:</dt><dd><ul>
              <# for(var i=0; i<data.lineup.length; i++){ var m = data.lineup[i]; #>
-               <span><#= H.renderMemberLink(m) #> </span> 
+               <li><#= H.renderMemberLink(m) #> </li> 
              <# } #>
-           </dd>
+           </ul></dd>
            </dl>
          </div>
          <# if(data.presentation){ #>

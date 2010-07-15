@@ -132,7 +132,6 @@ var $ = (function(){
             return Ti.UI.createTabbedBar($.merge(o,defopts.tabbedbar,defopts.all));
         },
         createTableView: function(o){
-        Ti.API.log(["table!",o]);
             var table = Ti.UI.createTableView($.merge(o,defopts.tableview,defopts.all));
             if (o.sections){
                 var sects = [];
@@ -145,7 +144,6 @@ var $ = (function(){
             return table;
         },
         createTableViewRow: function(o){
-        Ti.API.log(["row!",o]);
             var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
             if (o.sidelabel){ row.add($.createTableViewRowSideLabel(o.sidelabel)); }
             if (o.sublabel){ row.add($.createTableViewRowSubLabel(o.sublabel)); }

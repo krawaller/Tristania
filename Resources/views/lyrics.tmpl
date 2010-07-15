@@ -1,6 +1,6 @@
           <div class='tbox'>
             <h2>Lyrics</h2>
-            <# if(!data){ #>
+            <# if(!data || !data.length){ #>
                 <p>Instrumental</p>
             <# } else
                  for(var i=0;i<data.length;i++){ #>
