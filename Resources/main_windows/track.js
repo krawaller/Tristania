@@ -19,7 +19,8 @@ if (!track.instrumental){
     var lyr = lyrics[id],
         lyricsview = $.createKraWebView({templateFile: "lyrics.tmpl",data: lyr}), //Ti.UI.createWebView({ url: '../views/lyrics.html' });
         tabbedbar = $.createTabbedBar({
-	    labels:[{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"}],
+	    labels:[{image: "../pics/info_light.png"}, "L"  // {image: "../pics/icon_lyrics.png"}
+	    ],
             index:0
         });
 

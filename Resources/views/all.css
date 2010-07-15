@@ -19,6 +19,13 @@ html, body {
     text-shadow: #000 0 0 2px;
 }
 
+.tbox dl:after {
+    content: " ";
+    left: -1000em;
+    clear: both;
+    display: block;
+}
+
 .tbox > h2 {
     color: red;
     font-weight: bold;
