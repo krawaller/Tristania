@@ -2,7 +2,8 @@ Ti.include("../assets/utils.js");
 
 var album = $.getAlbum(win.data.id),
     flexSpace = Titanium.UI.createButton({systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE}),
-    tabbedbar = $.createTabbedBar({ labels:[{image: "../pics/info_light.png"}, 
+    tabbedbar = $.createTabbedBar({ labels:[
+          {image: "../pics/info_light.png"}, 
       "T" // {image: "../pics/icon_tracks.png"}
       ], index:0 }),
     webview,

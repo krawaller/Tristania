@@ -10,7 +10,6 @@
 
 @-webkit-keyframes fadein {
   from { opacity: 0; }
-  50% { opacity: 0.5; }
   to { opacity: 1; }
 }
 
@@ -22,13 +21,13 @@
 }
         </style>
     </head>
-    <body>
-        <div id="wrapper" class="beforeload"><div class="loading">Loading...</div></div>
+    <body class="beforeload">
+        <div id="wrapper" class=""><div class="loading">Loading...</div></div>
         <script type="text/javascript">
 function render(o){
     var w = $('wrapper');
     w.innerHTML = tmpl(o.template, o.data);
-    w.className = "fadein";
+    document.body.className = "fadein";
 }
         </script>
     </body>

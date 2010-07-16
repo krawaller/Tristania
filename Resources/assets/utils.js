@@ -24,7 +24,7 @@ var defopts = {
  // ****************** Types *****************
     "win": {
         barColor: "#AAA",
-        backgroundColor: "#000"
+        backgroundColor: "#222"
     },
     "winlabel": {
         color:'#999',
@@ -34,10 +34,10 @@ var defopts = {
     },
     "tab": {},
     "tabbedbar": {
-        backgroundColor: "#555"
+        backgroundColor: "#aaa"
     },
-    "tableview": { backgroundColor: "#000", borderColor: "#000", borderWidth: 0 },
-    "tableviewrow": { color: "#FFF" },
+    "tableview": { backgroundColor: "#222", separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE },
+    "tableviewrow": { color: "#FFF", selectedBackgroundImage: '../pics/row.png' },
     "tableviewrowsidelabel": {
         color: "#AAA",
         right: 10,
@@ -56,20 +56,28 @@ var defopts = {
     "tableviewsection": {
     },
     "tableviewheaderview": {
+        backgroundImage: '../pics/section.png'
+    },
+    "tableviewrowmainlabel": {
+        color: "#fff",
+        font: { fontWeight: "bold", fontSize: 20 },
+        left: 10,
+        width: 260,
+        height: 36
     },
     "tableviewheaderlabel": {
-        backgroundColor: "#FFF",
-        color: "#000"
+        color: "#000",
+        left: 10
     },
     "coverflowview":{
-        backgroundColor: "#000"
+        backgroundColor: "#222"
     },
     "imageview": {
     	defaultImage: "../pics/image_loader.png"
     },
-    "webview": { backgroundColor: "#000" },
+    "webview": { backgroundColor: "#222" },
     "button": {},
-    "view": { backgroundColor: "#000"},
+    "view": { backgroundColor: "#222"},
     "label": {},
     "bottombutton": {
         bottom: 0,
@@ -124,6 +132,7 @@ var $ = (function(){
                 } 
                 catch (e) { Ti.API.error(['e', e]); }
             };
+
             xhr.onerror = opts.error;
             xhr.open(opts.type, opts.url + (!opts.cache ? '?' + new Date().getTime() : ''));
             xhr.send(data);
@@ -161,7 +170,10 @@ var $ = (function(){
             return table;
         },
         createTableViewRow: function(o){
+            var t = o._title = o.title;
+            delete o.title;
             var row = Ti.UI.createTableViewRow($.merge(o,defopts.tableviewrow,defopts.all));
+            if (t){ row.add($.createLabel(t,defopts.tableviewrowmainlabel)); }
             if (o.sidelabel){ row.add($.createLabel(o.sidelabel,defopts.tableviewrowsidelabel)); }
             if (o.sublabel){ row.add($.createLabel(o.sublabel,defopts.tableviewrowsublabel)); }
             row.def = o;

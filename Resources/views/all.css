@@ -2,21 +2,23 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Lucida Grande", Helvetica;
-    background-color: #000;
-    color: #fff;
+    background-color: #222;
+    color: #f6f6f6;
+    text-shadow: 0px 1px 0px #222;
     font-size: 13px;
     font-weight: bold;
 }
 
+body { padding: 7px; }
+
 .tbox {
-    border: 1px solid white;
-    border-radius: 5px 5px 5px 5px;
-    background-color: #CCC;
-    margin: 7px;
+    border: 1px solid #888;
+    border-radius: 9px;
+    background-color: #555;
     margin-bottom: 1em;
     padding: 7px;
-    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000), to(#CCC));
-    text-shadow: #000 0 0 2px;
+    background-image: -webkit-gradient(radial, 40% 40%, 200, 40% 40%, 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.25)) );
+    -webkit-box-shadow: 0px 0px 10px #111;
 }
 
 .tbox dl:after {
@@ -27,9 +29,8 @@ html, body {
 }
 
 .tbox > h2 {
-    color: red;
+    color: #d1b275;
     font-weight: bold;
-    font-style: italic;
 }
 
 .bigpic {
@@ -37,6 +38,8 @@ html, body {
     max-width: 280px;
     display: block;
     margin: 1em auto;
+    border-radius: 9px;
+    -webkit-box-shadow: 0px 0px 6px #111;
 }
 
 .tbox dt {
