@@ -300,38 +300,34 @@ var $ = (function(){
                 content: "<p>I like this album. Very different from what we do now, but still!</p>"
             },{
                 by: "anders",
-                content: "<p>But it shows that we were 17 at the time... :P</p>"
+                content: "<p>But it shows that we were almost teenagers at the time...</p>"
             }],
             evenfall: [{
                 by: "einar",
-                content: "<p>Nah, don't like this one, and the video they made is horrid...</p>"
+                content: "<p>The video they made for this track is absolutely horrid...</p>"
             }]
         },
         presentations: {
-            widowsweeds: "<p>First full length album, really nice! Wee! Woo!</p>",
-            beyondtheveil: "<p>Cult album, really neat, hehe weeee!</p>",
-            worldofglass: "<p>First after Morten's departure. Still standing strong!</p>",
-            ashes: "<p>Long awaited WoG followup. Rulezzz!</p>",
-            illumination: "<p>Last Vibeke album, she left immediately after completion.</p><p>Brilliant album! Vorph guest growls.</p>",
-            rubicon: "<p>The new album! Woooo!</p>",
-            ole: "<p>Nice guy! Also heavily involved in composing.</p>"
+            widowsweeds: "<p>First full length album, which defined the gothic metal genre.</p>",
+            beyondtheveil: "<p>Continuing the path embarked upon with Widow's Weeds, Beyond the Veil secured Tristania's claim to the gothic metal throne.</p>",
+            worldofglass: "<p>With World of Glass, Tristania proved they were still standing strong in spite of Veland's departure.</p>",
+            ashes: "<p>The long-awaited World of Glass followup showed a more mature Tristania, yet still retaining a gothic undercurrent.</p>",
+            illumination: "<p>Yet again Tristania releases a different but similar album, with new musical approaches but still somehow woven from the same cloth.</p>",
+            rubicon: "<p>With Rubicon Tristania enters a new era, where many of the new members contribute actively to the composing. This will also be the album premiere for Mariangela, new singer after Vibeke's departure.</p>",
+            ole: "<p>Ole inherited Rune's bass responsibilities, but have quickly also become an important cog in the composing procedure. He also does backing vocals.</p>"
         },
         news: [{
-            date: "2010-07-20",
-            title: "Wahahah!",
-            content: "<p>Moo wee huhuhu!</p>"
+            date: "2010-07-16",
+            title: "New app version",
+            content: "<p>A new version of the app is out! Hit the app store and update!</p>"
         },{
-            date: "2010-06-30",
-            title: "ojoj! nuså!",
-            content: "<p>Jojojo!</p><p>Men bla bla bla också!</p>"
+            date: "2010-07-02",
+            title: "Rubicon release party",
+            content: "<p>Make sure you're in Stavanger on september 25th!</p><p>More info blah blah etc etc aso aso.</p>"
         },{
-            date: "2010-06-05",
-            title: "Nu händer det grejjer!",
-            content: "<p>bla bla mooooooo</p>"
-        },{
-            date: "2010-06-02",
-            title: "hihi!",
-            content: "<p>gwihiiii</p>"
+            date: "2010-06-15",
+            title: "Second Rubicon teaser",
+            content: "<p>Check out the official youtube channel (just hit the tab right here in the app!) for a new Rubicon teaser!</p><p>This time featuring the previously announced work of the illustrious Pete Johanssen.</p>"
         }],
         members: {
             ole: {

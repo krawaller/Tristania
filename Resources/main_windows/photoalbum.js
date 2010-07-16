@@ -149,7 +149,7 @@ infoView.opacity = 0.8; // <-- Remove hack when Titanium honors z-indexes
 
 var infoViewDoneButton = $.createBottomButton({});
 infoView.add(infoViewDoneButton);
-infoViewDoneButton.addEventListener('click', hideInfoView );
+//infoViewDoneButton.addEventListener('click', hideInfoView );
 
 
 
