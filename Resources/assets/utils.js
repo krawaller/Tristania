@@ -71,6 +71,17 @@ var defopts = {
     "button": {},
     "view": { backgroundColor: "#000"},
     "label": {},
+    "bottombutton": {
+        bottom: 0,
+        title: 'Done',
+        width: 320,
+        height: 44,
+        color: '#000',
+        backgroundColor: '#ccc',
+        backgroundImage: '',
+    //    backgroundSelectedImage: '../ui/select-background.png',
+        font: { fontFamily: 'Helvetica', fontSize: 17, fontWeight: 'bold'}
+    },
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {
@@ -121,6 +132,9 @@ var $ = (function(){
         msg: function(o){ win.add(Ti.UI.createLabel($.merge(o, defopts.winlabel, defopts.all))); },
         createWin: function(o){
             return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
+        },
+        createBottomButton: function(o){
+            return Ti.UI.createButton($.merge(o, defopts.bottombutton, defopts.all ));
         },
         createLabel: function(o,add){
             if (typeof o === "string"){

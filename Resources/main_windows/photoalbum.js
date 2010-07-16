@@ -132,7 +132,7 @@ info.addEventListener("click",function(){
 
 win.add(info);
 
-infoView.addEventListener('click', function(){
+var hideInfoView = function(){
     win.animate({ 
         view: scrollView, 
         transition: Ti.UI.iPhone.AnimationStyle.CURL_UP
@@ -140,9 +140,19 @@ infoView.addEventListener('click', function(){
     info.zIndex = 2;
     fav.zIndex = 2;
     save.zIndex = 2;
-});
+}
+
+infoView.addEventListener('click', hideInfoView );
 
 infoView.opacity = 0.8; // <-- Remove hack when Titanium honors z-indexes
+
+
+var infoViewDoneButton = $.createBottomButton({});
+infoView.add(infoViewDoneButton);
+infoViewDoneButton.addEventListener('click', hideInfoView );
+
+
+
 
     // ***************** Main page logic - building favourite or remote gallery ************
 

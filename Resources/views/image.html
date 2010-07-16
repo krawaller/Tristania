@@ -14,23 +14,22 @@ body {
         <script type="text/tmpl" id="template">
           <div class="tbox">
            <h2>Image data</h2>
-           <dl><dt>Title</dt><dd><#=pic.title#></dd>
+           <p>He're we'll display image url, dimensions, album name etc.</p>
+        <!--   <dl><dt>Title</dt><dd><#=pic.title#></dd>
            <dt>URL</dt><dd><#=pic.url#></dd>
-           </dl>
+           </dl> -->
           </div>
         </script>
     </head>
 
     <body>
         <div id="wrapper"><div class="loading">Loading...</div></div>
-        <p>Moo</p>
-        <p>Hooooooo</p>
         <script type="text/javascript">
         var wrapper = $('wrapper'),
             template = $('template').textContent;
 
         function render(e){
-            Ti.API.log(["dsadsa",e]);
+       //     Ti.API.log(["dsadsa",e]);
             wrapper.innerHTML = tmpl(template, e);
         }
         </script>

@@ -5,12 +5,30 @@
         <title>MasterPage</title>
         <script type="text/javascript" src="../assets/html.utils.js"></script>
         <link rel="stylesheet" type="text/css" href="all.css" />
+        <style type="text/css">
+.beforeload { opacity: 0; }
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  50% { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+.fadein { 
+  -webkit-animation-name: fadein;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in;
+}
+        </style>
     </head>
     <body>
-        <div id="wrapper"><div class="loading">Loading...</div></div>
+        <div id="wrapper" class="beforeload"><div class="loading">Loading...</div></div>
         <script type="text/javascript">
 function render(o){
-    $('wrapper').innerHTML = tmpl(o.template, o.data);
+    var w = $('wrapper');
+    w.innerHTML = tmpl(o.template, o.data);
+    w.className = "fadein";
 }
         </script>
     </body>
