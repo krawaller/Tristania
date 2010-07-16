@@ -1782,6 +1782,12 @@ var lyrics = {
     
     ],
     
+    protection: [
+    
+["...protection..."]
+    
+    ],
+    
     exile: [
     
 ["...exile..."]
