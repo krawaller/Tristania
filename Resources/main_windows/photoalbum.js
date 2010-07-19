@@ -17,14 +17,8 @@ var start,
         zIndex: 2,
         backgroundImage: '../pics/info_light.png'
     }),
-    fav = $.createButton({
-        width: 18,
-        height: 19,
-        top: 105,
-        left: 25,
-        zIndex: 2,
-        backgroundImage: '../pics/icon_unstar.png'
-    }),
+    addfav = $.createButton({ image: '../pics/icon_unstar.png' }),
+    delfav = $.createButton({image: '../pics/icon_star.png'}),
     save = $.createButton({
         width: 18,
         height: 19,
@@ -71,29 +65,32 @@ function favs(){ return Ti.App.Properties.getList('favPics') || []; }
 
 function updateView(){
     // update favourites button
-    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
-    // update title
+//    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
+    win.rightNavButton = favs().indexOf(urls[win.sv.currentPage]) == -1 ? addfav : delfav;
+    
+    // update title    
     win.setTitle((win.sv.currentPage+1)+"/"+max);
 }
 
-fav.addEventListener("click",function(){
+function setFav(){
     var val = urls[win.sv.currentPage],
         list = favs(),
         idx = list.indexOf(val);
     if (idx == -1){ // saving new pic
         list.push(val);
         Ti.UI.createAlertDialog({ title: 'Favourite stored', message: 'Pic added to the Favourites gallery' }).show();
-        fav.backgroundImage = '../pics/icon_star.png';
     }
     else {
         list.splice(idx, 1);
         Ti.UI.createAlertDialog({ title: 'Favourite erased', message: 'Pic removed to the Favourites gallery' }).show();
-        fav.backgroundImage = '../pics/icon_unstar.png';
     }
     Ti.App.Properties.setList('favPics', list);
-});
+    updateView();
+};
 
-win.add(fav);
+addfav.addEventListener("click",setFav);
+delfav.addEventListener("click",setFav);
+
 
     // ******************** Saving picture *************************
 
@@ -107,7 +104,7 @@ save.addEventListener("click",function(){
     }
 });
 
-win.add(save);
+//win.add(save);
 
 
     // ******************** Infoview code **************************
@@ -130,7 +127,7 @@ info.addEventListener("click",function(){
     }).show(); */
 });
 
-win.add(info);
+//win.add(info);
 
 var hideInfoView = function(){
     win.animate({ 
