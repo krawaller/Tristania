@@ -22,7 +22,11 @@ var defopts = {
  // ******************* All ******************
     "all": { },
  // ****************** Types *****************
-    "win": {
+    "win": { // TODO - remove this when all is translated
+        barColor: "#AAA",
+        backgroundColor: "#222"
+    },
+    "window": {
         barColor: "#AAA",
         backgroundColor: "#222"
     },
@@ -90,10 +94,14 @@ var defopts = {
     //    backgroundSelectedImage: '../ui/select-background.png',
         font: { fontFamily: 'Helvetica', fontSize: 17, fontWeight: 'bold'}
     },
+ // ***************Styleclasses **************
+ 
+ 
+ 
+ 
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
-    "main_windows/photoalbum.js": {
-    },
+    "main_windows/photoalbum.js": {},
     "main_windows/albumlist.js": {}
 };
 
@@ -101,7 +109,13 @@ String.prototype.clean = function(){ return this.replace(/\xA0/g, '').replace(/\
 
 var $ = (function(){
     var $ = {
-        merge: function(){    
+        merge: function(){
+            if (!arguments[0]){
+                arguments[0] = {};
+            }
+            if (!arguments[1]){
+                arguments[1] = {};
+            }
             for (var property in arguments[1]) {
                 if (!arguments[0].hasOwnProperty(property)){ arguments[0][property] = arguments[1][property]; }
             }
@@ -139,6 +153,38 @@ var $ = (function(){
         },
         ajaxSetup: function(opts){ $.merge(ajaxDefaults, opts); },
         msg: function(o){ win.add(Ti.UI.createLabel($.merge(o, defopts.winlabel, defopts.all))); },
+        create: function(o){
+            if (typeof o === "string"){
+                o = { type: "Label", text: o };
+            }
+            if (!o.type && o.parent){
+                if (o.parent.type == "tableViewSection" || o.parent.type == "tableView"){
+                    o.type = "tableViewRow";
+                }
+            }
+           /* if (o.type == "Win" && defopts[o.url]){
+                 o = $.merge(o,defopts[o.url]);
+            } */
+            if (o.styleClass){
+                 if (typeof o.styleClass === "string") {
+                     o = $.merge(o,defopts[o.styleClass] || {});
+                 }
+                 else {
+                     o.styleClass.map(function(s){
+                          o = $.merge(o,defopts[s] || {});
+                     });
+                 }
+            }
+            var o = $.merge(o, defopts[o.type.toLowerCase()], defopts.all),
+                e = Ti.UI["create"+(o.type=="Win"?"Window":o.type)]($.merge(o, defopts[o.type.toLowerCase()], defopts.all));
+            if (o.children){
+                o.children.map(function(c){
+                    var child = $.create($.merge(c,{parent:o}));
+                    e[child.type=="tableViewRow" ? "appendRow" : "add"](child); 
+                });
+            }
+            return e;
+        },
         createWin: function(o){
             return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
         },
