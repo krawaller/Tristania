@@ -4,7 +4,7 @@ Ti.include("assets/utils.js");
 Ti.UI.setBackgroundColor('#000');
 
 // create tab group
-var tabGroup = $.create({type:"TabGroup"}), // Titanium.UI.createTabGroup();
+var tabGroup = $.create({type:"TabGroup"});
 
 [{icon:"info.png",title:"Info",url:"info.js"},
  {icon:"discography.png",title:"Discography",url:"discography.js"},

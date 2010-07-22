@@ -157,14 +157,30 @@ var $ = (function(){
             if (typeof o === "string"){
                 o = { type: "Label", text: o };
             }
-            if (!o.type && o.parent){
-                if (o.parent.type == "tableViewSection" || o.parent.type == "tableView"){
-                    o.type = "tableViewRow";
+         //   delete o.id;
+            if (!o.type) {
+                if (o.parentType == "TableViewSection" || o.parentType == "TableView"){
+                    o.type = "TableViewRow";
+                } 
+                else if (o.text) {
+                    o.type = "Label";
                 }
             }
-           /* if (o.type == "Win" && defopts[o.url]){
+            o.childElements = o.childElements || [];
+            if (o.type == "TableViewSection" && o.headerTitle){
+                o.headerView = $.create({
+                    type:"View",
+                    styleClass: "tableviewheaderview",
+                    childElements:[{
+                        text: o.headerTitle,
+                        styleClass: "tableviewheaderlabel"
+                    }]
+                });
+                delete o.headerTitle;
+            }
+            if (o.type == "Window" && defopts[o.url]){
                  o = $.merge(o,defopts[o.url]);
-            } */
+            }
             if (o.styleClass){
                  if (typeof o.styleClass === "string") {
                      o = $.merge(o,defopts[o.styleClass] || {});
@@ -176,13 +192,36 @@ var $ = (function(){
                  }
             }
             var o = $.merge(o, defopts[o.type.toLowerCase()], defopts.all),
-                e = Ti.UI["create"+(o.type=="Win"?"Window":o.type)]($.merge(o, defopts[o.type.toLowerCase()], defopts.all));
-            if (o.children){
-                o.children.map(function(c){
-                    var child = $.create($.merge(c,{parent:o}));
-                    e[child.type=="tableViewRow" ? "appendRow" : "add"](child); 
-                });
+                e = Ti.UI["create"+o.type](o);
+            if (o.eventListeners){
+                for(var event in o.eventListeners){
+                    e.addEventListener(event,o.eventListeners[event]);
+                }
             }
+            if (o.click){
+                e.addEventListener("click",o.click);
+            }
+            if (o.childElements.length){
+                var children = [], i = 0;
+                e.childrenById = {};
+                o.childElements.map(function(c){
+                    var child = $.create($.merge(c,{parentType:o.type})),
+                        func = o.type=="TableView" && child.def.type == "TableViewRow" ? "appendRow" : "add";
+                    if (o.type == "TableView" && child.def.type == "TableViewSection"){
+                        children.push(e);
+                    } else {
+                        e[func](child); 
+                    }
+                    e.childrenById[i++] = child;
+                    if (c.id){
+                        e.childrenById[c.id] = child;
+                    }
+                });
+                if (o.type == "TableView" && children.length){
+                    e.setData(children);
+                }
+            }
+            e.def = o;
             return e;
         },
         createWin: function(o){
