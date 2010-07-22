@@ -42,23 +42,22 @@ biotable.addEventListener("click",function(e){
 
     // ************* Main win code ****************************
 
-var view = $.create({type:"View"}),
-    tabbedbar = $.create({
-        type:"TabbedBar",
-        id: "tabbedbar",
-	    labels:['News', 'Bio'],
-        index:0,
-        "click": function(e){
-            switch(e.index){
-                case 0: view.animate({view:newsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-                case 1: view.animate({view:bioview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-            }
-        }
-    });
+var view = $.create({type:"View"});
 
 view.add(bioview);
 view.add(newsview);
 win.add(view);
-win.rightNavButton = tabbedbar;
+win.rightNavButton = $.create({
+    type:"TabbedBar",
+    id: "tabbedbar",
+    labels:['News', 'Bio'],
+    index:0,
+    "click": function(e){
+        switch(e.index){
+            case 0: view.animate({view:newsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+            case 1: view.animate({view:bioview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+        }
+    }
+});
 
 win.title = "Info";
