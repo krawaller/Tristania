@@ -1,19 +1,20 @@
 Ti.include("../assets/utils.js");
 
-var images = [], albums = $.getAlbums(), view;
+win.title = "Discography";
 
+var images = [],
+    albums = $.getAlbums();
+    
 albums.map(function(a){ images.push("../pics/"+a.pic); });
 
-view = $.createCoverFlowView({ images:images });
-
-view.addEventListener("click",function(e){
-    var a = albums[e.index], win = $.createWin({
-        url:'album.js',
-        data: { id: a.id }
-    });
-    Ti.UI.currentTab.open(win);
-});
-
-win.add(view);
-
-win.title = "Discography";
+win.add( $.create({ 
+    type: "CoverFlowView",
+    images:images, 
+    click: function(e){
+        Ti.UI.currentTab.open($.create({
+            type: "Window",
+            url:'album.js',
+            data: { id: albums[e.index].id }
+        }));
+    }
+}) );

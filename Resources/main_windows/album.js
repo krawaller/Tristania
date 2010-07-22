@@ -1,11 +1,6 @@
 Ti.include("../assets/utils.js");
 
 var album = $.getAlbum(win.data.id),
-    flexSpace = Titanium.UI.createButton({systemButton:Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE}),
-    tabbedbar = $.createTabbedBar({ labels:[
-          {image: "../pics/info_light.png"}, 
-      "T" // {image: "../pics/icon_tracks.png"}
-      ], index:0 }),
     webview,
     view = $.createView({}),
     table;
@@ -14,12 +9,18 @@ win.title = album.shorttitle;
 
     // Set up navigation between views
 
-win.rightNavButton = tabbedbar;
-
-tabbedbar.addEventListener("click",function(e){
-    switch(e.index){
-        case 0: view.animate({view:webview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-        case 1: view.animate({view:table,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+win.rightNavButton = $.create({ 
+    type: "TabbedBar",
+    labels:[
+       {image: "../pics/info_light.png"}, 
+      "T" // {image: "../pics/icon_tracks.png"}
+    ], 
+    index:0,
+    click: function(e){
+        switch(e.index){
+            case 0: view.animate({view:webview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+            case 1: view.animate({view:table,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+        }
     }
 });
 

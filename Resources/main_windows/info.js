@@ -28,7 +28,7 @@ var bioview =  $.create({type: "View"}),
                     */
     });
     
-// TODO - fix this shit! :(
+// TODO - makes this work in one call with children!! :(
 biotable.setData( [$.create({ type: "TableViewSection", headerTitle:"Members", childElements: $.getMemberList({current:true}) } ),
                    $.create({ type: "TableViewSection", headerTitle:"Former members", childElements: $.getMemberList({current:undefined}) }) ]  );
 
