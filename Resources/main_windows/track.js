@@ -1,46 +1,32 @@
 Ti.include("../assets/utils.js");
-var id = win.data.id;
 
-
-    // ************************* Trackinfo code *******************
-    
-var track = $.getTrack(id),
-    trackview = $.createKraWebView({templateFile: "track.tmpl", data: track}); //Ti.UI.createWebView({ url: '../views/track.html' });
+var id = win.data.id, track = $.getTrack(id),  view = $.create({ type: "View" }), lyrview, trackview;
 
 win.title = track.title;
-
-// trackview.addEventListener("load",function(){ trackview.evalJS("render({ track: "+JSON.stringify(track)+" })"); });
-
-
-    // ************************ Lyrics code ***********************
+win.add(view);
 
 if (!track.instrumental){
     Ti.include("../assets/lyrics.js"); // creates global var lyrics
-    var lyr = lyrics[id],
-        lyricsview = $.createKraWebView({templateFile: "lyrics.tmpl",data: lyr}), //Ti.UI.createWebView({ url: '../views/lyrics.html' });
-        tabbedbar = $.createTabbedBar({
-	    labels:[{image: "../pics/info_light.png"}, "L"  // {image: "../pics/icon_lyrics.png"}
-	    ],
-            index:0
-        });
-
-    
-    win.rightNavButton = tabbedbar;
-    view = $.createView({});
-    win.add(view);
-    view.add(lyricsview);    
-    view.add(trackview);
-
-    tabbedbar.addEventListener("click",function(e){
-        switch(e.index){
-            case 0: view.animate({view:trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-            case 1: view.animate({view:lyricsview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
+    lyrview = $.create({
+        type: "WebView",
+        templateFile: "lyrics.tmpl",
+        templateData: lyrics[id],
+    });
+    view.add(lyrview);
+    win.rightNavButton = $.create({
+        type: "TabbedBar",
+        labels: [{image: "../pics/info_light.png"}, "L"  /* {image: "../pics/icon_lyrics.png"} */ ],
+        index: 0,
+        click: function(e){
+            view.animate({view:e.index ? lyrview : trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT});
         }
     });
-} else {
-    win.add(trackview);
 }
 
-//lyricsview.addEventListener("load",function(){ lyricsview.evalJS("render({ lyrics: "+JSON.stringify(lyr)+" })"); });
+trackview = $.create({
+    type: "WebView",
+    templateFile: "track.tmpl",
+    templateData: track
+});
 
-
+view.add(trackview);

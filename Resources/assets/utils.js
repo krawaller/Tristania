@@ -122,7 +122,11 @@ var $ = (function(){
             splice.call(arguments,1,1);
             return arguments.length === 1 ? arguments[0] : $.merge.apply(0,arguments);
         },
-        clone: function(arr){ return slice.call(arr); }
+        clone: function(arr){ return slice.call(arr); },
+        map: function(arr,func){ // simple wrapper around native map that also returns manipulated array (duh)
+            arr.map(func);
+            return arr;
+        }
     };
     
     $.merge($, {
@@ -191,8 +195,20 @@ var $ = (function(){
                      });
                  }
             }
+            if (o.type == "WebView" && o.templateFile){
+                o = $.merge(o, {
+                    url: "../views/"+ (o.masterPageFile || "_masterpage.html"),
+                    kraWebView: true
+                });
+            }
             var o = $.merge(o, defopts[o.type.toLowerCase()], defopts.all),
                 e = Ti.UI["create"+o.type](o);
+            e.def = o;
+            if (o.kraWebView){
+                var template = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory+"/views/"+o.templateFile).read().text,
+                    opts = { template: template, data: {data: o.templateData} };
+                e.addEventListener("load",function(){ e.evalJS("render("+JSON.stringify(opts)+")"); });
+            }
             if (o.eventListeners){
                 for(var event in o.eventListeners){
                     e.addEventListener(event,o.eventListeners[event]);
@@ -202,26 +218,25 @@ var $ = (function(){
                 e.addEventListener("click",o.click);
             }
             if (o.childElements.length){
-                var children = [], i = 0;
-                e.childrenById = {};
+                var child, children = [], i = 0, childrenById = {};
                 o.childElements.map(function(c){
                     var child = $.create($.merge(c,{parentType:o.type})),
                         func = o.type=="TableView" && child.def.type == "TableViewRow" ? "appendRow" : "add";
+                    childrenById[i++] = child;
+                    if (c.id){
+                        childrenById[c.id] = child;
+                    }
                     if (o.type == "TableView" && child.def.type == "TableViewSection"){
-                        children.push(e);
+                        children.push(child);
                     } else {
                         e[func](child); 
-                    }
-                    e.childrenById[i++] = child;
-                    if (c.id){
-                        e.childrenById[c.id] = child;
                     }
                 });
                 if (o.type == "TableView" && children.length){
                     e.setData(children);
                 }
+                e.childrenById = childrenById;
             }
-            e.def = o;
             return e;
         },
         createWin: function(o){
