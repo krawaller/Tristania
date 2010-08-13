@@ -81,18 +81,23 @@ var favrow; // TODO - do this without stupid global variable
 
 function updateFavourites(){
     if (!win.table || win.info) {return;} // only need to do this for first screen. TODO - only do when favs have been changed!
-    if (favrow){
-        win.table.deleteRow(6,{});
-    }
-    favrow = $.createTableViewRow({
-        title: "Favourites",
-        info: {
+    if (!favrow){
+        favrow = $.create({
+            type: "TableViewRow",
             title: "Favourites",
-            num: -666
-        },
-        sidelabel: { text: "("+(Ti.App.Properties.getList('favPics') || []).length+")"}
-    });
-    win.table.appendRow(favrow);
+            info: {
+                title: "Favourites",
+                num: -666
+            },
+            childElements: [{ 
+                id: "num",
+                type: "Label",
+                styleClass: "tableviewrowsidelabel"
+            }]
+        });
+        win.table.appendRow(favrow);
+    };
+    favrow.childrenById.num.text = "("+(Ti.App.Properties.getList('favPics') || []).length+")";
 }
 
 if (!win.info){ // gallery base, showing hardcoded categories.

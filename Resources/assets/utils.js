@@ -148,7 +148,7 @@ var $ = (function(){
                     }
                     opts.success.call(opts.context || xhr, response, xhr.status, xhr);
                 } 
-                catch (e) { Ti.API.error(['e', e]); }
+                catch (e) { Ti.API.error(['e', e, this.responseText]); }
             };
 
             xhr.onerror = opts.error;
@@ -387,26 +387,32 @@ var $ = (function(){
             return $.merge({id:id, albums: albums, music: credits.music, lyrics: credits.lyrics, presentation: $.getPresentation(id), comments: $.getComments(id)},track);
         },
         getNews: function(){
-            return data.news;
+            return JSON.parse(Ti.App.Properties.getString("news"));
         },
         getPresentation: function(id){
-            return data.presentations[id];
+            return JSON.parse(Ti.App.Properties.getString("presentations"))[id];
         },
         getComments: function(id){
-            var comments = data.comments[id];
+            var comments = JSON.parse(Ti.App.Properties.getString("comments"))[id];
             if (comments){ // TODO - should only do this when we update!
                 for(var c in comments){
                     comments[c].name = $.getMember(comments[c].by).name;
                 }
             }
-            return data.comments[id];
+            return comments;
+        },
+        getSelectedVideos: function(){
+            return JSON.parse(Ti.App.Properties.getString("selectedvideos"));
+        },
+        getOfficialVideos: function(){
+            return JSON.parse(Ti.App.Properties.getString("officialvideos"));
         }
     });
     
     
     // TODO - fix this poop, store as serialised text, update when necessary
     var data = {
-        comments: {
+    /*    comments: {
             widowsweeds: [{
                 by: "ole",
                 content: "<p>I like this album. Very different from what we do now, but still!</p>"
@@ -440,7 +446,7 @@ var $ = (function(){
             date: "2010-06-15",
             title: "Second Rubicon teaser",
             content: "<p>Check out the official youtube channel (just hit the tab right here in the app!) for a new Rubicon teaser!</p><p>This time featuring the previously announced work of the illustrious Pete Johanssen.</p>"
-        }],
+        }], */
         members: {
             ole: {
                 current: true,
@@ -851,43 +857,43 @@ var $ = (function(){
             },
             yearoftherat:{
                 title: "Year of the Rat",
-                length: "?:??"
+                length: "4:35"
             },
             protection:{
                 title: "Protection",
-                length: "?:??"
+                length: "4:15"
             },
             patriotgames:{
                 title: "Patriot Games",
-                length: "?:??"
+                length: "3:25"
             },
             thepassing:{
                 title: "The Passing",
-                length: "?:??"
+                length: "4:48"
             },
             exile:{
                 title: "Exile",
-                length: "?:??"
+                length: "4:26"
             },
             sirens:{
                 title: "Sirens",
-                length: "?:??"
+                length: "4:27"
             },
             vulture:{
                 title: "Vulture",
-                length: "?:??"
+                length: "3:43"
             },
             amnesia:{
                 title: "Amnesia",
-                length: "?:??"
+                length: "4:54"
             },
             magicalfix:{
                 title: "Magical Fix",
-                length: "?:??"
+                length: "4:20"
             },
             illumination:{
                 title: "Illumination",
-                length: "?:??"
+                length: "8:13"
             },
             theemeraldpiper:{
                 title: "The Emerald Piper",

@@ -17,11 +17,20 @@ tabbedbar.addEventListener("click",function(e){
 	render(e.index);
 });
 
+win.add(webview);
+webview.addEventListener('load', function(){
+	webview.loaded = true;
+});
+
+render(OFFICIAL);
+
+
 function render(what){
 	win.add(spinner);
 	spinner.show();
 	switch(what){
 		case OFFICIAL:
+		   // renderList($.getOfficialVideos()); TODO - why doesn't this shit work?!
 			$.ajax({
 				url: "http://gdata.youtube.com/feeds/api/videos?q=&author=TristaniaVideos&orderby=published&v=2&alt=json",
 				success: function(data){
@@ -40,7 +49,8 @@ function render(what){
 			break;
 			
 		case PICKED:
-			$.ajax({
+		    renderList($.getSelectedVideos());
+			/*$.ajax({
 				url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D%22http%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0Ap1WlO372vAndFpwNExPRGgycU93Z1gwSG1HN2NMN2c%26hl%3Den%26single%3Dtrue%26gid%3D0%26output%3Dcsv%22%20and%20columns%3D%22title%2Cvid%22&format=json",
 				success: function(data){
 					var vids = data.query.results.row.map(function(entry){
@@ -51,7 +61,7 @@ function render(what){
 					});
 					renderList(vids);
 			    }
-			});
+			});*/
 			break;
 	}
 }
@@ -66,9 +76,3 @@ function renderList(vids){
 	spinner.hide();
 }
 
-win.add(webview);
-webview.addEventListener('load', function(){
-	webview.loaded = true;
-});
-
-render(OFFICIAL);
