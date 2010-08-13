@@ -164,6 +164,7 @@ function createGallery(picurls){
         views.push(v);
         urls.push(picurls[i]);
     }
+    max = views.length;
     scrollView = $.createScrollableView({
         views:views,
     	showPagingControl:true,
@@ -192,5 +193,11 @@ if (win.info.num != -666){
     });
 }
 else {
-    createGallery(favs());
+    if (favs().length === 0){
+        Ti.UI.createAlertDialog({ title: 'No favourites', message: "Browse the other photoalbums and select your favourites!" }).show();
+        win.title = "Favourites";
+    }
+    else {
+        createGallery(favs());
+    }
 }

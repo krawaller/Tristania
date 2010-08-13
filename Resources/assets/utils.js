@@ -406,6 +406,9 @@ var $ = (function(){
         },
         getOfficialVideos: function(){
             return JSON.parse(Ti.App.Properties.getString("officialvideos"));
+        },
+        getSelectedPhotoalbums: function(){
+            return JSON.parse(Ti.App.Properties.getString("photoalbums"));
         }
     });
     

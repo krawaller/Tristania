@@ -9,34 +9,27 @@ function getREST(what){
                               : "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fmvonlonski.com%2Fcpg%2Findex.php%3Fcat%3D"+Ti.UI.currentWindow.info.num+"%22%20and%20xpath%3D%22%2F%2Ftable%5B2%5D%2Ftr%2Ftd%2Ftable%22&format=json&callback=";
 }
 
-function renderList(d){
+function renderList(children){
     var rows = [],table;
-    d.map(function(item){
-        if (!item.info.albums || (item.info.albums && item.info.pics>0)){ // skip empty lists
-            rows.push({
-                title: item.title,
-                info: item.info,
-                sidelabel: item.info.albums ? { text: "("+item.info.albums+"/"+item.info.pics+")" } : undefined
+    table = $.create({
+        type: "TableView",
+        childElements: children,
+        click: function(e){
+            var win = $.create({
+                type: "Window",
+                url: e.rowData.info.num === -666 || e.rowData.info.spotlight ? 'photoalbum.js' : 
+                     e.rowData.info.albums ? 'albumlist.js' : 
+                     'gallery.js', // TODO - safe up this!
+                info: e.rowData.info,
+                transparent: e.rowData.info.num === -666
             });
+            if(win.url == 'photoalbum.js'){
+                win.orientationModes = [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT];
+                win.tabBarHidden = true;
+                win.translucent = true;
+            }
+            Ti.UI.currentTab.open(win);
         }
-    });
-    table = $.createTableView({rows: rows});
-
-    table.addEventListener("click",function(e){
-        var win = $.createWin({
-            url: e.rowData.info.num === -666 ? 'photoalbum.js' : 
-                 e.rowData.info.albums ? 'albumlist.js' : 
-                 'gallery.js', // TODO - safe up this!
-       //     title: e.rowData.info.name,
-            info: e.rowData.info,
-            transparent: e.rowData.info.num === -666
-        });
-        if(win.url == 'photoalbum.js'){
-            win.orientationModes = [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT];
-            win.tabBarHidden = true;
-            win.translucent = true;
-        }
-        Ti.UI.currentTab.open(win);
     });
     
     win.add(table);
@@ -44,10 +37,9 @@ function renderList(d){
 }
 
 function receiveData(res){
-    var data = [],name,albums,pics,i=0,row,num,info;
+    var data = [],name,albums,pics,i=0,row,num,info,row;
     spinner.hide();
     win.remove(spinner);
-
     if (!res.query.results.td.length){
         $.msg(win,"Emmmpty category!");
         return;
@@ -67,10 +59,16 @@ function receiveData(res){
                 //info.title += " ("+info.albums+"/"+info.pics+")";
                 i+=2;
             }
-            data.push({
-                title: info.title,
-                info: info
-            });
+            if (!(info.albums>0 && info.pics==0)){ // avoid empty entries
+                row = {title:info.title,info:info};
+                if (info.albums){
+                    row.childElements = [{
+                        text: "("+info.albums+"/"+info.pics+")",
+                        styleClass: "tableviewrowsidelabel"
+                    }];
+                }        
+                data.push(row);
+            }
         }
         i++;
     }
@@ -81,10 +79,20 @@ var favrow; // TODO - do this without stupid global variable
 
 function updateFavourites(){
     if (!win.table || win.info) {return;} // only need to do this for first screen. TODO - only do when favs have been changed!
-    if (!favrow){
-        favrow = $.create({
+    win.table.childrenById[0].childrenById.fav.childrenById.num.text = "("+(Ti.App.Properties.getList('favPics') || []).length+")";
+//    favrow.childrenById.num.text = "("+(Ti.App.Properties.getList('favPics') || []).length+")";
+}
+
+if (!win.info){ // gallery base, showing hardcoded categories.
+    renderList([{
+        type: "TableViewSection",
+        headerTitle: "Spotlighted",
+        childElements: $.getSelectedPhotoalbums().map(
+            function(i){return {title:i.title,info:{title:i.title,num:i.id,spotlight:true}};}
+        ).concat([{
             type: "TableViewRow",
             title: "Favourites",
+            id: "fav",
             info: {
                 title: "Favourites",
                 num: -666
@@ -94,22 +102,12 @@ function updateFavourites(){
                 type: "Label",
                 styleClass: "tableviewrowsidelabel"
             }]
-        });
-        win.table.appendRow(favrow);
-    };
-    favrow.childrenById.num.text = "("+(Ti.App.Properties.getList('favPics') || []).length+")";
-}
-
-if (!win.info){ // gallery base, showing hardcoded categories.
-    var data = [],
-        cats = [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}];
-    cats.map(function(item){
-        data.push({
-            title: item.title,
-            info: item
-        });
-    });
-    renderList(data);
+        }])
+    },{
+        type: "TableViewSection",
+        headerTitle: "Categories",
+        childElements: [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}].map(function(i){return {title:i.title,info:i};})
+    }]);
     win.addEventListener("focus",updateFavourites);
 }
 else{ 
