@@ -423,7 +423,7 @@ $.ajax({
 		    newslist.push({
 		        date: news.col0,
 		        title: news.col1,
-		        content: news.col2
+		        content: news.col2.replace(/"/g,"") // cleaning away the random bloody quote marks
 		    });
 		});
 		Ti.App.Properties.setString("news",JSON.stringify(newslist));
@@ -444,7 +444,7 @@ $.ajax({
 		    commentlist[about].push({
 		        by: comment.col0,
 		        date: comment.col2,
-		        content: comment.col3
+		        content: comment.col3.replace(/"/g,"") // cleaning away the random bloody quote marks
 		    });
 		});
 		Ti.App.Properties.setString("comments",JSON.stringify(commentlist));
@@ -458,7 +458,7 @@ $.ajax({
     success: function(data){
 	    var presentations = {}, rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
 	    rows.map(function(pres){
-	        presentations[pres.col0] = pres.col1;
+	        presentations[pres.col0] = pres.col1.replace(/"/g,""); // cleaning away the random bloody quote marks
 		});
 		Ti.App.Properties.setString("presentations",JSON.stringify(presentations));
 		Ti.API.log("UPDATED PRESENTATIONS");

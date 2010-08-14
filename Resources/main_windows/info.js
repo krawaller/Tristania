@@ -22,14 +22,13 @@ var view = $.create({
             Ti.UI.currentTab.open(win);
         }
     },{ // ************************ News table view ******************
-        type: "TableView",
+        type: "View",
         id: "newsView",
-        childElements: $.map($.getNews(),function(n){n.childElements = [{text : n.date, styleClass : "tableviewrowsublabel"}]; }),
-        click: function(e){
-            var win = $.create({ type: "Window", url:'news.js' });
-            win.data = { news: e.rowData.def };
-            Ti.UI.currentTab.open(win);
-        }
+            click: function(e){
+                var win = $.create({ type: "Window", url:'news.js' });
+                win.data = { news: e.rowData.def };
+                Ti.UI.currentTab.open(win);
+            },
     }]
 });
 
@@ -40,9 +39,31 @@ win.rightNavButton = $.create({
     labels:['News', 'Bio'],
     index:0,
     "click": function(e){
-        switch(e.index){
-            case 0: view.animate({view:view.childrenById.newsView,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-            case 1: view.animate({view:view.childrenById.bioView,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-        }
+        view.animate({view:view.childrenById[e.index?"bioView":"newsView"],transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT});
     }
 });
+
+// *********************** News update code **********************
+
+var table;
+
+function updateNews(){
+    var v = view.childrenById.newsView;
+    if (table){
+        v.remove(table)
+    }
+    table = $.create({
+        type: "TableView",
+
+        childElements: 
+            $.map($.getNews(),function(n){n.childElements = [{text : n.date, styleClass : "tableviewrowsublabel"}]; })
+    });
+    v.add(table);
+    Ti.API.log("redrew news");
+}
+
+updateNews();
+
+Ti.App.addEventListener("resume",updateNews);
+
+

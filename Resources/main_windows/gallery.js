@@ -37,7 +37,7 @@ function renderList(children){
 }
 
 function receiveData(res){
-    var data = [],name,albums,pics,i=0,row,num,info,row;
+    var data = [],name,albums,pics,i=0,row,num,info;
     spinner.hide();
     win.remove(spinner);
     if (!res.query.results.td.length){

@@ -14,28 +14,6 @@ if (!Ti.App.Properties.getBool("hasFixtures")){ // first time app is run! we sto
 }
 
 
-/*
-videos:
-https://spreadsheets.google.com/pub?key=0AtXFhtKoQjGsdFU1Mk8zMHFOLWJGVGJubnN1NXMzb2c&hl=en&output=csv
-http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdFU1Mk8zMHFOLWJGVGJubnN1NXMzb2c%26hl%3Den%26output%3Dcsv%22&format=json
-
-photoalbums:
-https://spreadsheets.google.com/pub?key=0AtXFhtKoQjGsdF9rSXpsbUp5eTU5dmh4ZG5RTk9tYmc&hl=en&output=csv
-http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdF9rSXpsbUp5eTU5dmh4ZG5RTk9tYmc%26hl%3Den%26output%3Dcsv%22&format=json
-
-comments:
-https://spreadsheets.google.com/pub?key=0AtXFhtKoQjGsdDlod0RsUUlkclZIY3puSlpTeTRFZlE&hl=en&output=csv
-http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdDlod0RsUUlkclZIY3puSlpTeTRFZlE%26hl%3Den%26output%3Dcsv%22&format=json
-
-presentations:
-https://spreadsheets.google.com/pub?key=0AtXFhtKoQjGsdHFINVcyNExtdXBBWlBGUmRoT1Nvamc&hl=en&output=csv
-http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdHFINVcyNExtdXBBWlBGUmRoT1Nvamc%26hl%3Den%26output%3Dcsv%22&format=json
-
-news:
-https://spreadsheets.google.com/pub?key=0AtXFhtKoQjGsdFc1bnhoXzBBc0pKU2gyVUduZE9vd3c&hl=en&output=csv
-http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdFc1bnhoXzBBc0pKU2gyVUduZE9vd3c%26hl%3Den%26output%3Dcsv%22&format=json
-*/
-
 $.updateData();
 Ti.App.addEventListener("resume",$.updateData);
 
