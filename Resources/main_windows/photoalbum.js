@@ -35,7 +35,6 @@ win.add(picView);
     // ********** Dealing with hiding of UI when clicking pic *************
 
 win.addEventListener('touchstart', function(e){
-Ti.API.log("MOOO!");
 	start = { x: e.x, y: e.y, at: new Date().getTime() };
 });
 
