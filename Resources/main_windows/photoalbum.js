@@ -35,6 +35,7 @@ win.add(picView);
     // ********** Dealing with hiding of UI when clicking pic *************
 
 win.addEventListener('touchstart', function(e){
+Ti.API.log("MOOO!");
 	start = { x: e.x, y: e.y, at: new Date().getTime() };
 });
 
@@ -46,10 +47,9 @@ win.addEventListener('touchend', function(e){
 			win.showNavBar();
 			win.showTabBar();
 			Ti.UI.iPhone.showStatusBar();
-			
-			info.opacity = fav.opacity = save.opacity = 1;
+		//	info.opacity = fav.opacity = save.opacity = 1;
 		} else {
-			info.opacity = fav.opacity = save.opacity = 0;
+		//	info.opacity = fav.opacity = save.opacity = 0;
 			win.sv.showPagingControl = false;
 			win.hideNavBar();
 			win.hideTabBar();
