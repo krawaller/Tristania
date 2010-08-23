@@ -97,6 +97,7 @@ var defopts = {
  // ***************Styleclasses **************
  
     "categoryButton": {
+        type: "Label",
         color: "#FFF",
         width: "100",
         height: "50",

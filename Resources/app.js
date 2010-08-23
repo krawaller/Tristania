@@ -33,7 +33,7 @@ var tabGroup = $.create({type:"TabGroup"});
 
 [{title:"Info",url:"info.js"},
  {title:"Media",url:"media.js"},
- {title:"Community",url:"forum.js"},
+ {title:"Community",url:"community.js"},
  {title:"About",url:"about.js"}].map(function(t){
     tabGroup.addTab( $.create({
         type: "Tab",

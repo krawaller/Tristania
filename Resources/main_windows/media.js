@@ -1,9 +1,8 @@
 Ti.include("../assets/utils.js");
     
-win.title = "Info";
+win.title = "Media";
 
 win.add($.create({
-    type: "Label",
     text: "Pictures",
     styleClass: "categoryButton",
     top: 10,
@@ -13,7 +12,6 @@ win.add($.create({
 }));
 
 win.add($.create({
-    type: "Label",
     text: "Videos",
     styleClass: "categoryButton",
     top: 80,
