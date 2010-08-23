@@ -695,7 +695,7 @@ $.ajax({
                 scanalbum: 194,
                 year: 2010,
                 lineup: ["mary","kjetiln","einar","ole","anders","tarald","osten","gyri"],
-                tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illumination"],
+                tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illuminationtrack"],
                 bonustracks: ["theemeraldpiper"]
             }
         },
@@ -966,47 +966,69 @@ $.ajax({
             },
             yearoftherat:{
                 title: "Year of the Rat",
-                length: "4:35"
+                length: "4:35",
+                lyrics: ["osten"],
+                music: ["anders","ole","mary"],
             },
             protection:{
                 title: "Protection",
-                length: "4:15"
+                length: "4:15",
+                lyrics: ["osten","mary"],
+                music: ["anders","ole","mary"],
             },
             patriotgames:{
                 title: "Patriot Games",
-                length: "3:25"
+                length: "3:25",
+                lyrics: ["osten"],
+                music: ["anders","ole"],
             },
             thepassing:{
                 title: "The Passing",
-                length: "4:48"
+                length: "4:48",
+                lyrics: ["tarald","Fredrik Sele","mary"],
+                music: ["anders","ole","mary"],
             },
             exile:{
                 title: "Exile",
-                length: "4:26"
+                length: "4:26",
+                lyrics: ["osten"],
+                music: ["anders","ole","mary"],
             },
             sirens:{
                 title: "Sirens",
-                length: "4:27"
+                length: "4:27",
+                lyrics: ["osten"],
+                music: ["anders","ole","mary"],
             },
             vulture:{
                 title: "Vulture",
-                length: "3:43"
+                length: "3:43",
+                lyrics: ["anders","tarald"],
+                music: ["ole","Waldemar Sorychta","Sigmund Vegge","kjetiln"],
             },
             amnesia:{
                 title: "Amnesia",
-                length: "4:54"
+                length: "4:54",
+                lyrics: ["ole","tarald"],
+                music: ["ole","mary"],
             },
             magicalfix:{
                 title: "Magical Fix",
-                length: "4:20"
+                length: "4:20",
+                lyrics: ["tarald"],
+                music: ["ole","anders","tarald","Waldemar Sorychta"],
             },
-            illumination:{
+            illuminationtrack:{
                 title: "Illumination",
-                length: "8:13"
+                length: "8:13",
+                lyrics: ["osten"],
+                music: ["einar"],
             },
             theemeraldpiper:{
                 title: "The Emerald Piper",
-                length: "?:??"
+                length: "3:07",
+                lyrics: ["osten"],
+                music: ["anders","ole"],
             }
         }
     }

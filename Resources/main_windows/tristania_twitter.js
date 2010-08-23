@@ -15,13 +15,13 @@ $.ajax({
     success: buildTimeline
 });
 
-function buildTimeline(data){
-Ti.API.log(data);
+function buildTimeline(tdata){
+//Ti.API.log(data);
 
 	// create table view data object
 	var data = [];
 	
-	var tweets = data; // eval('('+this.responseText+')');
+	var tweets = tdata; // eval('('+this.responseText+')');
 		
 			for (var c=0;c<tweets.length;c++){
 
@@ -31,7 +31,7 @@ Ti.API.log(data);
 				var created_at = prettyDate(strtotime(tweets[c].created_at));
 				var bgcolor = (c % 2) == 0 ? '#fff' : '#eee';
 				
-				var row = Ti.UI.createTableViewRow({hasChild:true,height:'auto',backgroundColor:bgcolor});
+				var row = Ti.UI.createTableViewRow({height:'auto',backgroundColor:bgcolor});
 
 				// Create a vertical layout view to hold all the info labels and images for each tweet
 				var post_view = Ti.UI.createView({
@@ -44,7 +44,7 @@ Ti.API.log(data);
 				});
 
 				var av = Ti.UI.createImageView({
-					url:avatar,
+					image:avatar,
 					left:0,
 					top:0,
 					height:48,

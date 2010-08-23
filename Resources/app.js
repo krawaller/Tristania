@@ -35,7 +35,7 @@ var tabGroup = $.create({type:"TabGroup"});
  {icon:"discography.png",title:"Discography",url:"discography.js"},
  {icon:"pictures.png",title:"Gallery",url:"gallery.js"},
  {icon:"videos.png",title:"Videos",url:"vids.js"},
- {icon:"community.png",title:"Community",url:"community.js"}].map(function(t){
+ {icon:"community.png",title:"Community",url:"forum.js"}].map(function(t){
     tabGroup.addTab( $.create({
         type: "Tab",
         icon:"pics/icon_tab_"+t.icon,title:t.title,

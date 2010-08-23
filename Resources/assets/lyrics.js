@@ -1766,62 +1766,422 @@ var lyrics = {
     
     yearoftherat: [
     
-["...year of the rat..."]
-    
-    ],
-    
-    patriotgames: [
-    
-["car keys thrown away"]
-    
-    ],
-    
-    thepassing: [
-    
-["chasing"]
+["There’s a way just walk the line",
+"Keep your direction",
+"And read the signs",
+"Just play the game or fade away",
+"Make your confessions and book a ride"],
+
+["Now that your sparkling smile is outworn",
+"Now that your famous blue raincoat is torn",
+"Spin me a lie and we’ll slip through the haze",
+"Just like Louise we’ll get lost in the shades"],
+
+["Change your name and change your face",
+"For your protection and the new day",
+"Believe in me you can be free",
+"Escape the aggression and book that ride"],
+
+["Now you’re a rat and you can’t sleep at night",
+"Under the spell of the following eye",
+"This is the game there’s no getting out",
+"I’ve seen the end and it looks like a nine",
+"You feel the chill that just crept down your spine",
+"This time, the last surrender",
+"The axe won’t be buried, not ever, not sorry",
+"It is too late to worry"]
     
     ],
     
     protection: [
     
-["...protection..."]
+["There’s a maze",
+"Of nights and days",
+"You don’t fear the time",
+"Stars and sky define the road",
+"And they clear our sight",
+"I will be your eyes and ears",
+"Walk with me tonight",
+"Somewhere ahead the gate is open",
+"And the woods alive"],
+
+["Shadows soon rise",
+"I will move on",
+"Leave you behind",
+"Your flame is burning",
+"Kiss me goodbye",
+"It’s getting late",
+"I’m still your shield",
+"The world keeps turning"],
+
+["Wounds need time to heal"],
+
+["Hush my child",
+"Now do not weep",
+"Put your hand in mine",
+"I’ve got promises to keep",
+"I will stand you by",
+"I have given life to you",
+"Find your strength my child",
+"There is a magic world awaiting",
+"Made of light and smiles"],
+
+["Words spoken from the other side",
+"No more pain, no worrying",
+"Walk on my child"]
+    
+    ],
+    
+    patriotgames: [
+    
+["I go where I’m sent",
+"Twisted and bent",
+"These facts I relate to now",
+"I live by the sword, serving my time",
+"Bloodstained and deadly now"],
+
+["Now there are things yet to be done",
+"To shoot the monkey off your back",
+"I’ll let you die like this",
+"And kill you one more time",
+"And as my target’s blown away",
+"Another’s lurking in the shades",
+"I can’t believe this shit",
+"I’ll kill it one more time"],
+
+["I’m armed but I’m dead",
+"You’re broken she said",
+"It’s all I recall for now",
+"Hospital bed, faces go by",
+"And eyes closed forever now"],
+
+["Wondering what’s fake and what is real",
+"The day still breaks",
+"It’s grey and dim outside",
+"Searching for a kick that takes me high",
+"And throws the sparks around the fire"]
+    
+    ],
+    
+    thepassing: [
+    
+["Feel, my hands are turning cold",
+"Time will fill this endless void",
+"As the fires light the sky",
+"At safe distance",
+"I see fear"],
+
+["Chasing my deliverance",
+"I cross the burning",
+"Borderline",
+"I close my eyes",
+"But still I dare not sleep tonight"],
+
+["This rhythm I pass on",
+"See the land it’s carved upon",
+"See my fate for what it is",
+"In your eyes it’s a loss",
+"Or victory"],
+
+["Facing my deliverance",
+"Across the border",
+"Fleeing my",
+"Affliction and",
+"My treason",
+"My sweet misery"]
     
     ],
     
     exile: [
     
-["...exile..."]
+["I’m light years away",
+"You can’t change me",
+"I’m passive and cold",
+"Just waiting",
+"I’ve seen the future’s threatening sky through dreams at night",
+"I’ve seen the dogs of war let loose I’ve seen the blood-red sky"],
+
+["Night",
+"A promise of rain",
+"Divided we stand",
+"A distance I can’t take anymore"],
+
+["In the cage in the corner",
+"I’m safe from the beast",
+"Once you wanted me, the image of me",
+"I’ve played that game a million times and see the signs",
+"I’ve played that game from A to Z I’ve lost a million times"],
+
+["Wounds are open again",
+"Divided we fall",
+"I’m bleeding from the dark of my soul"],
+
+["Burning in water",
+"Drowning in fire"]
     
     ],
     
     sirens: [
     
-["...sirens..."]
+["He couldn’t get out of bed in the morning",
+"He thought it was just a drag",
+"So into his hollow mind he was calling, into his hollow mind",
+"March on you fools and keep the line",
+"March on you fools don’t fall behind"],
+
+["From the distance through the silence",
+"If you listen you hear sirens"],
+
+["Outside my window they walk in a line",
+"Asking no questions and reading no signs"],
+
+["Where there is smoke there might be fire",
+"No kiss goodnight",
+"From the distance through the silence",
+"If you listen you hear sirens"],
+
+["Outside my window they walk in a line",
+"Asking no questions and reading no signs",
+"They built a wall for me",
+"What will life ever be but blue light from the screen",
+"What will life ever be but fake"],
+
+["Wall of silence",
+"Silent is the night"],
+
+["March on you fools and keep the line",
+"March on you fools don’t fall behind"],
+
+["I see the Columbine clouds on the sky",
+"Passing above me they drift through the night",
+"They built this world you see and made me enemies",
+"Beside the dull routines what will life ever be but waste"]
     
     ],
     
     vulture: [
     
-["...vulture..."]
+["Birds of prey are soaring higher",
+"Baiting their hooks",
+"The more they fade",
+"Dangling their lines",
+"The grimmer it looks"],
+
+["Transparent creatures",
+"Pollute the blue sky",
+"Slowly falling",
+"Towards the cold ground",
+"Desperation has turned the eagles",
+"Into vultures"],
+
+["We’re all betrayed",
+"You preen your ruffled feathers",
+"At the end of the day",
+"You chose to stray",
+"Allured by gold and silver",
+"We will end it our way"],
+
+["Stumbling giants",
+"Crave existence",
+"They’ll never make it through",
+"Their desperate swarming",
+"In restless blindness",
+"Turns old words into new"],
+
+["You’ve had your fill",
+"And emptied every chalice",
+"From the brim to the dregs",
+"Stay ill, you will",
+"You’ll plummet from your mountain",
+"You’ll descend, you will fail"],
+
+["So you thought you could break my back",
+"Did you think you could make me crack",
+"Try harder",
+"Dig deeper",
+"You’re facing a steep hill that cannot be climbed"]
     
     ],
     
     amnesia: [
     
-["...amnesia..."]
+["Were words too vague",
+"Disarmed and desperate",
+"But after all your call",
+"Was inflammable"],
+
+["So you slip into the fire",
+"I am watching it transpire"],
+
+["Wholehearted help",
+"Distressed and desolate",
+"So changed and frail",
+"It’s all unmistakable"],
+
+["Words passing through",
+"The unforgivable",
+"Eyes cannot hide the pain",
+"And she still yearns",
+"Let go"],
+
+["Breaking out and breaking down",
+"The last thing I remember",
+"Soak the embers with your fuel",
+"Your fright is your defender"],
+
+["Faking your tomorrow",
+"Life is good for the pretender",
+"Our precious memories",
+"Are shattered and dismembered"],
+
+["We will wear the lies we share",
+"Forfeit future, truth or dare"],
+
+["So you slipped into the fire",
+"I was watching it transpire"]
     
     ],
     
     magicalfix: [
     
-["Magical fix! Magical fix!"]
+["I’ve been marooned in the mesh of the mind andthe flesh",
+"Misguided by bliss and seduced by the blessed",
+"The more I taste their chaste embrace",
+"I’m dying to leave"],
+
+["I’ve been bruised by the Beast, kept opponents appeased",
+"By keeping up the flame, now my soul is released",
+"It’s all arranged, my body stays",
+"And I’m in for a ride"],
+
+["When I close my eyes for the last time",
+"Where the circle starts, when the bells chime",
+"Please don’t shed a tear for me",
+"I’ll be around"],
+
+["Now I’m reversing the curse, I’m disclosing the cure",
+"Keep humming in my hearse and I know it for sure",
+"It’s time to cross the great divide",
+"So why access denied"],
+
+["I’ve been framed by the fume of penultimate doom",
+"In a tomb with a view beneath flowers in bloom",
+"The less I think of how it stinks",
+"The more I’m alive"],
+
+["The cure sublime",
+"Blew many minds to pieces",
+"First distant, moving closer, into universal recess",
+"The war supreme tore souls to shreds",
+"Among the living, dying, dead",
+"With a fiery fix you’ll live as before",
+"With a magical fix you’ll be begging for more"]
     
     ],
     
     theemeraldpiper: [
 
-["the back room of my head"]
+["From the backroom of my head I hear you shout",
+"Through my animated state and sheets of late",
+"I do my best to stay alive but from the backroom",
+"of my head",
+"I hear you shout",
+"Through my animated state"],
 
+["Now the emerald piper plays",
+"Inside the bar in which you stay",
+"It’s closing time",
+"A blow to your frail ambitions",
+"You act just like a dumdum boy",
+"A child deprived of all its toys",
+"Notorious",
+"A man with no mission"],
+
+["In the sawdust from the past there is still room",
+"For significant mistakes and muted hate",
+"I hear a signal from the wire but from the backroom",
+"of my head",
+"I hear you shout",
+"Through my animated state"],
+
+["Like a king without a crown",
+"You rode high",
+"Were turned around",
+"Without a crown",
+"Beyond recognition",
+"You need protection from yourself",
+"You have been slipping",
+"Cry for help or let it bleed",
+"In your private prison"]
+
+    ],
+    
+    illuminationtrack: [
+    
+["What if you vote to change the world",
+"It is time to let your voice be heard",
+"Make a difference",
+"Watch and you will learn"],
+
+["Don’t you trust me",
+"Say, don’t you feel the way that I feel",
+"A new direction is what we need",
+"Don’t you want justice",
+"God bless the strong and brave and free",
+"The wheels are moving",
+"Be strong and believe"],
+
+["Man the noblest beast of all",
+"Our fate is to lead",
+"Some might say we’ve been misled",
+"I’m dressed to make change",
+"And Phil is always there",
+"To tell you what went wrong",
+"I’ll feed you little pills",
+"And you won’t go astray",
+"They’ll help you on the way"],
+
+["Don’t you hate it",
+"We’ll get the snake back under the heel",
+"We’ll bring back justice",
+"Go spread the word",
+"God bless this nation",
+"God bless the strong and brave and free",
+"We’ll use the power and burst through the streets"],
+
+["The more they mock our way of life",
+"The more the conflict escalates",
+"Now they strike into our faith",
+"We will sure retaliate"],
+
+["Master! Tell us what to do",
+"Our minds are pure",
+"Our hearts are true",
+"Master! Speak to us of war",
+"Will we be victorious"],
+
+["Children kneel with me and pray",
+"You were blind but you will see",
+"You must break the web of lies",
+"And illuminate the sky"],
+
+["Words are wasted",
+"I know you feel the way that I feel",
+"God loves the faithful and hates the beast",
+"We’ve brought back justice",
+"God bless the strong and brave and free",
+"We’ll use the power and burst through the streets"],
+
+["Master! Tell us what to do",
+"Master!"],
+
+["Alt tar slutt",
+"Alt vil bli flammars rov",
+"Love fornying når klokkå slår",
+"Løfte du blikket",
+"Alt som er dødt forgår",
+"Alt som har skjedd vil skje igjen"]
+    
     ]
     
 };
