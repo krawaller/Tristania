@@ -96,7 +96,12 @@ var defopts = {
     },
  // ***************Styleclasses **************
  
- 
+    "categoryButton": {
+        color: "#FFF",
+        width: "100",
+        height: "50",
+        backgroundColor: "#333",
+    },
  
  
  // ***************** Wins *******************
