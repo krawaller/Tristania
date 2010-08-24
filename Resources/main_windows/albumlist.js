@@ -33,26 +33,29 @@ function render(res){
         }
     }
     
-    data.map(function(item){
-        rows.push({
-            title: item.title,
-            info: item.info,
-            sidelabel: { text:"("+item.info.pics+")" }
-        });
-    });
-    list = $.createTableView({rows:rows});
-    
-    list.addEventListener("click",function(e){
-        Ti.UI.currentTab.open($.createWin({
-            url:'photoalbum.js',
-            info: e.rowData.info,
-            orientationModes: [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT],
-        	tabBarHidden: true,
-        	translucent: true
-        }));
-    });
-
-    win.add(list);
+    win.add($.create({
+        type: "TableView",
+        childElements: data.map(function(r){
+            return {
+                title: r.title,
+                info: r.info,
+                childElements: [{
+                    styleClass: "tableviewrowsidelabel",
+                    text:"("+r.info.pics+")"
+                }]
+            };
+        }),
+        click: function(e){
+            Ti.UI.currentTab.open($.create({
+                type: "Window",
+                url:'photoalbum.js',
+                info: e.rowData.info,
+                orientationModes: [Titanium.UI.PORTRAIT, Titanium.UI.UPSIDE_PORTRAIT, Titanium.UI.LANDSCAPE_LEFT, Titanium.UI.LANDSCAPE_RIGHT],
+                tabBarHidden: true,
+                translucent: true
+            }));
+        }
+    }));
 }
     
     
