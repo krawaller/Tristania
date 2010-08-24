@@ -40,8 +40,8 @@ var defopts = {
     "tabbedbar": {
         backgroundColor: "#aaa"
     },
-    "tableview": { backgroundColor: "#222", separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE },
-    "tableviewrow": { color: "#FFF", selectedBackgroundImage: '../pics/row.png' },
+    "tableview": { backgroundColor: "transparent", separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE },
+    "tableviewrow": { color: "#000", selectedBackgroundImage: '../pics/row.png' },
     "tableviewrowsidelabel": {
         color: "#AAA",
         right: 10,
@@ -437,7 +437,7 @@ $.ajax({
 	    var newslist = [], rows = data.query.results.item instanceof Array ? data.query.results.item : [data.query.results.item];
 	    rows.map(function(news){
 		    newslist.push({
-		        date: news.pubDate,
+		        date: news.pubDate.substr(0,news.pubDate.length-15),
 		        title: news.title,
 		        content: news.encoded
 		    });
