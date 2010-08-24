@@ -23,12 +23,12 @@ var defopts = {
     "all": { },
  // ****************** Types *****************
     "win": { // TODO - remove this when all is translated
-        barColor: "#AAA",
-        backgroundColor: "#222"
+    //    barColor: "#AAA",
+    //    backgroundColor: "#222"
     },
     "window": {
         barColor: "#AAA",
-        backgroundColor: "#222"
+//        backgroundImage: "pics/tristaniabg.jpg"
     },
     "winlabel": {
         color:'#999',
@@ -74,14 +74,20 @@ var defopts = {
         left: 10
     },
     "coverflowview":{
-        backgroundColor: "#222"
+//        backgroundColor: "#222",
+//        backgroundImage: "../pics/tristaniabg.jpg"
     },
     "imageview": {
     	defaultImage: "../pics/image_loader.png"
     },
-    "webview": { backgroundColor: "#222" },
+    "webview": {
+        backgroundColor: "transparent"
+    },
     "button": {},
-    "view": { backgroundColor: "#222"},
+    "view": { 
+    //    backgroundColor: "#222"
+    //      backgroundImage: "../pics/tristaniabg.jpg"
+    },
     "label": {},
     "bottombutton": {
         bottom: 0,
@@ -102,6 +108,10 @@ var defopts = {
         width: "100",
         height: "50",
         backgroundColor: "#333",
+        font:{
+            fontSize: 40,
+            fontFamily: "Bleeding Cowboys"
+        }
     },
  
  
@@ -420,7 +430,24 @@ var $ = (function(){
         
         // TODO - load all at once from opentable
         
-// loading news
+// loading news from tristania.com RSS feed
+$.ajax({
+    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20%22http%3A%2F%2Fwww.tristania.com%2F2010%2Findex.php%2Ffeed%22&format=json",
+    success: function(data){
+	    var newslist = [], rows = data.query.results.item instanceof Array ? data.query.results.item : [data.query.results.item];
+	    rows.map(function(news){
+		    newslist.push({
+		        date: news.pubDate,
+		        title: news.title,
+		        content: news.encoded
+		    });
+		});
+		Ti.App.Properties.setString("news",JSON.stringify(newslist));
+		Ti.API.log("UPDATED NEWS!");
+	}
+});
+        
+/*// loading news  ---- OLD DEPRECATED, need to use the feed from homepage instead
 $.ajax({
     url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdFc1bnhoXzBBc0pKU2gyVUduZE9vd3c%26hl%3Den%26output%3Dcsv%22&format=json",
     success: function(data){
@@ -435,7 +462,7 @@ $.ajax({
 		Ti.App.Properties.setString("news",JSON.stringify(newslist));
 		Ti.API.log("UPDATED NEWS!");
 	}
-});
+});*/
 
 // loading comments
 $.ajax({

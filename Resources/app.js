@@ -26,7 +26,8 @@ Ti.App.addEventListener("resume",$.updateData);
 
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
-Ti.UI.setBackgroundColor('#000');
+//Ti.UI.setBackgroundColor('#000');
+Ti.UI.setBackgroundImage("pics/tristaniabg.jpg");
 
 // create tab group
 var tabGroup = $.create({type:"TabGroup"});

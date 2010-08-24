@@ -46,4 +46,4 @@
             title: "Second Rubicon teaser",
             content: "<p>Check out the official youtube channel (just hit the tab right here in the app!) for a new Rubicon teaser!</p><p>This time featuring the previously announced work of the illustrious Pete Johanssen.</p>"
         }]
-    }
+    };
