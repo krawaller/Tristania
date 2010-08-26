@@ -105,7 +105,7 @@ var defopts = {
     "categoryButton": {
         type: "Label",
         color: "#FFF",
-        width: "100",
+        width: "200",
         height: "50",
         backgroundColor: "#333",
         font:{
