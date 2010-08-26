@@ -21,7 +21,7 @@ win.add( $.create({
     },{
         text: "Geo",
         styleClass: "categoryButton",
-        top: 10,
+        top: 150,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'geo.js' }));
         }
