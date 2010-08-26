@@ -10,6 +10,7 @@ if(!Ti.App.Properties.getBool('communitized')){
 	a.addEventListener('click', function(e){
 		if(e.index == 0){
 			Ti.App.Properties.setBool('communitized', true);
+			// Coords, Favoritlåtar
 			render();
 		}
 	});
@@ -33,4 +34,14 @@ function render(){
 		annotations: []
 	});
 	win.add(map);
+	
+	var a = Titanium.Map.createAnnotation({
+		latitude : 59.32,
+		longitude : 18.06,
+		title : 'bla',
+		subtitle : 'Laddar...', 
+		animate : false,
+		image : '../pics/placemark.png'
+	});
+	map.setAnnotations([a]);
 }
