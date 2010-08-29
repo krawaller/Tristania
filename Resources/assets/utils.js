@@ -208,8 +208,8 @@ var $ = (function(){
                         case 'json':
                             response = JSON.parse(this.responseText);
 							
-							if(response.error || !(response.query && response.query.results)){
-								Ti.API.error("=== Couldn't fetch " + xhr.opts.url);
+							if(response.error){ // För helvete jacob, detta spränger allt utom YQL queries! :P || !(response.query && response.query.results)){
+								Ti.API.error("=== Couldn't fetch " + xhr.opts.url + " because: "+response.error);
 								//this.defError();
 								//loader.hide();
 								return;
@@ -589,6 +589,7 @@ $.ajax({
 $.ajax({
     url: "http://gdata.youtube.com/feeds/api/videos?q=&author=TristaniaVideos&orderby=published&v=2&alt=json",
 	success: function(data){
+        if (typeof data === "string"){ data = JSON.parse(data); }
 	    var vids = data.feed.entry.map(function(entry){
 	        return {
 			    title: entry.title.$t,

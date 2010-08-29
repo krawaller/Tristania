@@ -22,7 +22,7 @@ $.ajax({
 });
 
 function receiveData(d){
-//Ti.API.log(d);
+Ti.API.log(d);
     var t = {
         type: "TableView",
         childElements: [],

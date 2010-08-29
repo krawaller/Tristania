@@ -1,6 +1,13 @@
 $ = function(str){ return document.getElementById(str); };
 $$ = function(str){ return document.querySelectorAll(str); };
 
+document.addEventListener('click', function(e){
+	if(e.target.nodeName == 'A'){
+		e.preventDefault();
+		Ti.App.fireEvent('openUrl', { url: e.target.getAttribute('href'), title: e.target.textContent });
+	}
+}, false);
+
 var timer, startEl;
 document.addEventListener('touchstart', function(e){ 
     startEl = e.target; 

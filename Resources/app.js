@@ -47,3 +47,84 @@ var tabGroup = $.create({type:"TabGroup"});
 // open tab group
 tabGroup.open({ transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
 
+
+
+/**
+ * Open a url in a new window.
+ * Add means of navigation and an action sheet to let the user favorize the url.
+ * @param {object} event object
+ */
+Ti.App.addEventListener('openUrl', function(e){
+	var openUrlEvent = e;
+	
+	// Define and bind webview navigation
+	var navigation = [{ image: 'pics/left.png' }, { image: 'pics/right.png' }, { image: 'pics/action.png' }];
+	
+	var navigationBar = Ti.UI.createButtonBar({
+		labels: navigation
+	});
+	
+	var funcs = [{ go: 'goBack', can: 'canGoBack' }, { go: 'goForward', can: 'canGoForward' }];
+	
+	// Handle navigation
+	navigationBar.addEventListener('click', function(navBarEvent){
+		// Back or forth?
+		if (funcs[navBarEvent.index] && webview[funcs[navBarEvent.index].can]()) {
+			webview[funcs[navBarEvent.index].go]();
+			spinner.show();
+			funcs.forEach(function(item, i){
+				navigation[i].enabled = webview[item.can](); // Doesn't make a difference yet unfortunately
+			});
+		}
+		else // Action sheet
+			if (navBarEvent.index == 2) { 			
+				var dialog = Titanium.UI.createOptionDialog({
+					options: ['Öppna i Safari', 'Avbryt'],
+					cancel: 1,
+					title: webview.url
+				});
+				
+				// Action sheet click listener
+				dialog.addEventListener('click', function(e){
+					switch (e.index) {
+						case 0:
+							// Open in Safari
+							Ti.Platform.openURL(webview.url);
+							break;
+					}
+				});
+				dialog.show();
+			}
+	});
+	
+	// Add an activityIndicator
+	var spinner = Titanium.UI.createActivityIndicator({
+		height: 32,
+		width: 32,
+		style: Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
+	});
+	
+	// Create webview window
+	var win = Ti.UI.createWindow({
+		titleControl: spinner,
+		title: e.title,
+		rightNavButton: navigationBar
+	});
+	
+	// Create webview
+	var webview = Ti.UI.createWebView({
+		url: e.url
+	});
+	
+	// Bind load func to hide spinner
+	webview.addEventListener('load', function(){
+		spinner.hide();
+		win.titleControl = null;
+	});
+	
+	// Add and show
+	win.add(webview);
+	
+	tabGroup.activeTab.open(win);
+	spinner.show();
+});
