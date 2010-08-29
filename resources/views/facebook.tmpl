@@ -1,0 +1,9 @@
+<# for(var i=0; i<data.length; i++){
+    var msg = data[i];
+    if (msg.message){
+#>
+<div> 
+  <h2><#= msg.from.name + (msg.to && msg.to.data[0].id != 124865974216395 ? " &rarr; "+msg.to.data[0].name :"") #></h2>
+  <div><#= msg.message.replace("\n","<br/>") #><div>
+</div>
+<# } } #>
