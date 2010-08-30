@@ -2182,6 +2182,13 @@ var lyrics = {
 "Alt som er dødt forgår",
 "Alt som har skjedd vil skje igjen"]
     
+    ],
+    
+    caprice: [
+    
+["Cope, grasp your hope",
+"As the rope around your neck pulls tighter"]
+    
     ]
     
 };
