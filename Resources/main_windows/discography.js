@@ -6,12 +6,6 @@ function updateView(){
     win.rightNavButton = Ti.App.Properties.getString("favalbum") === albums[cfv.selected].shorttitle ? delfav : addfav;
 }
 
-function setFav(e){
-    Ti.UI.createAlertDialog({ title: 'Album selected', message: 'Favourite album set to '+albums[cfv.selected].title }).show();
-    Ti.App.Properties.setString("favalbum",albums[cfv.selected].shorttitle);
-    updateView();
-};
-
 var albums = $.getAlbums(),
     images = albums.map(function(a){ return "../pics/"+a.pic; }),
     addfav = $.create({

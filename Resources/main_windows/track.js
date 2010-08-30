@@ -1,9 +1,17 @@
 Ti.include("../assets/utils.js");
 
-var id = win.data.id, track = $.getTrack(id),  view = $.create({ type: "View" }), lyrview, trackview;
+var id = win.data.id, track = $.getTrack(id),  
+    view = $.create({ type: "View" }),
+    trackview = $.create({
+        type: "WebView",
+        templateFile: "track.tmpl",
+        templateData: track
+    }),
+    lyrview;
 
 win.title = track.title;
 win.add(view);
+view.add(trackview);
 
 if (!track.instrumental){
     Ti.include("../assets/lyrics.js"); // creates global var lyrics
@@ -11,6 +19,7 @@ if (!track.instrumental){
         type: "WebView",
         templateFile: "lyrics.tmpl",
         templateData: lyrics[id],
+        opacity: 0
     });
     view.add(lyrview);
     win.rightNavButton = $.create({
@@ -18,15 +27,8 @@ if (!track.instrumental){
         labels: [{image: "../pics/info_light.png"}, "L"  /* {image: "../pics/icon_lyrics.png"} */ ],
         index: 0,
         click: function(e){
-            view.animate({view:e.index ? lyrview : trackview,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT});
+            [lyrview,trackview][e.index].animate({duration: 500, opacity: 0});
+            [trackview,lyrview,][e.index].animate({duration: 500, opacity: 1});
         }
     });
 }
-
-trackview = $.create({
-    type: "WebView",
-    templateFile: "track.tmpl",
-    templateData: track
-});
-
-view.add(trackview);

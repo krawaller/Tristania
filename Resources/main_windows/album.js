@@ -47,6 +47,7 @@ var view = $.create({
     childElements: [{
         id: "trackList",
         type: "TableView",
+        opacity: 0,
         childElements: !album.bonustracks ? $.map($.getTracks(album.tracks),fixTrack) : [{
             type: "TableViewSection",
             id: "mainTracks",
@@ -76,10 +77,8 @@ win.rightNavButton = $.create({
     ], 
     index:0,
     click: function(e){
-        switch(e.index){
-            case 0: view.animate({view:view.childrenById.albumInfo,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-            case 1: view.animate({view:view.childrenById.trackList,transition:Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT}); break;
-        }
+        view.childrenById[e.index == 0 ? "albumInfo" : "trackList"].animate({duration: 500, opacity: 1});
+        view.childrenById[e.index == 1 ? "albumInfo" : "trackList"].animate({duration: 500, opacity: 0});
     }
 });
 
