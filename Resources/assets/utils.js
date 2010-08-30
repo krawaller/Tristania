@@ -429,7 +429,8 @@ var $ = (function(){
                 ret.push({
                     id: a,
                     pic: data.discography[a].pic,
-                    shorttitle: data.discography[a].shorttitle
+                    shorttitle: data.discography[a].shorttitle,
+                    title: data.discography[a].title,
                 });
             }
             return ret;

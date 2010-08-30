@@ -22,18 +22,20 @@ $.ajax({
 });
 
 function receiveData(d){
-Ti.API.log(d);
+    d = d.query.results.res;
+Ti.API.log("POOP!");
     var t = {
         type: "TableView",
         childElements: [],
         click: function(e){
-        Ti.API.log(e.rowData.def);
+Ti.API.log(e.rowData.def);
             var win = $.create({ type: "Window", url:'forum.js' });
             win.path = e.rowData.def.link;
             Ti.UI.currentTab.open(win);
         }
     }
     if (d.posts){
+Ti.API.log("POSTS!");
         t.page = d.posts.page;
         t.pages = d.posts.pages;
         t.childElements = d.posts.post.map(function(p){
@@ -45,6 +47,7 @@ Ti.API.log(d);
         });
     }
     if (d.boards){
+Ti.API.log("BOARDS!");
         t.childElements = d.boards.board.map(function(b){
             return {
                 title: b.title,
@@ -54,6 +57,7 @@ Ti.API.log(d);
         });
     }
     if (d.topics){
+Ti.API.log("TOPICS!");
         t.page = d.topics.page;
         t.pages = d.topics.pages;
         t.childElements = d.topics.topic.map(function(t){
@@ -65,6 +69,7 @@ Ti.API.log(d);
         });
     }
     if (d.cats){
+Ti.API.log("CATS!");
         t.childElements = d.cats.map(function(c){
             return {
                 title: c.title,
@@ -79,6 +84,7 @@ Ti.API.log(d);
             };
         });
     }
-    
+Ti.API.log(d);
+Ti.API.log(t);
     win.add($.create(t));
 }
