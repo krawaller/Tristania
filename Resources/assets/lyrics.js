@@ -2194,7 +2194,7 @@ var lyrics = {
 ["How will you spin this one",
 "You'd never stand your stains",
 "Now as the island sinks",
-"And you'll still praise the rain"
+"And you'll still praise the rain",
 "And then you'll cry at dusk when the day is done",
 "You'll exit or expire in the evening sun"],
 
