@@ -60,7 +60,8 @@ Ti.App.addEventListener('openUrl', function(e){
 	// Define and bind webview navigation
 	var navigation = [{ image: 'pics/left.png' }, { image: 'pics/right.png' }, { image: 'pics/action.png' }];
 	
-	var navigationBar = Ti.UI.createButtonBar({
+	var navigationBar = $.create({ //Ti.UI.createButtonBar({
+	    type: "ButtonBar",
 		labels: navigation
 	});
 	
@@ -105,14 +106,16 @@ Ti.App.addEventListener('openUrl', function(e){
 	});
 	
 	// Create webview window
-	var win = Ti.UI.createWindow({
+	var win = Ti.UI.create({
+	    type: "Window",
 		titleControl: spinner,
 		title: e.title,
 		rightNavButton: navigationBar
 	});
 	
 	// Create webview
-	var webview = Ti.UI.createWebView({
+	var webview = $.create({ // Ti.UI.createWebView({
+	    type: "WebView",
 		url: e.url
 	});
 	

@@ -2186,7 +2186,21 @@ var lyrics = {
     
     caprice: [
     
-["Cope, grasp your hope",
+["Branch in the breeze",
+"Waving slowly back and forth as if asleep",
+"Break piece by piece",
+"Or just by sheer caprice decide to let go"],
+
+["How will you spin this one",
+"You'd never stand your stains",
+"Now as the island sinks",
+"And you'll still praise the rain"
+"And then you'll cry at dusk when the day is done",
+"You'll exit or expire in the evening sun"],
+
+["Army of lies",
+"Now denial of denial's your disguise",
+"Cope, grasp your hope",
 "As the rope around your neck pulls tighter"]
     
     ]

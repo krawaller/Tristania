@@ -12,6 +12,12 @@ html, body {
 
 body { padding: 7px; }
 
+.sectionbutton {
+    font-size: 30px;
+    color: #d1b275;
+    font-family: "Bleeding Cowboys"
+}
+
 .tbox {
     border: 1px solid #888;
     border-radius: 9px;
@@ -32,6 +38,7 @@ body { padding: 7px; }
 .tbox > h2 {
     color: #d1b275;
     font-weight: bold;
+    font-family: "AcquilineTwo","Bleeding Cowboys"
 }
 
 .bigpic {

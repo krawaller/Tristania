@@ -5,14 +5,14 @@ win.title = "Info";
 win.add( $.create({
     type: "View",
     childElements: [{
-        text: "News",
-        styleClass: "categoryButton",
+        styleClass: "sectionButton",
+        templateData: {text:"News"},
         top: 10,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'newslist.js' }));
         }
     },{
-        text: "Bio",
+        text: "Biography",
         styleClass: "categoryButton",
         top: 80,
         click: function(e){

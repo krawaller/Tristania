@@ -125,6 +125,12 @@ var defopts = {
         }
     },
  
+    "sectionButton": {
+        type: "WebView",
+        templateFile: "sectionbutton.tmpl",
+        height: 50,
+        width: 200
+    },
  
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
@@ -249,6 +255,16 @@ var $ = (function(){
                 o = { type: "Label", text: o };
             }
          //   delete o.id;
+            if (o.styleClass){
+                 if (typeof o.styleClass === "string") {
+                     o = $.merge(o,defopts[o.styleClass] || {});
+                 }
+                 else {
+                     o.styleClass.map(function(s){
+                          o = $.merge(o,defopts[s] || {});
+                     });
+                 }
+            }
             if (!o.type) {
                 if (o.parentType == "TableViewSection" || o.parentType == "TableView"){
                     o.type = "TableViewRow";
@@ -271,16 +287,6 @@ var $ = (function(){
             }
             if (o.type == "Window" && defopts[o.url]){
                  o = $.merge(o,defopts[o.url]);
-            }
-            if (o.styleClass){
-                 if (typeof o.styleClass === "string") {
-                     o = $.merge(o,defopts[o.styleClass] || {});
-                 }
-                 else {
-                     o.styleClass.map(function(s){
-                          o = $.merge(o,defopts[s] || {});
-                     });
-                 }
             }
             if (o.type == "WebView" && o.templateFile){
                 o = $.merge(o, {
@@ -1101,7 +1107,7 @@ $.ajax({
             caprice:{
                 title: "Caprice",
                 length: "3:38",
-                lyrics: ["osten"],
+                lyrics: ["tarald"],
                 music: ["anders","ole"]
             }
         }
