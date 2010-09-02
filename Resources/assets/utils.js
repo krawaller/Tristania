@@ -68,6 +68,14 @@ var defopts = {
         font:{fontSize:10,fontFamily:'Helvetica Neue'},
         textAlign:'center'
     },
+    "tableviewrowsuperlabel": {
+        color: "#AAA",
+        top: -30,
+        left: 10,
+        width: "auto",
+        font:{fontSize:10,fontFamily:'Helvetica Neue'},
+        textAlign:'center'
+    },
     "tableviewsection": {
     },
     "tableviewheaderview": {
@@ -132,6 +140,11 @@ var defopts = {
         width: 200
     },
  
+    "forumwho": {
+        type: "Label",
+        
+    },
+ 
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {},
@@ -176,6 +189,9 @@ var $ = (function(){
 	};
 	
     $.merge($, {
+        ensureArray: function(d){
+            return d instanceof Array ? d : d ? [d] : [];
+        },
         ajax: function(inOpts){
             var opts = $.extend($.extend({}, ajaxDefaults), inOpts), 
                 xhr = Ti.Network.createHTTPClient(opts), 
@@ -272,6 +288,10 @@ var $ = (function(){
                 else if (o.text) {
                     o.type = "Label";
                 }
+            }
+            if (!o.type){
+                Ti.API.log(o);
+                throw "What the heck, no type!";
             }
             o.childElements = o.childElements || [];
             if (o.type == "TableViewSection" && o.headerTitle){
@@ -638,7 +658,7 @@ $.ajax({
                 current: true,
                 name: "Ole Vistnes",
                 role: "Bass, backing vocals",
-                member: "2008 &rarr; present",
+                member: "2008 &rarr; present"
             },
             kenneth: {
                 name: "Kenneth Olsson",
@@ -649,7 +669,7 @@ $.ajax({
                 current: true,
                 name: "Tarald Lie",
                 role: "Drums",
-                member: "2010 &rarr; present",
+                member: "2010 &rarr; present"
             },
             sveinterje: {
                 name: "Svein-Terje Solvang",
@@ -680,9 +700,8 @@ $.ajax({
             },
             osten: {
                 name: "Østen Bergøy",
-                member: "2001 &rarr; present",
-                role: "Clean vocals",
-                current: true
+                member: "2001 &rarr; 2010",
+                role: "Clean vocals"
             },
             rune: {
                 name: "Rune Østerhus",
@@ -785,11 +804,11 @@ $.ajax({
             },
             paleenchantress: {
                 title: "Pale Enchantress",
-                length: "6:32",
+                length: "6:32"
             },
             decemberelegy: {
                 title: "December Elegy",
-                length: "7:31",
+                length: "7:31"
             },
             midwintertears: {
                 title: "Midwintertears",
@@ -1042,43 +1061,43 @@ $.ajax({
                 title: "Year of the Rat",
                 length: "4:35",
                 lyrics: ["osten"],
-                music: ["anders","ole","mary"],
+                music: ["anders","ole","mary"]
             },
             protection:{
                 title: "Protection",
                 length: "4:15",
                 lyrics: ["osten","mary"],
-                music: ["anders","ole","mary"],
+                music: ["anders","ole","mary"]
             },
             patriotgames:{
                 title: "Patriot Games",
                 length: "3:25",
                 lyrics: ["osten"],
-                music: ["anders","ole"],
+                music: ["anders","ole"]
             },
             thepassing:{
                 title: "The Passing",
                 length: "4:48",
                 lyrics: ["tarald","Fredrik Sele","mary"],
-                music: ["anders","ole","mary"],
+                music: ["anders","ole","mary"]
             },
             exile:{
                 title: "Exile",
                 length: "4:26",
                 lyrics: ["osten"],
-                music: ["anders","ole","mary"],
+                music: ["anders","ole","mary"]
             },
             sirens:{
                 title: "Sirens",
                 length: "4:27",
                 lyrics: ["osten"],
-                music: ["anders","ole","mary"],
+                music: ["anders","ole","mary"]
             },
             vulture:{
                 title: "Vulture",
                 length: "3:43",
                 lyrics: ["anders","tarald"],
-                music: ["ole","Waldemar Sorychta","Sigmund Vegge","kjetiln"],
+                music: ["ole","Waldemar Sorychta","Sigmund Vegge","kjetiln"]
             },
             amnesia:{
                 title: "Amnesia",
@@ -1090,19 +1109,19 @@ $.ajax({
                 title: "Magical Fix",
                 length: "4:20",
                 lyrics: ["tarald"],
-                music: ["ole","anders","tarald","Waldemar Sorychta"],
+                music: ["ole","anders","tarald","Waldemar Sorychta"]
             },
             illuminationtrack:{
                 title: "Illumination",
                 length: "8:13",
                 lyrics: ["osten"],
-                music: ["einar"],
+                music: ["einar"]
             },
             theemeraldpiper:{
                 title: "The Emerald Piper",
                 length: "3:07",
                 lyrics: ["osten"],
-                music: ["anders","ole"],
+                music: ["anders","ole"]
             },
             caprice:{
                 title: "Caprice",
@@ -1111,7 +1130,7 @@ $.ajax({
                 music: ["anders","ole"]
             }
         }
-    }
+    };
     
     return $;
 })();

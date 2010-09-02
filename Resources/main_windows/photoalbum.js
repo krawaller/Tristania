@@ -136,7 +136,7 @@ var hideInfoView = function(){
     info.zIndex = 2;
     fav.zIndex = 2;
     save.zIndex = 2;
-}
+};
 
 infoView.addEventListener('click', hideInfoView );
 

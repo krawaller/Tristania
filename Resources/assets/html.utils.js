@@ -40,9 +40,9 @@ var tmpl = function(str, data){
     try {
         var func = tmpl.cache[str];
         if (!func) {
-            var strFunc = "var p=[];with(obj){p.push('" +
-            str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^#]*#>)/g, "\t").split("'").join("\\'").split("\t").join("'").replace(/<#=(.+?)#>/g, "',$1,'").split("<#").join("');").split("#>").join("p.push('") +
-            "');}return p.join('');";
+            var strFunc = "var PPP666=[];with(obj){PPP666.push('" +
+            str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^#]*#>)/g, "\t").split("'").join("\\'").split("\t").join("'").replace(/<#=(.+?)#>/g, "',$1,'").split("<#").join("');").split("#>").join("PPP666.push('") +
+            "');}return PPP666.join('');";
             func = new Function("obj", strFunc);
             tmpl.cache[str] = func;
         }
@@ -52,14 +52,14 @@ var tmpl = function(str, data){
         Ti.App.fireEvent('error', e);
     }
     return '<div style="width: 200px; margin: 0 auto; text-align: center; font-size: 20px; font-family: Helvetica; margin-top: 100px;">Ett fel inträffade, vänligen försök igen.</div>';
-}
+};
 tmpl.cache = {};
 
 var _ = {
     each: function(obj, fn){
         (obj instanceof Array ? obj : [obj]).forEach(fn);
     }    
-}
+};
 
 Array.prototype.remove = function(obj){
     var idx;
@@ -78,5 +78,8 @@ H = {
       return "<span>"+b+"</span>"
     }
     return "<span>"+b.name+"</span>"; //"<a href='#' class='tlink' cat='bio' targetid='"+b.id+"'>"+b.name+"</a>";
-  }
-}
+  },
+  ensureArray: function(d){
+            return d instanceof Array ? d : d ? [d] : [];
+        }
+};

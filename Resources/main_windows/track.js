@@ -28,7 +28,7 @@ if (!track.instrumental){
         index: 0,
         click: function(e){
             [lyrview,trackview][e.index].animate({duration: 500, opacity: 0});
-            [trackview,lyrview,][e.index].animate({duration: 500, opacity: 1});
+            [trackview,lyrview][e.index].animate({duration: 500, opacity: 1});
         }
     });
 }
