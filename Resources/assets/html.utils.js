@@ -75,7 +75,7 @@ H = {
   },
   renderMemberLink: function(b){
     if (typeof b === "string"){
-      return "<span>"+b+"</span>"
+      return "<span>"+b+"</span>";
     }
     return "<span>"+b.name+"</span>"; //"<a href='#' class='tlink' cat='bio' targetid='"+b.id+"'>"+b.name+"</a>";
   },

@@ -38,8 +38,7 @@ var defopts = {
     //    backgroundColor: "#222"
     },
     "window": {
-        barColor: "#AAA",
-//        backgroundImage: "pics/tristaniabg.jpg"
+        barColor: "#AAA"
     },
     "winlabel": {
         color:'#999',
@@ -138,11 +137,6 @@ var defopts = {
         templateFile: "sectionbutton.tmpl",
         height: 50,
         width: 200
-    },
- 
-    "forumwho": {
-        type: "Label",
-        
     },
  
  // ***************** Wins *******************
