@@ -111,7 +111,7 @@ if (!win.info){ // gallery base, showing hardcoded categories.
     },{
         type: "TableViewSection",
         headerTitle: "Categories",
-        childElements: [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}].map(function(i){return {info:i,childElements:[{text: i.title,styleClass: "tableviewrowsidelabel"}]};})
+        childElements: [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}].map(function(i){return {info:i,childElements:[{text: i.title,styleClass: "tableviewrowmainlabel"}]};})
     }]);
     win.addEventListener("focus",updateFavourites);
 }

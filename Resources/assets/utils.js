@@ -57,10 +57,11 @@ var defopts = {
     },
     "tableviewrowmainlabel": {
         color: "black",
-        font: { fontWeight: "normal", fontStyle: "italic", fontSize: 20, fontFamily: "Helvetica Neue" },
+        font: { fontWeight: "bold", fontSize: 22, fontFamily: "AquilineTwo" },
+        top: -5,
         left: 10,
         width: 260,
-        height: 36
+        height: 50
     },
     "tableviewrowsidelabel": {
         color: "#333",
@@ -92,8 +93,9 @@ var defopts = {
     },
     "tableviewheaderlabel": {
         color: "black",
-        font: { fontWeight: "normal", fontStyle: "normal", fontSize: 20 },
+        font: { fontWeight: "normal", fontStyle: "normal", fontSize: 16, fontFamily: "Bleeding Cowboys" },
         left: 10,
+        height: 20
     },
     "coverflowview":{
 //        backgroundColor: "#222",
@@ -126,10 +128,10 @@ var defopts = {
  
     "categoryButton": {
         type: "Label",
-        color: "#FFF",
-        width: "200",
+        color: "#000",
+        width: "350",
         height: "50",
-        backgroundColor: "#333",
+        textAlign: "center",
         font:{
             fontSize: 40,
             fontFamily: "Bleeding Cowboys"
