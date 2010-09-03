@@ -60,15 +60,18 @@ function receiveData(res){
                 i+=2;
             }
             if (!(info.albums>0 && info.pics==0)){ // avoid empty entries
-                row = {info:info};
-                if (info.albums){
-                    row.childElements = [{
+                row = {
+                    info:info,
+                    childElements: [{
                         text: info.title,
                         styleClass: "tableviewrowmainlabel"
-                    },{
+                    }]
+                };
+                if (info.albums){
+                    row.childElements.push({
                         text: "("+info.albums+"/"+info.pics+")",
                         styleClass: "tableviewrowsidelabel"
-                    }];
+                    });
                 }        
                 data.push(row);
             }
