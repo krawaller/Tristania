@@ -58,7 +58,7 @@ var defopts = {
     "tableviewrowmainlabel": {
         color: "black",
         font: { fontWeight: "bold", fontSize: 22, fontFamily: "AquilineTwo" },
-        top: -5,
+        top: -15,
         left: 10,
         width: 260,
         height: 50

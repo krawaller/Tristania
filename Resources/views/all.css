@@ -26,12 +26,12 @@ body { padding: 7px; }
   /*  color: #d1b275; */
     color: black;
     font-weight: bold;
-    font-family: "AquilineTwo","Bleeding Cowboys"
+    font-family: "AquilineTwo"
 }
 
 .subtitle {
     font-size: 10px;
-    color: white;
+    color: "#333";
 }
 
 .content {
