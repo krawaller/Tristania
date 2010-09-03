@@ -69,7 +69,7 @@ var defopts = {
         color: "#333",
         right: 10,
         width: "auto",
-        font:{fontSize:20,fontFamily:'Helvetica Neue'},
+        font:{fontSize:15,fontFamily:'Helvetica Neue'},
         textAlign:'center'
     },
     "tableviewrowsublabel": {
@@ -526,9 +526,14 @@ var $ = (function(){
         getSelectedPhotoalbums: function(){
             return JSON.parse(Ti.App.Properties.getString("photoalbums"));
         },
+        getAppData: function(){
+            return JSON.parse(Ti.App.Properties.getString("appdata"));
+        },
+        
+        
+        
         updateData: function(){
         
-        // TODO - load all at once from opentable
         
 // loading news from tristania.com RSS feed
 $.ajax({
@@ -546,23 +551,82 @@ $.ajax({
 		Ti.API.log("UPDATED NEWS!");
 	}
 });
-        
-/*// loading news  ---- OLD DEPRECATED, need to use the feed from homepage instead
+
+// loading data from spreadsheet
 $.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdFc1bnhoXzBBc0pKU2gyVUduZE9vd3c%26hl%3Den%26output%3Dcsv%22&format=json",
+    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdHpOSUd0TThVSHBRQlNPQUNQTkZQSUE%26hl%3Den%26output%3Dcsv%22&format=json&callback=",
     success: function(data){
-	    var newslist = [], rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(news){
-		    newslist.push({
-		        date: news.col0,
-		        title: news.col1,
-		        content: news.col2.replace(/"/g,"") // cleaning away the random bloody quote marks
-		    });
-		});
-		Ti.App.Properties.setString("news",JSON.stringify(newslist));
-		Ti.API.log("UPDATED NEWS!");
-	}
-});*/
+        var store = {
+            presentations: {},
+            comments: [],
+            selectedvideos: [],
+            selectedphotoalbums: []
+        },
+            rows = data.query.results.row,
+            len = rows.length;
+        for(var i=0;i<len;i++){
+            var table = rows[i].col1, j = i+1;
+            switch(table){
+                case "APPDATA":
+                    store.appdata = {
+                        info: rows[i+1].col0.replace(/"/g,""),
+                        date: rows[i+1].col1
+                    };
+                    i+= 1;
+                    break;
+                case "PRESENTATIONS":
+                    while(j<len && rows[j].col0!="TABLE"){
+                        store.presentations[rows[j].col0] = rows[j].col1.replace(/"/g,"");
+                        j++;
+                    }
+                    i = j - 1;
+                    break;
+                case "COMMENTS":
+                    while(j<len && rows[j].col0!="TABLE"){
+                        var about = rows[j].col1;
+                        if (!store.comments[about]){
+                            store.comments[about] = [];
+                        }
+                        store.comments[about].push({
+                            by: rows[j].col0,
+                            date: rows[j].col2,
+                            content: rows[j].col3.replace(/"/g,"")
+                        });
+                        j++;
+                    }
+                    i = j - 1;
+                    break;
+                case "SELECTEDVIDEOS":
+                    while(j<len && rows[j].col0!="TABLE"){
+                        store.selectedvideos.push({
+                            title: rows[j].col0,
+                            id: rows[j].col1
+                        });
+                        j++;
+                    }
+                    i = j - 1;
+                    break;
+                case "SELECTEDPHOTOALBUMS":
+                    while(j<len && rows[j].col0!="TABLE"){
+                        store.selectedphotoalbums.push({
+                            title: rows[j].col0,
+                            id: rows[j].col1
+                        });
+                        j++;
+                    }
+                    i = j - 1;
+                    break;
+            }
+        }
+        Ti.App.Properties.setString("appdata",JSON.stringify(store.appdata));
+		Ti.App.Properties.setString("comments",JSON.stringify(store.comments));
+		Ti.App.Properties.setString("presentations",JSON.stringify(store.presentations));
+		Ti.App.Properties.setString("selectedvideos",JSON.stringify(store.selectedvideos));
+		Ti.App.Properties.setString("photoalbums",JSON.stringify(store.selectedphotoalbums));
+		Ti.API.log("UPDATED DATA! YEAH!");
+    }
+});
+/*
 
 // loading comments
 $.ajax({
@@ -614,6 +678,25 @@ $.ajax({
 	}
 });
 
+
+// loading spotlighted photoalbums
+$.ajax({
+    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdF9rSXpsbUp5eTU5dmh4ZG5RTk9tYmc%26hl%3Den%26output%3Dcsv%22&format=json",
+	success: function(data){
+	    var photoalbums = [], rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
+	    rows.map(function(p){
+	        photoalbums.push({
+	            title:p.col0,
+	            id:p.col1
+	        });
+		});
+		Ti.App.Properties.setString("photoalbums",JSON.stringify(photoalbums));
+		Ti.API.log("UPDATED PHOTOALBUMS");
+	}
+});
+*/
+
+
 // loading official videos
 $.ajax({
     url: "http://gdata.youtube.com/feeds/api/videos?q=&author=TristaniaVideos&orderby=published&v=2&alt=json",
@@ -632,23 +715,6 @@ $.ajax({
 		Ti.API.log("UPDATED OFFICIAL VIDEOS");
 	}
 });
-
-// loading spotlighted photoalbums
-$.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdF9rSXpsbUp5eTU5dmh4ZG5RTk9tYmc%26hl%3Den%26output%3Dcsv%22&format=json",
-	success: function(data){
-	    var photoalbums = [], rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(p){
-	        photoalbums.push({
-	            title:p.col0,
-	            id:p.col1
-	        });
-		});
-		Ti.App.Properties.setString("photoalbums",JSON.stringify(photoalbums));
-		Ti.API.log("UPDATED PHOTOALBUMS");
-	}
-});
-        
         }
     });
     

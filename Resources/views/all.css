@@ -6,6 +6,10 @@ html, body {
 
 body { padding: 7px; }
 
+a {
+    color: black;
+    font-weight: bold;
+}
 
 .sectionbutton {
     font-size: 30px;
