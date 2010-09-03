@@ -5,22 +5,25 @@ win.title = "Info";
 win.add( $.create({
     type: "View",
     childElements: [{
-        styleClass: "sectionButton",
+        styleClass: "categoryButton",
+        text: "News",
         templateData: {text:"News"},
         top: 10,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'newslist.js' }));
         }
     },{
-        text: "Biography",
         styleClass: "categoryButton",
+        text: "Biography",
+        templateData: {text:"Biography"},
         top: 80,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'biolist.js' }));
         }
     },{
-        text: "Discography",
         styleClass: "categoryButton",
+        text: "Discography",
+        templateData: {text:"Discography"}, 
         top: 150,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'discography.js' }));

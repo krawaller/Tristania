@@ -8,7 +8,7 @@ win.add(spinner);
 spinner.show();
 
 $.ajax({
-    url: "https://graph.facebook.com/124865974216395/feed?limit=50",
+    url: "https://graph.facebook.com/124865974216395/posts?limit=25",
     success: receiveData,
     dataType: "text",
     fail: function(e){ $.msg(win,"Network fail!"); }

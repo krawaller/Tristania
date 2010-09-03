@@ -2,8 +2,8 @@
     var msg = data[i];
     if (msg.message){
 #>
-<div> 
-  <h2><#= msg.from.name + (msg.to && msg.to.data[0].id != 124865974216395 ? " &rarr; "+msg.to.data[0].name :"") #></h2>
-  <div><#= msg.message.replace("\n","<br/>") #><div>
+<div class="unit"> 
+  <div class="subtitle"><#= msg.created_time.substr(0,10) #></div>
+  <div class="content"><#= msg.message.replace("\n","<br/>") #></div>
 </div>
 <# } } #>

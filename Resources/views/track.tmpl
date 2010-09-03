@@ -1,53 +1,61 @@
-          <div class='tbox'>
-            <h2>Info</h2>
-            <dl>
-            <# if (data.albums && data.albums.length){ #>
-                <dt>Appears on:</dt>
-                <# var txt = ""; for(var i=0; i<data.albums.length; i++){ 
-                    txt+= H.renderAlbumLink(data.albums[i]) + " ";
-                }; #>
-                <dd><#=txt#></dd>
-            <# }; #>
-              <dt>Length:</dt><dd><#= data.length #></dd>
-              <dt>Music:</dt><dd>
-                <# if (!data.music) { #>
-                 Tristania
-                 <#} else { #>
-                  <ul>
-                  <# for(var i=0; data.music.length>i; i++){ #>
-                    <li><#=H.renderMemberLink(data.music[i]) #></li>
-                  <# } #>
-                  </ul>
-                <# } #>
-              </dd>  
-              <dt>Lyrics:</dt><dd>
-               <# if (data.instrumental) { #>
-                Instrumental
-               <# } else { #>
-                <# if (!data.lyrics) { #>
-                 Tristania
-                 <#} else { #>
-                  <ul>
-                  <# for(var i=0; data.lyrics.length>i; i++){ #>
-                    <li><#=H.renderMemberLink(data.lyrics[i]) #></li>
-                  <# } #>
-                  </ul>
-                <# } #>
-               <# } #>
-               </dd>
-            </dl>
-	      </div>
-         <# if(data.presentation){ #>
-           <div class='tbox'>
-             <h2>Presentation</h2>
-             <#= data.presentation #>
-           </div>
-         <# }; #>
-         <# if(data.comments){ #>
-             <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
-                 <div class='tbox'>
-                    <h2><#= c.name #> says:</h2>
-                    <#= c.content #>
-                 </div>
-             <# }; #>
-         <# }; #>
+<div class='unit'>
+  <h2 class="headline">Info</h2>
+  <div class="content">
+    <dl>
+      <# if (data.albums && data.albums.length){ #>
+        <dt>Appears on:</dt>
+          <# var txt = ""; for(var i=0; i<data.albums.length; i++){ 
+             txt+= H.renderAlbumLink(data.albums[i]) + " ";
+          }; #>
+        <dd><#=txt#></dd>
+      <# }; #>
+      <dt>Length:</dt><dd><#= data.length #></dd>
+      <dt>Music:</dt><dd>
+        <# if (!data.music) { #>
+          Tristania
+        <#} else { #>
+          <ul>
+            <# for(var i=0; data.music.length>i; i++){ #>
+              <li><#=H.renderMemberLink(data.music[i]) #></li>
+            <# } #>
+          </ul>
+        <# } #>
+      </dd>  
+      <dt>Lyrics:</dt><dd>
+        <# if (data.instrumental) { #>
+          Instrumental
+        <# } else { #>
+          <# if (!data.lyrics) { #>
+             Tristania
+          <#} else { #>
+            <ul>
+              <# for(var i=0; data.lyrics.length>i; i++){ #>
+                <li><#=H.renderMemberLink(data.lyrics[i]) #></li>
+              <# } #>
+            </ul>
+          <# } #>
+        <# } #>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<# if(data.presentation){ #>
+  <div class='unit'>
+    <h2 class="headline">Presentation</h2>
+    <div class="content">
+      <#= data.presentation #>
+    </div>
+  </div>
+<# }; #>
+
+<# if(data.comments){ #>
+  <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
+    <div class='unit'>
+      <h2 class="headline"><#= c.name #> says:</h2>
+      <div class="content">
+        <#= c.content #>
+      </div>
+    </div>
+  <# }; #>
+<# }; #>

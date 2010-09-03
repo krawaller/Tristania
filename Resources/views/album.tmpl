@@ -1,27 +1,33 @@
-          <!--div class='tbox'-->
-           <img class='bigpic' src='../pics/<#=data.pic#>' />
-          <!--/div-->
-          <div class='tbox'>
-           <h2>Info</h2>
-           <dl><dt>Year:</dt><dd><#=data.year#></dd>
-           <dt>Lineup:</dt><dd><ul>
-             <# for(var i=0; i<data.lineup.length; i++){ var m = data.lineup[i]; #>
-               <li><#= H.renderMemberLink(m) #> </li> 
-             <# } #>
-           </ul></dd>
-           </dl>
-         </div>
-         <# if(data.presentation){ #>
-           <div class='tbox'>
-             <h2>Presentation</h2>
-             <#= data.presentation #>
-           </div>
-         <# } #>
-         <# if(data.comments){ #>
-             <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
-                 <div class='tbox'>
-                    <h2><#= c.name #> says:</h2>
-                    <#= c.content #>
-                 </div>
-             <# } #>
-         <# } #>
+<img class='bigpic' src='../pics/<#=data.pic#>' />
+<div class='unit'>
+  <h2 class="headline">Info</h2>
+  <div class="content">
+    <dl><dt>Year:</dt><dd><#=data.year#></dd>
+      <dt>Lineup:</dt><dd><ul>
+        <# for(var i=0; i<data.lineup.length; i++){ var m = data.lineup[i]; #>
+         <li><#= H.renderMemberLink(m) #> </li> 
+        <# } #>
+      </ul></dd>
+    </dl>
+  </div>
+</div>
+
+<# if(data.presentation){ #>
+<div class='unit'>
+ <h2 class="headline">Presentation</h2>
+ <div class="content">
+   <#= data.presentation #>
+ </div>
+</div>
+<# } #>
+
+<# if(data.comments){ #>
+  <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
+<div class='unit'>
+  <h2 class="headline"><#= c.name #> says:</h2>
+  <div class="content">
+    <#= c.content #>
+  </div>
+</div>
+  <# } #>
+<# } #>

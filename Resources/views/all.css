@@ -2,15 +2,13 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: "Lucida Grande", Helvetica;
-/*    background-color: #222; */
-/*    background-image: url("../pics/tristaniabg.jpg"); */
     color: #f6f6f6;
-    text-shadow: 0px 1px 0px #222;
     font-size: 13px;
     font-weight: bold;
 }
 
 body { padding: 7px; }
+
 
 .sectionbutton {
     font-size: 30px;
@@ -18,27 +16,27 @@ body { padding: 7px; }
     font-family: "Bleeding Cowboys"
 }
 
-.tbox {
-    border: 1px solid #888;
-    border-radius: 9px;
-    background-color: #555;
-    margin-bottom: 1em;
+.unit {
+    margin-bottom: 10px;
     padding: 7px;
-    background-image: -webkit-gradient(radial, 40% 40%, 200, 40% 40%, 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.25)) );
-    -webkit-box-shadow: 0px 0px 10px #111;
+    color: black;
 }
 
-.tbox dl:after {
-    content: " ";
-    left: -1000em;
-    clear: both;
-    display: block;
-}
-
-.tbox > h2 {
-    color: #d1b275;
+.headline {
+  /*  color: #d1b275; */
+    color: black;
     font-weight: bold;
-    font-family: "AcquilineTwo","Bleeding Cowboys"
+    font-family: "AquilineTwo","Bleeding Cowboys"
+}
+
+.subtitle {
+    font-size: 10px;
+    color: white;
+}
+
+.content {
+    font-size: 12px;
+    margin-bottom: 0;
 }
 
 .bigpic {
@@ -50,7 +48,7 @@ body { padding: 7px; }
     -webkit-box-shadow: 0px 0px 6px #111;
 }
 
-.tbox dt {
+.content dt {
     clear: both;
     float: left;
     width: 85px;
@@ -59,7 +57,7 @@ body { padding: 7px; }
     margin: 0;
 }
 
-.tbox dd {
+.content dd {
     float: left;
     width: auto;
     margin: 0;
@@ -67,13 +65,20 @@ body { padding: 7px; }
     padding-left: 10px;
 }
 
-.tbox dl ul {
+.content dl ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
 
-.tbox dl li {
+.content dl li {
     margin: 0;
     padding: 0;
+}
+
+.content dl:after {
+    content: " ";
+    left: -1000em;
+    clear: both;
+    display: block;
 }

@@ -1,7 +1,7 @@
 Ti.include("../assets/utils.js");
 
 win.title = win.info && win.info.title ? win.info.title : "Forum";
-
+//Ti.UI.createAlertDialog({title:"DEBUG",message:"Came this far!"}).show();
 var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG }),
     setupPageControl = false,
     pageSelect = $.create({
@@ -50,6 +50,8 @@ var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndica
     }),
     showingPageSelect = false,
     view;
+    
+//Ti.UI.createAlertDialog({title:"DEBUG",message:"Came THIS far! WEEE!"}).show();
 
 function getREST(path,page,perpage){
     var bit = (page>1 ? path.replace("/?wap2","/"+((page-1)*perpage)+"/?wap2") : path || "");

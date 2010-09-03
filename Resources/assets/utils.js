@@ -727,43 +727,15 @@ $.ajax({
             }
         },
         discography: {
-            widowsweeds: {
-                title: "Widow's weeds",
-                shorttitle: "WW",
-                pic: "tristania-ww.jpg",
-                year: 1998,
-                scanalbum: 162,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"]
-            },
-            beyondtheveil: {
-                title: "Beyond the Veil",
-                shorttitle: "BtV",
-                pic: "tristania-btv.jpg",
-                year: 1999,
-                scanalbum: 163,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"]
-            },
-            worldofglass: {
-                title: "World of Glass",
-                shorttitle: "WoG",
-                pic: "tristania-world.jpg",
-                scanalbum: 164,
-                year: 2001,
-                lineup: ["vibeke","einar","rune","anders","kenneth","osten"],
-                tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
-                bonustracks: ["themodernend"]
-            },
-            ashes: {
-                title: "Ashes",
-                shorttitle: "Ashes",
-                pic: "tristania-ashes.jpg",
-                scanalbum: 165,
-                year: 2005,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje","kjetili"],
-                tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
-                bonustracks: ["thegate"]
+            rubicon: {
+                title: "Rubicon",
+                shorttitle: "Rbcn",
+                pic: "tristania-rubicon.jpg",
+                scanalbum: 194,
+                year: 2010,
+                lineup: ["mary","kjetiln","einar","ole","anders","tarald","osten","gyri"],
+                tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illuminationtrack"],
+                bonustracks: ["theemeraldpiper","caprice"]
             },
             illumination: {
                 title: "Illumination",
@@ -775,15 +747,43 @@ $.ajax({
                 tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
                 bonustracks: ["inthewake","abinitio"]
             },
-            rubicon: {
-                title: "Rubicon",
-                shorttitle: "Rbcn",
-                pic: "tristania-rubicon.jpg",
-                scanalbum: 194,
-                year: 2010,
-                lineup: ["mary","kjetiln","einar","ole","anders","tarald","osten","gyri"],
-                tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illuminationtrack"],
-                bonustracks: ["theemeraldpiper","caprice"]
+            ashes: {
+                title: "Ashes",
+                shorttitle: "Ashes",
+                pic: "tristania-ashes.jpg",
+                scanalbum: 165,
+                year: 2005,
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje","kjetili"],
+                tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
+                bonustracks: ["thegate"]
+            },
+            worldofglass: {
+                title: "World of Glass",
+                shorttitle: "WoG",
+                pic: "tristania-world.jpg",
+                scanalbum: 164,
+                year: 2001,
+                lineup: ["vibeke","einar","rune","anders","kenneth","osten"],
+                tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
+                bonustracks: ["themodernend"]
+            },
+            beyondtheveil: {
+                title: "Beyond the Veil",
+                shorttitle: "BtV",
+                pic: "tristania-btv.jpg",
+                year: 1999,
+                scanalbum: 163,
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
+                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"]
+            },
+            widowsweeds: {
+                title: "Widow's weeds",
+                shorttitle: "WW",
+                pic: "tristania-ww.jpg",
+                year: 1998,
+                scanalbum: 162,
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
+                tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"]
             }
         },
         tracks: {

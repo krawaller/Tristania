@@ -1,25 +1,32 @@
-          <div class='tbox'>
-            <img class="bigpic" src="../pics/bio_<#=data.id#>.jpg" />
-          </div>
-          <div class='tbox'>
-            <h2>Data</h2>
-            <dl>
-              <dt>Name:</dt><dd><#=data.name#></dd>
-              <dt>Role:</dt><dd><#=data.role#></dd>
-              <dt>Member:</dt><dd><#=data.member#></dd>
-            </dl>
-          </div>
-         <# if(data.presentation){ #>
-           <div class='tbox'>
-             <h2>Presentation</h2>
-             <#= data.presentation #>
-           </div>
-         <# }; #>
-         <# if(data.comments){ #>
-             <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
-                 <div class='tbox'>
-                    <h2><#= c.name #> says:</h2>
-                    <#= c.content #>
-                 </div>
-             <# }; #>
-         <# }; #>
+<img class="bigpic" src="../pics/bio_<#=data.id#>.jpg" />
+
+<div class='unit'>
+  <h2 class="headline">Data</h2>
+  <div class="content">
+    <dl>
+      <dt>Name:</dt><dd><#=data.name#></dd>
+      <dt>Role:</dt><dd><#=data.role#></dd>
+      <dt>Member:</dt><dd><#=data.member#></dd>
+    </dl>
+  </div>
+</div>
+
+<# if(data.presentation){ #>
+<div class='unit'>
+  <h2 class="headline">Presentation</h2>
+  <div class="content">
+    <#= data.presentation #>
+  </div>
+</div>
+<# }; #>
+
+<# if(data.comments){ #>
+  <# for(var i=0; i<data.comments.length; i++){ var c = data.comments[i]; #>
+<div class='unit'>
+  <h2 class="headline"><#= c.name #> says:</h2>
+  <div class="content">
+    <#= c.content #>
+  </div>
+</div>
+  <# }; #>
+<# }; #>

@@ -1,13 +1,12 @@
-          <div class='tbox'>
-            <h2>Lyrics</h2>
-            <# if(!data || !data.length){ #>
-                <p>Instrumental</p>
-            <# } else
-                 for(var i=0;i<data.length;i++){ #>
-                <p>
-                <# for(var l=0;l<data[i].length; l++){ #>
-                    <#= data[i][l] #> <br/>
-                <# }; #>
-                </p>
-	        <# }; #>
-	      </div>
+<div class='unit'>
+  <h2 class="headline">Lyrics</h2>
+  <div class="content lyrics">
+  <# for(var i=0;i<data.length;i++){ #>
+    <p>
+      <# for(var l=0;l<data[i].length; l++){ #>
+        <#= data[i][l] #> <br/>
+      <# }; #>
+    </p>
+  <# }; #>
+  </div>
+</div>
