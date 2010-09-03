@@ -7,14 +7,14 @@ win.add( $.create({
     childElements: [{
         text: "Pictures",
         styleClass: "categoryButton",
-        top: 10,
+        top: 110,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'gallery.js' }));
         }
     },{
         text: "Videos",
         styleClass: "categoryButton",
-        top: 80,
+        top: 180,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'vids.js' }));
         }

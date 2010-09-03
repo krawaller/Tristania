@@ -23,9 +23,11 @@ Ti.App.addEventListener("resume",$.updateData);
 //Ti.UI.setBackgroundImage("pics/tristaniabgloading.jpg");
 
 // create tab group
-var tabGroup = $.create({type:"TabGroup"});
+var tabGroup = $.create({
+    type:"TabGroup"
+});
 
-[{title:"Info",url:"info.js"},
+[{title:"Info",url:"info.js",start:true},
  {title:"Media",url:"media.js"},
  {title:"Community",url:"community.js"},
  {title:"About",url:"about.js"}].map(function(t){
@@ -33,7 +35,10 @@ var tabGroup = $.create({type:"TabGroup"});
         type: "Tab",
         icon:"pics/icon_tab_"+t.title+".png",
         title:t.title,
-        window:$.create({type:"Window",url: "main_windows/"+t.url})
+        window:$.create({
+            type:"Window",
+            url: "main_windows/"+t.url
+        })
     }) );
 });
 

@@ -8,7 +8,7 @@ win.add( $.create({
         styleClass: "categoryButton",
         text: "News",
         templateData: {text:"News"},
-        top: 10,
+        top: 70,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'newslist.js' }));
         }
@@ -16,7 +16,7 @@ win.add( $.create({
         styleClass: "categoryButton",
         text: "Biography",
         templateData: {text:"Biography"},
-        top: 80,
+        top: 140,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'biolist.js' }));
         }
@@ -24,7 +24,7 @@ win.add( $.create({
         styleClass: "categoryButton",
         text: "Discography",
         templateData: {text:"Discography"}, 
-        top: 150,
+        top: 210,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'discography.js' }));
         }

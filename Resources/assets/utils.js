@@ -48,7 +48,9 @@ var defopts = {
     },
     "tab": {},
     "tabbedbar": {
-        backgroundColor: "#aaa"
+        backgroundColor: "#aaa",
+        height: 30,
+  	    style:Titanium.UI.iPhone.SystemButtonStyle.BAR
     },
     "tableview": { backgroundColor: "transparent", separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE },
     "tableviewrow": { 
