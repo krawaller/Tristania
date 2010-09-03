@@ -157,7 +157,7 @@ Ti.API.log("POSTS!");
 Ti.API.log("BOARDS!");
         t.childElements = t.childElements.concat($.ensureArray(d.boards.board).map(function(b){
             return {
-                title: b.title,
+                childElements:[{text:b.title,styleClass:"tableviewrowmainlabel"}],
                 path: b.path,
                 type: "TableViewRow"
             };
@@ -170,7 +170,7 @@ Ti.API.log("TOPICS!");
         win.perpage = 9;
         t.childElements = t.childElements.concat($.ensureArray(d.topics.topic).map(function(t){
             return {
-                title: t.title,
+                childElements:[{text:t.title,styleClass:"tableviewrowmainlabel"}],
                 path: t.path,
                 type: "TableViewRow"
             };
@@ -184,7 +184,7 @@ Ti.API.log("CATEGORIES!");
                 type: "TableViewSection",
                 childElements: $.ensureArray(c.boards.board).map(function(b){
                     return {
-                        title: b.title,
+                        childElements:[{text:b.title,styleClass:"tableviewrowmainlabel"}],
                         path: b.path,
                         type: "TableViewRow"
                     };

@@ -51,16 +51,26 @@ var defopts = {
         backgroundColor: "#aaa"
     },
     "tableview": { backgroundColor: "transparent", separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE },
-    "tableviewrow": { color: "#000", selectedBackgroundImage: '../pics/row.png' },
+    "tableviewrow": { 
+        color: "fuchsia", 
+        selectedBackgroundImage: '../pics/row.png',
+    },
+    "tableviewrowmainlabel": {
+        color: "black",
+        font: { fontWeight: "normal", fontStyle: "italic", fontSize: 20, fontFamily: "Helvetica Neue" },
+        left: 10,
+        width: 260,
+        height: 36
+    },
     "tableviewrowsidelabel": {
-        color: "#AAA",
+        color: "#333",
         right: 10,
         width: "auto",
         font:{fontSize:20,fontFamily:'Helvetica Neue'},
         textAlign:'center'
     },
     "tableviewrowsublabel": {
-        color: "#AAA",
+        color: "#333",
         bottom: -30,
         left: 10,
         width: "auto",
@@ -68,7 +78,7 @@ var defopts = {
         textAlign:'center'
     },
     "tableviewrowsuperlabel": {
-        color: "#AAA",
+        color: "#333",
         top: -30,
         left: 10,
         width: "auto",
@@ -80,16 +90,10 @@ var defopts = {
     "tableviewheaderview": {
         backgroundImage: '../pics/section.png'
     },
-    "tableviewrowmainlabel": {
-        color: "#fff",
-        font: { fontWeight: "bold", fontSize: 20 },
-        left: 10,
-        width: 260,
-        height: 36
-    },
     "tableviewheaderlabel": {
-        color: "#000",
-        left: 10
+        color: "black",
+        font: { fontWeight: "normal", fontStyle: "normal", fontSize: 20 },
+        left: 10,
     },
     "coverflowview":{
 //        backgroundColor: "#222",

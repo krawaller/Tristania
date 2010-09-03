@@ -7,11 +7,15 @@ win.add($.create({
     childElements: [{
         type: "TableViewSection",
         headerTitle:"Members",
-        childElements: $.getMemberList({current:true})
+        childElements: $.map($.getMemberList({current:true}),function(n){
+           n.childElements = [{text: n.title, styleClass: "tableviewrowmainlabel"}]; delete n.title;
+        })
     },{ 
         type: "TableViewSection",
         headerTitle: "Former members",
-        childElements: $.getMemberList({current:undefined})
+        childElements: $.map($.getMemberList({current:undefined}),function(n){
+           n.childElements = [{text: n.title, styleClass: "tableviewrowmainlabel"}]; delete n.title;
+        })
     }],
     click: function(e){
         var win = $.create({ type: "Window", url:'bio.js' });

@@ -18,16 +18,9 @@ $.updateData();
 Ti.App.addEventListener("resume",$.updateData);
 
 
-
-
-
-
-
-
-
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 //Ti.UI.setBackgroundColor('#000');
-Ti.UI.setBackgroundImage("pics/tristaniabg.jpg");
+//Ti.UI.setBackgroundImage("pics/tristaniabgloading.jpg");
 
 // create tab group
 var tabGroup = $.create({type:"TabGroup"});
@@ -47,7 +40,7 @@ var tabGroup = $.create({type:"TabGroup"});
 // open tab group
 tabGroup.open({ transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
 
-
+Ti.UI.setBackgroundImage("pics/tristaniabg.jpg");
 
 /**
  * Open a url in a new window.

@@ -37,9 +37,11 @@ function render(res){
         type: "TableView",
         childElements: data.map(function(r){
             return {
-                title: r.title,
                 info: r.info,
                 childElements: [{
+                    styleClass: "tableviewrowmainlabel",
+                    text: r.title
+                },{
                     styleClass: "tableviewrowsidelabel",
                     text:"("+r.info.pics+")"
                 }]

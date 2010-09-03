@@ -60,9 +60,12 @@ function receiveData(res){
                 i+=2;
             }
             if (!(info.albums>0 && info.pics==0)){ // avoid empty entries
-                row = {title:info.title,info:info};
+                row = {info:info};
                 if (info.albums){
                     row.childElements = [{
+                        text: info.title,
+                        styleClass: "tableviewrowmainlabel"
+                    },{
                         text: "("+info.albums+"/"+info.pics+")",
                         styleClass: "tableviewrowsidelabel"
                     }];
@@ -88,16 +91,18 @@ if (!win.info){ // gallery base, showing hardcoded categories.
         type: "TableViewSection",
         headerTitle: "Spotlighted",
         childElements: $.getSelectedPhotoalbums().map(
-            function(i){return {title:i.title,info:{title:i.title,num:i.id,spotlight:true}};}
+            function(i){return {info:{title:i.title,num:i.id,spotlight:true},childElements:[{text:i.title,styleClass:"tableviewrowmainlabel"}]};}
         ).concat([{
             type: "TableViewRow",
-            title: "Favourites",
             id: "fav",
             info: {
                 title: "Favourites",
                 num: -666
             },
-            childElements: [{ 
+            childElements: [{
+                text: "Favourites",
+                styleClass: "tableviewrowmainlabel"
+            },{ 
                 id: "num",
                 type: "Label",
                 styleClass: "tableviewrowsidelabel"
@@ -106,7 +111,7 @@ if (!win.info){ // gallery base, showing hardcoded categories.
     },{
         type: "TableViewSection",
         headerTitle: "Categories",
-        childElements: [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}].map(function(i){return {title:i.title,info:i};})
+        childElements: [{title: "Concerts",num:6},{title:"Photoshoots",num:3},{title:"Music videos",num:16},{title:"Scans",num:22},{title:"Collaboration",num:21},{title:"Miscellaneous",num:24}].map(function(i){return {info:i,childElements:[{text: i.title,styleClass: "tableviewrowsidelabel"}]};})
     }]);
     win.addEventListener("focus",updateFavourites);
 }

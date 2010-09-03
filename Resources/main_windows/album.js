@@ -28,7 +28,7 @@ function fixTrack(t){
         width: "25px",
         height: "25px",
         zIndex: 2,
-        left: 0
+        left: 5
     },{
         text: t.title,
         styleClass: "tableviewrowmainlabel",
@@ -37,7 +37,7 @@ function fixTrack(t){
             win.data = t;
             Titanium.UI.currentTab.open(win);
         },
-        left: "30px"
+        left: 35
     }];
     delete t.title;
 };
