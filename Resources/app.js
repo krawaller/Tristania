@@ -29,8 +29,7 @@ var tabGroup = $.create({
 
 [{title:"Info",url:"info.js",start:true},
  {title:"Media",url:"media.js"},
- {title:"Community",url:"community.js"},
- {title:"About",url:"about.js"}].map(function(t){
+ {title:"Community",url:"community.js"}].map(function(t){
     tabGroup.addTab( $.create({
         type: "Tab",
         icon:"pics/icon_tab_"+t.title+".png",

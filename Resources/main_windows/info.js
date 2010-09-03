@@ -7,26 +7,30 @@ win.add( $.create({
     childElements: [{
         styleClass: "categoryButton",
         text: "News",
-        templateData: {text:"News"},
-        top: 70,
+        top: 40,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'newslist.js' }));
         }
     },{
         styleClass: "categoryButton",
         text: "Biography",
-        templateData: {text:"Biography"},
-        top: 140,
+        top: 110,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'biolist.js' }));
         }
     },{
         styleClass: "categoryButton",
         text: "Discography",
-        templateData: {text:"Discography"}, 
-        top: 210,
+        top: 180,
         click: function(e){
             Ti.UI.currentTab.open($.create({ type: "Window", url:'discography.js' }));
+        }
+    },{
+        styleClass: "categoryButton",
+        text: "Application", 
+        top: 250,
+        click: function(e){
+            Ti.UI.currentTab.open($.create({ type: "Window", url:'about.js' }));
         }
     }]
 }));

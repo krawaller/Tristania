@@ -95,7 +95,7 @@ var defopts = {
     },
     "tableviewheaderlabel": {
         color: "black",
-        font: { fontWeight: "normal", fontStyle: "normal", fontSize: 16, fontFamily: "Bleeding Cowboys" },
+        font: { fontWeight: "normal", fontStyle: "normal", fontSize: 14, fontFamily: "Bleeding Cowboys" },
         left: 10,
         height: 20
     },
