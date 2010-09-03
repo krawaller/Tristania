@@ -27,7 +27,10 @@ a {
   /*  color: #d1b275; */
     color: black;
     font-weight: bold;
-    font-family: "AquilineTwo"
+    font-family: "AquilineTwo";
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
 }
 
 .subtitle {
