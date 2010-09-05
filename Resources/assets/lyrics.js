@@ -1,5 +1,40 @@
 var lyrics = {
 
+    // Demo
+    
+    ceasetoexist: [
+    
+["A velvet breath of life",
+"enchants the garden of delight",
+"Her voice within these winds",
+"The flower so serene",
+"Her cold and silent wail",
+"Descend like midsummer rain",
+"Bury my heart in thine",
+"A taste of heavens wine"],
+
+["Beneath a fullmoon bright",
+"she comes with gowns flowing wide",
+"With bloodlike lips of faun",
+"Enchanting eyes of dawn",
+"Towards the moon she gaze",
+"A lonely tear runs down her face",
+"For all she lost in life",
+"buried so deep inside"],
+
+["Leaves…",
+"dance in her precious eden",
+"where she lies deep",
+"Her loss in life engraved",
+"in dusk and angeltears"],
+
+["Enlight the night within me",
+"Lead me there",
+"where my heart lies buried",
+"beneath the seven seas…"]
+    
+    ],
+
     // Widow's Weeds
 
     evenfall: [

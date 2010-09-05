@@ -493,10 +493,7 @@ var $ = (function(){
             $.getAlbums().map(function(a){
                 a = $.getAlbum(a.id); // need full data
                 if (a.tracks.indexOf(id) != -1 || (a.bonustracks && a.bonustracks.indexOf(id) != -1)){
-                    albums.push({
-                        id: a.id,
-                        title: a.title
-                    });
+                    albums.push(a.title);
                 }
             });
            ["music","lyrics"].map(function(c){
@@ -815,9 +812,11 @@ $.ajax({
                 pic: "tristania-rubicon.jpg",
                 scanalbum: 194,
                 year: 2010,
-                lineup: ["mary","kjetiln","einar","ole","anders","tarald","osten","gyri"],
+                lineup: ["mary","kjetiln","einar","ole","anders","tarald","gyri"],
                 tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illuminationtrack"],
-                bonustracks: ["theemeraldpiper","caprice"]
+                bonustracks: ["theemeraldpiper","caprice"],
+                producer: "Waldemar Sorychta",
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Sigmund Olgart Vegge, growls"]
             },
             illumination: {
                 title: "Illumination",
@@ -825,9 +824,11 @@ $.ajax({
                 pic: "tristania-illumination.jpg",
                 scanalbum: 166,
                 year: 2007,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje"],
+                lineup: ["vibeke","einar","rune","anders","kenneth","osten","sveinterje"],
                 tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
-                bonustracks: ["inthewake","abinitio"]
+                bonustracks: ["inthewake","abinitio"],
+                producer: "Waldemar Sorychta",
+                contributors: ["Vorph, growls","Indigo string quartet, strings"]
             },
             ashes: {
                 title: "Ashes",
@@ -835,9 +836,11 @@ $.ajax({
                 pic: "tristania-ashes.jpg",
                 scanalbum: 165,
                 year: 2005,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten","sveinterje","kjetili"],
+                lineup: ["vibeke","einar","rune","anders","kenneth","osten","kjetili"],
                 tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
-                bonustracks: ["thegate"]
+                bonustracks: ["thegate"],
+                producer: "Børge Finstad",
+                contributors: ["Hans Joseph Groh, cello"]
             },
             worldofglass: {
                 title: "World of Glass",
@@ -845,9 +848,11 @@ $.ajax({
                 pic: "tristania-world.jpg",
                 scanalbum: 164,
                 year: 2001,
-                lineup: ["vibeke","einar","rune","anders","kenneth","osten"],
+                lineup: ["vibeke","einar","rune","anders","kenneth"],
                 tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
-                bonustracks: ["themodernend"]
+                bonustracks: ["themodernend"],
+                producer: "Terje Refsnes",
+                contributors: ["Ronny Thorsen, growls","Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"]
             },
             beyondtheveil: {
                 title: "Beyond the Veil",
@@ -855,8 +860,10 @@ $.ajax({
                 pic: "tristania-btv.jpg",
                 year: 1999,
                 scanalbum: 163,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"]
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth"],
+                tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"],
+                producer: "Terje Refsnes",
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"]
             },
             widowsweeds: {
                 title: "Widow's weeds",
@@ -864,11 +871,32 @@ $.ajax({
                 pic: "tristania-ww.jpg",
                 year: 1998,
                 scanalbum: 162,
-                lineup: ["vibeke","morten","einar","rune","anders","kenneth","osten"],
-                tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"]
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth"],
+                tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"],
+                producer: "Terje Refsnes",
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins"]
+            },
+            tristania: {
+                title: "Tristania",
+                shorttitle: "Tristania",
+                pic: "tristania-demo.jpg",
+                year: 1997,
+                producer: "Gunnar Tønnesen",
+                lineup: ["vibeke","morten","einar","rune","anders","kenneth"],
+                tracks: ["sirene","midwintertears","paleenchantress","ceasetoexist"]
             }
         },
         tracks: {
+            sirene: {
+                title: "Sirene",
+                length: "3:22",
+                instrumental: true
+            },
+            ceasetoexist: {
+                title: "Cease to Exist",
+                length: "9:22",
+                lyrics: ["morten"]
+            },
             preludium: {
                 title: "Preludium",
                 length: "1:09",
@@ -876,31 +904,38 @@ $.ajax({
             },
             evenfall: {
                 title: "Evenfall",
-                length: "6:54"
+                length: "6:54",
+                lyrics: ["morten"]
             },
             paleenchantress: {
                 title: "Pale Enchantress",
-                length: "6:32"
+                length: "6:32",
+                lyrics: ["morten"]
             },
             decemberelegy: {
                 title: "December Elegy",
-                length: "7:31"
+                length: "7:31",
+                lyrics: ["morten"]
             },
             midwintertears: {
                 title: "Midwintertears",
-                length: "8:32"
+                length: "8:32",
+                lyrics: ["morten"]
             },
             angellore: {
                 title: "Angellore",
-                length: "7:17"
+                length: "7:17",
+                lyrics: ["morten"]
             },
             mylostlenore: {
                 title: "My Lost Lenore",
-                length: "6:23"
+                length: "6:23",
+                lyrics: ["morten"]
             },
             wastelandscaress: {
                 title: "Wasteland's Caress",
-                length: "7:40"
+                length: "7:40",
+                lyrics: ["morten"]
             },
             postludium: {
                 title: "Postludium",

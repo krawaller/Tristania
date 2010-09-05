@@ -2,12 +2,21 @@
 <div class='unit'>
   <h2 class="headline">Info</h2>
   <div class="content">
-    <dl><dt>Year:</dt><dd><#=data.year#></dd>
+    <dl>
+      <dt>Year:</dt><dd><#=data.year#></dd>
       <dt>Lineup:</dt><dd><ul>
         <# for(var i=0; i<data.lineup.length; i++){ var m = data.lineup[i]; #>
          <li><#= H.renderMemberLink(m) #> </li> 
         <# } #>
       </ul></dd>
+      <dt>Producer:</dt><dd><#=data.producer#></dd>
+      <# if(data.contributors){ #>
+        <dt>Contributors:</dt><dd><ul>
+        <# for(var i=0; i<data.contributors.length; i++){ #>
+         <li><#= data.contributors[i] #> </li> 
+        <# } #>
+        </ul></dd>
+      <# } #>
     </dl>
   </div>
 </div>

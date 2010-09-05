@@ -3,11 +3,7 @@
   <div class="content">
     <dl>
       <# if (data.albums && data.albums.length){ #>
-        <dt>Appears on:</dt>
-          <# var txt = ""; for(var i=0; i<data.albums.length; i++){ 
-             txt+= H.renderAlbumLink(data.albums[i]) + " ";
-          }; #>
-        <dd><#=txt#></dd>
+        <dt>Appears on:</dt><dd><#= data.albums.join(", ") #></dd>
       <# }; #>
       <dt>Length:</dt><dd><#= data.length #></dd>
       <dt>Music:</dt><dd>
