@@ -7,6 +7,14 @@ var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndica
 win.add(spinner);
 spinner.show();
 
+win.rightNavButton = $.create({
+    type: "Button",
+    image: '../pics/action.png',
+    click: function(e){
+        Ti.App.fireEvent("openUrl",{url:"http://www.facebook.com/pages/Official-Tristania/124865974216395"});
+    }
+});
+
 $.ajax({
     url: "https://graph.facebook.com/124865974216395/posts?limit=25",
     success: receiveData,

@@ -10,6 +10,14 @@ Ti.include("../assets/utils.js");
 var twitter_name = 'tristaniaband';
 win.title = '@'+twitter_name;
 
+win.rightNavButton = $.create({
+    type: "Button",
+    image: '../pics/action.png',
+    click: function(e){
+        Ti.App.fireEvent("openUrl",{url:"http://twitter.com/tristaniaband"});
+    }
+});
+
 $.ajax({
     url: "http://api.twitter.com/1/statuses/user_timeline.json?screen_name="+twitter_name,
     success: buildTimeline

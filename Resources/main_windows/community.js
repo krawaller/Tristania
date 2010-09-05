@@ -23,7 +23,8 @@ win.add( $.create({
         styleClass: "categoryButton",
         top: 180,
         click: function(e){
-            Ti.UI.currentTab.open($.create({ type: "Window", url:'tristania_twitter.js' }));
+            //Ti.UI.currentTab.open($.create({ type: "Window", url:'tristania_twitter.js' }));
+            Ti.App.fireEvent("openUrl",{url:"http://twitter.com/tristaniaband"});
         }
     },{
         text: "Facebook",
