@@ -46,6 +46,11 @@ var defopts = {
         textAlign:'center',
         width:'auto'
     },
+    "buttonbar": {
+        height: 30,
+        backgroundColor: "#aaa",
+  	    style:Titanium.UI.iPhone.SystemButtonStyle.BAR
+    },
     "tab": {},
     "tabbedbar": {
         backgroundColor: "#aaa",
@@ -353,6 +358,9 @@ var $ = (function(){
                 e.childrenById = childrenById;
             }
             return e;
+        },
+        createButtonBar: function(o){ // this used in app.js!
+            return Ti.UI.createButtonBar($.merge(o, defopts.buttonbar, defopts.all ));
         },
         createWin: function(o){
             return Ti.UI.createWindow($.merge(o, defopts[o.url], defopts.win, defopts.all ));
