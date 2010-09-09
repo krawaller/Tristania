@@ -12,11 +12,12 @@ var start,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
-    picView = $.createView({ backgroundColor: "#000" }),
+    picView = $.createView({ backgroundColor: "#000", opacity: 0 }),
     addfav = $.createButton({ image: '../pics/icon_unstar.png' }),
     delfav = $.createButton({image: '../pics/icon_star.png'});
 
 win.add(picView);
+picView.animate({duration:500,opacity:1});
 
 
     // ********** Dealing with hiding of UI when clicking pic *************
