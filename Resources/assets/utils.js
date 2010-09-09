@@ -238,7 +238,8 @@ var $ = (function(){
                             response = JSON.parse(this.responseText);
 							
 							if(response.error){ // För helvete jacob, detta spränger allt utom YQL queries! :P || !(response.query && response.query.results)){
-								Ti.API.error("=== Couldn't fetch " + xhr.opts.url + " because: "+response.error);
+								Ti.API.error("=== Couldn't fetch " + xhr.opts.url + " because: "+response.error.message);
+								Ti.API.log(this.responseText);
 								//this.defError();
 								//loader.hide();
 								return;

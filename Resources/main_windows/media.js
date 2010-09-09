@@ -9,7 +9,7 @@ win.add( $.create({
         styleClass: "categoryButton",
         top: 110,
         click: function(e){
-            Ti.UI.currentTab.open($.create({ type: "Window", url:'gallery.js' }));
+            Ti.UI.currentTab.open($.create({ type: "Window", url:'picturegallery.js' }));
         }
     },{
         text: "Videos",

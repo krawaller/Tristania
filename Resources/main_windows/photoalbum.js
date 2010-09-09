@@ -1,34 +1,21 @@
 Ti.include("../assets/utils.js");
 
+function getREST(){
+    var id = win.info ? win.info.id : 0,
+        type = "album",
+        page = win.info && win.info.page ? win.info.page : 1;
+    return "http://query.yahooapis.com/v1/public/yql?q=use%20%22http%3A%2F%2F79.99.1.153%2Fyql%2Ftrist%2Ftristania_gallery.xml%22%20as%20t%3B%20select%20*%20from%20t%20where%20id%20%3D%20"+id+"%20and%20type%20%3D%20%22"+type+"%22%20and%20page%20%3D%20"+page+"&format=json";
+}
+
 var start,
     navHidden = false,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
     picView = $.createView({ backgroundColor: "#000" }),
-    //infoView = $.createKraWebView({templateFile: "image.tmpl", data: {}}),
-    infoView = $.createWebView({ url: "../views/image.html" }),
-    info = $.createButton({
-        systemButton: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
-        width: 18,
-        height: 19,
-        top: 55,
-        left: 25,
-        zIndex: 2,
-        backgroundImage: '../pics/info_light.png'
-    }),
     addfav = $.createButton({ image: '../pics/icon_unstar.png' }),
-    delfav = $.createButton({image: '../pics/icon_star.png'}),
-    save = $.createButton({
-        width: 18,
-        height: 19,
-        top: 155,
-        left: 25,
-        zIndex: 2,
-        backgroundImage: '../pics/save.png'
-    });
-    
-win.add(infoView);
+    delfav = $.createButton({image: '../pics/icon_star.png'});
+
 win.add(picView);
 
 
@@ -91,64 +78,6 @@ addfav.addEventListener("click",setFav);
 delfav.addEventListener("click",setFav);
 
 
-    // ******************** Saving picture *************************
-
-save.addEventListener("click",function(){
-    try {
-        Ti.Media.saveToGallery(win.sv.views[win.sv.currentPage].toBlob());
-        Ti.UI.createAlertDialog({ title: 'Saved', message: 'Pic is now in your photo gallery' }).show();
-    }
-    catch(e){
-        Ti.UI.createAlertDialog({ title: 'Save failed', message: "Couldn't save pic to photo gallery! boo!" }).show();
-    }
-});
-
-//win.add(save);
-
-
-    // ******************** Infoview code **************************
-   
-info.addEventListener("click",function(){
-    var pic = {
-        title: win.info.title,
-        url: urls[win.sv.currentPage]
-    };
-    //infoView.evalJS("reRender({ data: "+JSON.stringify(pic)+"})");
-    infoView.evalJS("render({ pic: "+JSON.stringify(pic)+"})");
-//    infoView.opacity = 0.8;
-    win.animate({ 
-        view: infoView, 
-        transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN
-    });
-   /* Ti.UI.createAlertDialog({
-        title: 'Info',
-        message: win.info.num == -666 ? "These are your favourit pics! Wee!" : "Album "+win.info.name+", last updated "+win.info.desc+". Yeah yeah, I will show more stuff here later, probably in a webview."
-    }).show(); */
-});
-
-//win.add(info);
-
-var hideInfoView = function(){
-    win.animate({ 
-        view: scrollView, 
-        transition: Ti.UI.iPhone.AnimationStyle.CURL_UP
-    });
-    info.zIndex = 2;
-    fav.zIndex = 2;
-    save.zIndex = 2;
-};
-
-infoView.addEventListener('click', hideInfoView );
-
-infoView.opacity = 0.8; // <-- Remove hack when Titanium honors z-indexes
-
-
-var infoViewDoneButton = $.createBottomButton({});
-infoView.add(infoViewDoneButton);
-//infoViewDoneButton.addEventListener('click', hideInfoView );
-
-
-
 
     // ***************** Main page logic - building favourite or remote gallery ************
 
@@ -178,16 +107,15 @@ function createGallery(picurls){
 }
 
 function buildRemoteGallery(res){
-    var picurls = [];
-    res.query.results.img.map(function(img){
-        picurls.push("http://mvonlonski.com/cpg/" + img.src.replace("thumb_","")); // TODO - fix image size
+    var picurls = $.ensureArray(res.query.results.res.item).map(function(i){
+        return "http://mvonlonski.com/cpg/" + i;
     });
     createGallery(picurls);
 }
 
 if (win.info.num != -666){
     $.ajax({
-        url: "http://query.yahooapis.com/v1/public/yql?q=select%20src%20from%20html%20where%20url%3D%22http%3A%2F%2Fmvonlonski.com%2Fcpg%2Fthumbnails.php%3Falbum%3D"+win.info.num+"%22%20and%20xpath%3D%22%2F%2Fimg%5B%40class%3D'image'%5D%22&format=json&callback=",
+        url: getREST(),
         success: buildRemoteGallery
     });
 }
