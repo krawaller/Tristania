@@ -125,7 +125,7 @@ Ti.API.log(["WEBVIEWPOSTS!",d.posts]);
             win.backButtonTitle = "back";
             Ti.UI.currentTab.open(win);
         }
-    }
+    };
 /*    if (d.posts){
 Ti.API.log("POSTS!");
         t.page = d.posts.page;
