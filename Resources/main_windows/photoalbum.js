@@ -1,22 +1,29 @@
 Ti.include("../assets/utils.js");
 
-function getREST(){
-    var id = win.info ? win.info.id : 0,
-        type = "album",
-        page = win.info && win.info.page ? win.info.page : 1;
-    return "http://query.yahooapis.com/v1/public/yql?q=use%20%22http%3A%2F%2F79.99.1.153%2Fyql%2Ftrist%2Ftristania_gallery.xml%22%20as%20t%3B%20select%20*%20from%20t%20where%20id%20%3D%20"+id+"%20and%20type%20%3D%20%22"+type+"%22%20and%20page%20%3D%20"+page+"&format=json";
+win.backButtonTitle = "back";
+
+function getREST(p){
+    var id = win.info ? win.info.id : 0;
+    return "http://query.yahooapis.com/v1/public/yql?q=use%20%22http%3A%2F%2F79.99.1.153%2Fyql%2Ftrist%2Ftristania_gallery.xml%22%20as%20t%3B%20select%20*%20from%20t%20where%20id%20%3D%20"+id+"%20and%20type%20%3D%20%22album%22%20and%20page%20%3D%20"+(p || 1)+"&format=json";
 }
 
 var start,
+    pages = 1,
+    page = 1,
     navHidden = false,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
     picView = $.createView({ backgroundColor: "#000", opacity: 0 }),
     addfav = $.createButton({ image: '../pics/icon_unstar.png' }),
-    delfav = $.createButton({image: '../pics/icon_star.png'});
-
+    delfav = $.createButton({image: '../pics/icon_star.png'}),
+    favbutton = $.create({type: "Button",height: 30, width: 30, right: 10, style: Ti.UI.iPhone.SystemButtonStyle.PLAIN, image: '../pics/icon_unstar.png',click:setFav}),
+    pagebutton = $.create({type: "Button",height: 30,width: 40, left: 10, opacity: 0, color: "#000", title: "page"}),
+    navbar = $.create({type: "View", height: 40, width: 100});
+navbar.add(favbutton);
+navbar.add(pagebutton);
 win.add(picView);
+win.rightNavButton = addfav; //navbar;
 picView.animate({duration:500,opacity:1});
 
 
@@ -54,7 +61,8 @@ function updateView(){
     // update favourites button
 //    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
     win.rightNavButton = favs().indexOf(urls[win.sv.currentPage]) == -1 ? addfav : delfav;
-    
+//    favbutton.image = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
+//    favbutton.animate({image:favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png',duration:100});
     // update title    
     win.setTitle((win.sv.currentPage+1)+"/"+max);
 }
@@ -109,14 +117,16 @@ function createGallery(picurls){
 
 function buildRemoteGallery(res){
     var picurls = $.ensureArray(res.query.results.res.item).map(function(i){
-        return "http://mvonlonski.com/cpg/" + i;
+        return "http://mvonlonski.com/cpg/" + i.path;
     });
+    pages = res.query.results.res.pages || 1;
     createGallery(picurls);
 }
 
 if (win.info.num != -666){
+Ti.API.log("REMOTE GALLERY LOAD LOAD LOAD !!");
     $.ajax({
-        url: getREST(),
+        url: getREST(win.info && win.info.page),
         success: buildRemoteGallery
     });
 }

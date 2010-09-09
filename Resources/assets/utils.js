@@ -616,7 +616,8 @@ $.ajax({
                     while(j<len && rows[j].col0!="TABLE"){
                         store.selectedphotoalbums.push({
                             title: rows[j].col0,
-                            id: rows[j].col1
+                            id: rows[j].col1,
+                            pics: rows[j].col2
                         });
                         j++;
                     }
