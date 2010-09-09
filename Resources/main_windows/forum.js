@@ -118,6 +118,7 @@ Ti.API.log(["WEBVIEWPOSTS!",d.posts]);
 
     var t = {
         type: "TableView",
+        opacity: 0,
         childElements: [],
         click: function(e){
             var win = $.create({ type: "Window", url:'forum.js' });
@@ -193,6 +194,7 @@ Ti.API.log("CATEGORIES!");
 Ti.API.log("RENDERING TABLES");
     view = $.create(t);
     win.add(view);
+    view.animate({opacity: 1, duration: 500});
     spinner.hide();
     pageControl();
 }

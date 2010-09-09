@@ -106,6 +106,7 @@ Ti.API.log(data);
     datatype = data.query.results.res.type;
     pages = data.query.results.res.pages || 1;
     table = $.create({
+        opacity: 0,
         type: "TableView",
         childElements: !win.info ? 
             // first page, rendering spotlighted
@@ -152,6 +153,7 @@ Ti.API.log(data);
         }
     });
     win.add(table);
+    table.animate({opacity:1, duration: 500});
     updateFavourites();
     pageControl();
 }
