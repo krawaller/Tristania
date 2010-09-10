@@ -23,7 +23,7 @@ a {
     color: black;
 }
 
-.headline {
+.headline, h2 {
   /*  color: #d1b275; */
     color: black;
     font-weight: bold;
