@@ -3,7 +3,8 @@ Ti.include("../assets/utils.js");
 win.title = "Discography";
 
 function updateView(){
-    win.rightNavButton = Ti.App.Properties.getString("favalbum") === albums[cfv.selected].shorttitle ? delfav : addfav;
+    Ti.API.log(["CHECKING FAV!",$.getUserData("favalbum"),cfv.selected,albums[cfv.selected].shorttitle]);
+    win.rightNavButton = ($.getUserData("favalbum") === albums[cfv.selected].shorttitle) ? delfav : addfav;
 }
 
 var albums = $.getAlbums(),
@@ -13,7 +14,8 @@ var albums = $.getAlbums(),
         image: '../pics/icon_unstar.png', 
         click: function(e){
             Ti.UI.createAlertDialog({ title: 'Album selected', message: 'Favourite album set to '+albums[cfv.selected].title }).show();
-            Ti.App.Properties.setString("favalbum",albums[cfv.selected].shorttitle);
+            $.setUserData("favalbum",albums[cfv.selected].shorttitle);
+            //Ti.App.Properties.setString("favalbum",albums[cfv.selected].shorttitle);
             updateView();
         }
     }),
@@ -22,7 +24,8 @@ var albums = $.getAlbums(),
         image: '../pics/icon_star.png', 
         click: function(e){
             Ti.UI.createAlertDialog({ title: 'Favourite cleared', message: "No favourite album set" }).show();
-            Ti.App.Properties.setString("favalbum","");
+            $.removeUserData("favalbum");
+            //Ti.App.Properties.setString("favalbum","");
             updateView();
         }
     }),

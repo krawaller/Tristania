@@ -131,6 +131,26 @@ var defopts = {
     //    backgroundSelectedImage: '../ui/select-background.png',
         font: { fontFamily: 'Helvetica', fontSize: 17, fontWeight: 'bold'}
     },
+    
+    "textarea": {
+        height:70,
+        width:300,
+        font:{fontSize:20,fontFamily:'Marker Felt', fontWeight:'bold'},
+        color:'#888',
+        textAlign:'left',
+        appearance:Titanium.UI.KEYBOARD_APPEARANCE_ALERT,	
+        keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+    },
+    
+    "textfield": {
+        color:'#336699',
+        height:35,
+        width:250,
+        keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+        returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
+        borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
+    },
+    
  // ***************Styleclasses **************
  
     "categoryButton": {
@@ -156,6 +176,13 @@ var defopts = {
         type: "Button",
         width: 200,
         height: 30
+    },
+    
+    "profilelabel" : {
+        height: 30,
+        color: "red",
+        width: 320,
+        textAlign: "center"
     },
  
  // ***************** Wins *******************
@@ -542,7 +569,26 @@ var $ = (function(){
             return JSON.parse(Ti.App.Properties.getString("appdata"));
         },
         
+// USER-ENTERED DATA
         
+        getUserData: function(what){
+            var d = JSON.parse(Ti.App.Properties.getString("userdata") || JSON.stringify({}));
+            return what ? d[what] : d;
+        },
+        
+        setUserData: function(what,value){
+            var d = $.getUserData();
+            d[what] = value;
+            Ti.App.Properties.setString("userdata",JSON.stringify(d));
+        },
+        
+        removeUserData: function(what){
+            var d = $.getUserData();
+            delete d.what;
+            Ti.App.Properties.setString("userdata",JSON.stringify(d));
+        },
+        
+ // REMOTE LOADING DATA
         
         updateData: function(){
         
@@ -639,75 +685,6 @@ $.ajax({
 		Ti.API.log("UPDATED DATA! YEAH!");
     }
 });
-/*
-
-// loading comments
-$.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdDlod0RsUUlkclZIY3puSlpTeTRFZlE%26hl%3Den%26output%3Dcsv%22&format=json",
-    success: function(data){
-	    var commentlist = {}, rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(comment){
-	        var about = comment.col1;
-	        if (!commentlist[about]){
-	            commentlist[about] = [];
-	        }
-		    commentlist[about].push({
-		        by: comment.col0,
-		        date: comment.col2,
-		        content: comment.col3.replace(/"/g,"") // cleaning away the random bloody quote marks
-		    });
-		});
-		Ti.App.Properties.setString("comments",JSON.stringify(commentlist));
-		Ti.API.log("UPDATED COMMENTS!");
-	}
-});
-
-// loading presentations
-$.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdHFINVcyNExtdXBBWlBGUmRoT1Nvamc%26hl%3Den%26output%3Dcsv%22&format=json",
-    success: function(data){
-	    var presentations = {}, rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(pres){
-	        presentations[pres.col0] = pres.col1.replace(/"/g,""); // cleaning away the random bloody quote marks
-		});
-		Ti.App.Properties.setString("presentations",JSON.stringify(presentations));
-		Ti.API.log("UPDATED PRESENTATIONS");
-	}
-});
-
-// loading selected videos
-$.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdFU1Mk8zMHFOLWJGVGJubnN1NXMzb2c%26hl%3Den%26output%3Dcsv%22&format=json",
-    success: function(data){
-	    var videos = [], rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(vid){
-	        videos.push({
-	            title:vid.col0,
-	            id:vid.col1
-	        });
-		});
-		Ti.App.Properties.setString("selectedvideos",JSON.stringify(videos));
-		Ti.API.log("UPDATED SELECTED VIDEOS");
-	}
-});
-
-
-// loading spotlighted photoalbums
-$.ajax({
-    url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdF9rSXpsbUp5eTU5dmh4ZG5RTk9tYmc%26hl%3Den%26output%3Dcsv%22&format=json",
-	success: function(data){
-	    var photoalbums = [], rows = data.query.results.row instanceof Array ? data.query.results.row : [data.query.results.row];
-	    rows.map(function(p){
-	        photoalbums.push({
-	            title:p.col0,
-	            id:p.col1
-	        });
-		});
-		Ti.App.Properties.setString("photoalbums",JSON.stringify(photoalbums));
-		Ti.API.log("UPDATED PHOTOALBUMS");
-	}
-});
-*/
 
 
 // loading official videos
@@ -730,6 +707,19 @@ $.ajax({
 });
         }
     });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     // TODO - fix this poop, store as serialised text, update when necessary

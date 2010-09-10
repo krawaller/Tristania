@@ -64,16 +64,18 @@ var btn = $.create({
         opacity: 0,
         backgroundColor: "#000",
         childElements: [{
-            title: "Poop",
+            title: "Your profile",
             styleClass: "optionsbutton",
             top: 10,
             click: function(){
+                Ti.UI.currentTab.open($.create({ type: "Window", url:'profile.js' }));
             }
         },{
-            title: "Scoop",
+            title: "Statistics",
             styleClass: "optionsbutton",
             top: 60,
             click: function(){
+                Ti.UI.currentTab.open($.create({ type: "Window", url:'statistics.js' }));
             }
         }]
     }),

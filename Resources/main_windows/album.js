@@ -4,26 +4,34 @@ var album = $.getAlbum(win.data.id);
 
 win.title = album.shorttitle;
 
-function getFavouriteTracks(){ return JSON.parse(Ti.App.Properties.getString('favTracks') || "{}"); }
-function setFavouriteTrack(aid,tid){
-    var favs = getFavouriteTracks();
-    favs[aid] = tid;
-    Ti.App.Properties.setString("favTracks",JSON.stringify(favs));
-}
-
 function fixTrack(t){
     t.childElements = [{
         id: "favButton",
         type: "View",
         backgroundImage: "../pics/icon_unstar.png",
         click: function(e){
+            if ($.getUserData(album.id) == t.id){
+                $.create({
+                    type: "AlertDialog",
+                    title: "Favourite cleared",
+                    message: "No favourite track selected"
+                }).show();
+                e.source.backgroundImage = "../pics/icon_unstar.png";
+                currentElem = null;
+                $.removeUserData(album.id);
+                return;
+            }
             if (currentElem){
                 currentElem.backgroundImage = "../pics/icon_unstar.png";
             }
             e.source.backgroundImage = "../pics/icon_star.png";
             currentElem = e.source;
-            setFavouriteTrack(album.id,t.id);
-            alert("Favourite track on "+album.title+" set to "+$.getTrack(t.id).title+".");
+            $.setUserData(album.id,t.id);
+            $.create({
+                type: "AlertDialog",
+                title: "Favourite selected",
+                message: "Favourite track on "+album.title+" set to "+$.getTrack(t.id).title+"."
+            }).show();
         },
         width: "25px",
         height: "25px",
@@ -84,7 +92,7 @@ win.rightNavButton = $.create({
 
 // ************** Select current favourite, if any! ***********************
 
-var currentFav = getFavouriteTracks()[album.id],
+var currentFav = $.getUserData(album.id),
     tlist = view.childrenById.trackList.childrenById,
     currentElem = currentFav ? 
         album.bonustracks ? 

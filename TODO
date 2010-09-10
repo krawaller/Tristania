@@ -3,6 +3,7 @@ APP TODO-LIST
 
   GENERAL
 
+[X] Centralise user data to single object for easier upload
 [ ] Make automatic data updating fail silently!
 [ ] Nicer icons for the tabs! icon_tab_info.png, icon_tab_media.png, icon_tab_community.png
 
@@ -52,6 +53,7 @@ APP TODO-LIST
 
   DISCOGRAPHY
 
+[X] Allow removal of favourite track
 [ ] Make nicer icon for Tracks button in tabber bar! pics/icon_tracks.png (album.js)
 [ ] Make nicer icon for Lyrics button in tabbed bar! pics/icon_lyrics.png (track.js)
 [ ] Make favourites selection star icons work better on new background (in album.js tracklisting).
@@ -61,6 +63,10 @@ APP TODO-LIST
   MAP
 
 [ ] Make nicer icon for options button! (icon_options.png)
-[ ] Centralise user data to single object for easier upload
 [ ] Make couchDB database
-[ ] Add options screen
+[X] Add options screen
+[X] Profile editing screen
+[ ] Style options and profile editing
+[/] Statistics screen
+[ ] Pin profile screen
+[ ] Make the shit actually work :)
