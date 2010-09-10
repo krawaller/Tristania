@@ -1,0 +1,17 @@
+<div class='unit'>
+  <h2 class="headline"><#= data.username #></h2>
+  <div class="content">
+    <p><#= data.presentation #></p>
+  </div>
+</div>
+<div>
+  <h2 class="headline">Favourites</h2>
+  <div class="content">
+    <dl class="wide">
+       <dt>Album:</dt><dd><#= data.favalbum #></dd>
+       <# for(var a in data.favtracks){ #>
+           <dt>Song on <#= a #>:</dt><dd><#= data.favtracks[a] #></dd>
+       <# } #>
+    </dl>
+  </div>
+</div>

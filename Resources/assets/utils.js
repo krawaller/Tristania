@@ -586,7 +586,7 @@ var $ = (function(){
         
         removeUserData: function(what){
             var d = $.getUserData();
-            delete d.what;
+            delete d[what];
             Ti.App.Properties.setString("userdata",JSON.stringify(d));
         },
         

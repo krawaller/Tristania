@@ -13,7 +13,7 @@
 <div class='unit'>
    <h2 class="headline">Favourite album votes</h2>
    <div class="content">
-       <dl class="statistics">
+       <dl class="wide">
            <# for(var a in data.favalbums){ #>
                <dt><#= a #></dt><dd><div><div style="width: <#= 100*data.favalbums[a]/100 #>px;">&nbsp;</div><span>&nbsp;<#= data.favalbums[a] #>%</span></div></dd>
            <# } #>
