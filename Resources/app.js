@@ -75,7 +75,7 @@ Ti.App.addEventListener('openUrl', function(e){
 		else // Action sheet
 			if (navBarEvent.index == 2) { 			
 				var dialog = Titanium.UI.createOptionDialog({
-					options: ['Öppna i Safari', 'Avbryt'],
+					options: ['Open in Safari', 'Cancel'],
 					cancel: 1,
 					title: webview.url
 				});
