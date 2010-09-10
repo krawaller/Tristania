@@ -68,7 +68,7 @@ var btn = $.create({
             styleClass: "optionsbutton",
             top: 10,
             click: function(){
-                Ti.UI.currentTab.open($.create({ type: "Window", url:'profile.js' }));
+                Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
             }
         },{
             title: "Statistics",
@@ -76,6 +76,13 @@ var btn = $.create({
             top: 60,
             click: function(){
                 Ti.UI.currentTab.open($.create({ type: "Window", url:'statistics.js' }));
+            }
+        },{
+            title: "Profile view test",
+            styleClass: "optionsbutton",
+            top: 110,
+            click: function(){
+                Ti.UI.currentTab.open($.create({ type: "Window", url:'profileview.js' }));
             }
         }]
     }),

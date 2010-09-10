@@ -23,7 +23,7 @@ a {
     color: black;
 }
 
-.headline {
+.headline, h2 {
   /*  color: #d1b275; */
     color: black;
     font-weight: bold;
@@ -64,7 +64,7 @@ a {
     margin: 0;
 }
 
-.content .statistics dt {
+.content .wide dt {
     width: 120px;
 }
 

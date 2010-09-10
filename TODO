@@ -10,6 +10,8 @@ APP TODO-LIST
 
 
   DATADOC
+
+[X] Write text about the app!
 [ ] Go over the presentations, and add them to fixtures.js!
 [ ] Rewrite application presentation and add to fixtures!
 ( ) Compile band member comments on tracks and albums and add to comments list
@@ -56,7 +58,7 @@ APP TODO-LIST
 [X] Allow removal of favourite track
 [ ] Make nicer icon for Tracks button in tabber bar! pics/icon_tracks.png (album.js)
 [ ] Make nicer icon for Lyrics button in tabbed bar! pics/icon_lyrics.png (track.js)
-[ ] Make favourites selection star icons work better on new background (in album.js tracklisting).
+( ) Make favourites selection star icons work better on new background (in album.js tracklisting).
     Observe, the involved icons (icon_star.png, icon_unstar.png) are also used elsewhere, so might
     need new versions for here! (album.js)
     
@@ -67,6 +69,6 @@ APP TODO-LIST
 [X] Add options screen
 [X] Profile editing screen
 [ ] Style options and profile editing
-[/] Statistics screen
-[ ] Pin profile screen
+[X] Statistics screen
+[X] Pin profile screen
 [ ] Make the shit actually work :)

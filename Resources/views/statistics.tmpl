@@ -1,10 +1,7 @@
 <div class='unit'>
   <h2 class="headline">Statistics</h2>
   <div class="content">
-    <p>Here you can see the bkak bsöfk sdlfk södflksdölf</p>
-    <dl>
-       <dt>Members:</dt><dd><#= data.members #></dd>
-    </dl>
+    <p>Here you can see the breakdown of how the <#= data.members #> members of the Tristania fan community has voted!</p>
   </div>
 </div>
 
@@ -13,7 +10,7 @@
 <div class='unit'>
    <h2 class="headline">Favourite album votes</h2>
    <div class="content">
-       <dl class="statistics">
+       <dl class="wide statistics">
            <# for(var a in data.favalbums){ #>
                <dt><#= a #></dt><dd><div><div style="width: <#= 100*data.favalbums[a]/100 #>px;">&nbsp;</div><span>&nbsp;<#= data.favalbums[a] #>%</span></div></dd>
            <# } #>
@@ -25,7 +22,7 @@
     <div class='unit'>
         <h2 class='headline'><#= a #> track votes</h2>
         <div class='content'>
-            <dl class="statistics">
+            <dl class="wide statistics">
                 <# for(var t in data.favtracks[a]){ #>
                     <dt><#= t #></dt><dd><div><div style="width: <#= data.favtracks[a][t] #>px;">&nbsp;</div><span>&nbsp;<#= data.favtracks[a][t] #>%</span></div></dd>
                 <# } #>

@@ -3,8 +3,7 @@ Ti.include("../assets/utils.js");
 win.title = "Discography";
 
 function updateView(){
-    Ti.API.log(["CHECKING FAV!",$.getUserData("favalbum"),cfv.selected,albums[cfv.selected].shorttitle]);
-    win.rightNavButton = ($.getUserData("favalbum") === albums[cfv.selected].shorttitle) ? delfav : addfav;
+    win.rightNavButton = ($.getUserData("favalbum") === albums[cfv.selected].id) ? delfav : addfav;
 }
 
 var albums = $.getAlbums(),
@@ -14,7 +13,7 @@ var albums = $.getAlbums(),
         image: '../pics/icon_unstar.png', 
         click: function(e){
             Ti.UI.createAlertDialog({ title: 'Album selected', message: 'Favourite album set to '+albums[cfv.selected].title }).show();
-            $.setUserData("favalbum",albums[cfv.selected].shorttitle);
+            $.setUserData("favalbum",albums[cfv.selected].id);
             //Ti.App.Properties.setString("favalbum",albums[cfv.selected].shorttitle);
             updateView();
         }
