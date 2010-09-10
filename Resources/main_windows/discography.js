@@ -3,7 +3,6 @@ Ti.include("../assets/utils.js");
 win.title = "Discography";
 
 function updateView(){
-    Ti.API.log(["CHECKING FAV!",$.getUserData("favalbum"),cfv.selected,albums[cfv.selected].id]);
     win.rightNavButton = ($.getUserData("favalbum") === albums[cfv.selected].id) ? delfav : addfav;
 }
 
