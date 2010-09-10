@@ -1,5 +1,7 @@
 Ti.include("../assets/utils.js");
 
+var map;
+
 if(!Ti.App.Properties.getBool('communitized')){
 	var a = Ti.UI.createAlertDialog({
 		title: 'Join the community?',
@@ -19,7 +21,7 @@ if(!Ti.App.Properties.getBool('communitized')){
 }
 
 function render(){
-	var map = Titanium.Map.createView({
+	map = Titanium.Map.createView({
 		mapType: Titanium.Map.STANDARD_TYPE,
 		region: {
 			latitude: 59.32485,
@@ -45,3 +47,37 @@ function render(){
 	});
 	map.setAnnotations([a]);
 }
+
+// Options screen
+
+var btn = $.create({
+        type: "Button",
+        image: "../pics/icon_options.png",
+        click: function(){
+            optionsView.animate({duration: 500, opacity: showingOptions ? 0 : 1});
+            showingOptions = !showingOptions;
+            win.rightNavButton.selected = showingOptions;
+        }
+    }),
+    optionsView = $.create({
+        type: "View",
+        opacity: 0,
+        backgroundColor: "#000",
+        childElements: [{
+            title: "Poop",
+            styleClass: "optionsbutton",
+            top: 10,
+            click: function(){
+            }
+        },{
+            title: "Scoop",
+            styleClass: "optionsbutton",
+            top: 60,
+            click: function(){
+            }
+        }]
+    }),
+    showingOptions = false;
+    
+win.add(optionsView);
+win.rightNavButton = btn;

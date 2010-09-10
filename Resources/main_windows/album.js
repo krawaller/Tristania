@@ -73,7 +73,7 @@ win.rightNavButton = $.create({
     type: "TabbedBar",
     labels:[
        {image: "../pics/info_light.png"}, 
-      "T" // {image: "../pics/icon_tracks.png"}
+       {image: "../pics/icon_tracks.png"}
     ], 
     index:0,
     click: function(e){

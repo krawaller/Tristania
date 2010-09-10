@@ -152,6 +152,12 @@ var defopts = {
         width: 200
     },
  
+    "optionsbutton": {
+        type: "Button",
+        width: 200,
+        height: 30
+    },
+ 
  // ***************** Wins *******************
     "main_windows/gallery.js": {},
     "main_windows/photoalbum.js": {},

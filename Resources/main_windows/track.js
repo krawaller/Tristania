@@ -24,7 +24,7 @@ if (!track.instrumental){
     view.add(lyrview);
     win.rightNavButton = $.create({
         type: "TabbedBar",
-        labels: [{image: "../pics/info_light.png"}, "L"  /* {image: "../pics/icon_lyrics.png"} */ ],
+        labels: [{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"} ],
         index: 0,
         click: function(e){
             [lyrview,trackview][e.index].animate({duration: 500, opacity: 0});
