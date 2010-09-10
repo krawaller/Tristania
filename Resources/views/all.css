@@ -64,6 +64,27 @@ a {
     margin: 0;
 }
 
+.content .statistics dt {
+    width: 120px;
+}
+
+.statistics > dd > div {
+    width: 150px;
+    heigth: 20px;
+}
+
+.statistics > dd > div > div {
+    margin-top: 3px;
+    background-color: red;
+    height: 10px;
+    float: left;
+}
+
+.statistics > dd > div > span {
+    font-size: 0.8em;
+    color: #333;
+}
+
 .content dd {
     float: left;
     width: auto;

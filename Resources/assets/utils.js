@@ -501,6 +501,8 @@ var $ = (function(){
                     pic: data.discography[a].pic,
                     shorttitle: data.discography[a].shorttitle,
                     title: data.discography[a].title,
+                    tracks: data.discography[a].tracks,
+                    bonustracks: data.discography[a].bonustracks,
                 });
             }
             return ret;
