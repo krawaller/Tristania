@@ -34,7 +34,7 @@ APP TODO-LIST
 
   FORUM
   
-[ ] Fix link encoding!! Right now, links with ' or " and whatnot breaks. Example: Go to 
+[X] Fix link encoding!! Right now, links with ' or " and whatnot breaks. Example: Go to 
     general music -> liv kristines leave's eyes, or Rubicon -> "rubicon" reviews
 [ ] graceful error handling!
 [ ] Fix linebreaks in posts! Right now, \n in post text does not translate to <br/>
