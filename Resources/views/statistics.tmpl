@@ -1,3 +1,4 @@
+<# try { #>
 <div class='unit'>
   <h2 class="headline">Statistics</h2>
   <div class="content">
@@ -11,8 +12,8 @@
    <h2 class="headline">Favourite album votes</h2>
    <div class="content">
        <dl class="wide statistics">
-           <# for(var a in data.favalbums){ #>
-               <dt><#= a #></dt><dd><div><div style="width: <#= 100*data.favalbums[a]/100 #>px;">&nbsp;</div><span>&nbsp;<#= data.favalbums[a] #>%</span></div></dd>
+           <# for(var a in data.favalbum.results){ #>
+               <dt><#= a #></dt><dd><div><div style="width: <#= 100*data.favalbum.results[a].percentage/100 #>px;">&nbsp;</div><span>&nbsp;<#= data.favalbum.results[a].percentage #>%</span></div></dd>
            <# } #>
        </dl>
    </div>
@@ -23,10 +24,15 @@
         <h2 class='headline'><#= a #> track votes</h2>
         <div class='content'>
             <dl class="wide statistics">
-                <# for(var t in data.favtracks[a]){ #>
-                    <dt><#= t #></dt><dd><div><div style="width: <#= data.favtracks[a][t] #>px;">&nbsp;</div><span>&nbsp;<#= data.favtracks[a][t] #>%</span></div></dd>
+                <# for(var t in data.favtracks[a].results){ #>
+                    <dt><#= t #></dt><dd><div><div style="width: <#= data.favtracks[a].results[t].percentage #>px;">&nbsp;</div><span>&nbsp;<#= data.favtracks[a].results[t].percentage #>%</span></div></dd>
                 <# } #>
             </dl>
         </div>
     </div>
+<# } #>
+
+<# } 
+catch(e){ #>
+  <div><#= e.message #></div>
 <# } #>

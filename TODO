@@ -4,16 +4,15 @@ APP TODO-LIST
   GENERAL
 
 [X] Centralise user data to single object for easier upload
-[ ] Make automatic data updating fail silently!
+[X] Make automatic data updating fail silently!
 [ ] Nicer icons for the tabs! icon_tab_info.png, icon_tab_media.png, icon_tab_community.png
 
 
 
   DATADOC
 
-[X] Write text about the app!
 [ ] Go over the presentations, and add them to fixtures.js!
-[ ] Rewrite application presentation and add to fixtures!
+[X] Rewrite application presentation and add to fixtures!
 ( ) Compile band member comments on tracks and albums and add to comments list
 
 

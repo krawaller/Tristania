@@ -297,10 +297,11 @@ var $ = (function(){
                 }
             }
             xhr.opts = opts;
-            
-            xhr.onerror = function(e){
-				loader.hide();
-				if( (opts.error && opts.error(e) !== false) || !opts.error){ xhr.defError(e); }
+            if (!opts.silent){
+                xhr.onerror = function(e){
+	    			loader.hide();
+		    		if( (opts.error && opts.error(e) !== false) || !opts.error){ xhr.defError(e); }
+			    }
 			}
             xhr.open(opts.type, opts.url + (!opts.cache ? '?' + new Date().getTime() : ''));
             xhr.send(data);
@@ -509,6 +510,9 @@ var $ = (function(){
         },
         getAlbum: function(id){
             var a = data.discography[id], lineup = [];
+            if (!a){
+                throw "No album "+id+"!";
+            }
             a.lineup.map(function(who){
                 lineup.push($.getMember(who));
             });
@@ -526,6 +530,9 @@ var $ = (function(){
         },
         getTrack: function(id){
             var albums = [], credits = {}, track = data.tracks[id], m;
+            if (!track){
+                throw "No track "+id+"!";
+            }
             $.getAlbums().map(function(a){
                 a = $.getAlbum(a.id); // need full data
                 if (a.tracks.indexOf(id) != -1 || (a.bonustracks && a.bonustracks.indexOf(id) != -1)){
@@ -590,6 +597,19 @@ var $ = (function(){
             Ti.App.Properties.setString("userdata",JSON.stringify(d));
         },
         
+        setFavouriteTrack: function(album,track){
+            var tracks = $.getUserData("favtracks") || {};
+            tracks[album] = track;
+            if (!track){
+                delete tracks[album];
+            }
+            $.setUserData("favtracks",tracks);
+        },
+        
+        getFavouriteTrack: function(album){
+            return ($.getUserData("favtracks") || {})[album];
+        },
+        
  // REMOTE LOADING DATA
         
         updateData: function(){
@@ -597,6 +617,7 @@ var $ = (function(){
         
 // loading news from tristania.com RSS feed
 $.ajax({
+    silent: true,
     url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20%22http%3A%2F%2Fwww.tristania.com%2F2010%2Findex.php%2Ffeed%22&format=json",
     success: function(data){
 	    var newslist = [], rows = data.query.results.item instanceof Array ? data.query.results.item : [data.query.results.item];
@@ -614,6 +635,7 @@ $.ajax({
 
 // loading data from spreadsheet
 $.ajax({
+    silent: true,
     url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdHpOSUd0TThVSHBRQlNPQUNQTkZQSUE%26hl%3Den%26output%3Dcsv%22&format=json&callback=",
     success: function(data){
         var store = {
@@ -691,6 +713,7 @@ $.ajax({
 
 // loading official videos
 $.ajax({
+    silent: true,
     url: "http://gdata.youtube.com/feeds/api/videos?q=&author=TristaniaVideos&orderby=published&v=2&alt=json",
 	success: function(data){
         if (typeof data === "string"){ data = JSON.parse(data); }
@@ -717,12 +740,46 @@ $.ajax({
     
     
     
+// ******************* COUCHDB-related code ****************
+
+$.receiveCommunityData = function(data){
+    // storing community members
+    Ti.App.Properties.setString("communitymembers",JSON.stringify(data.members));
+    // deal with titlifying stats and storing them
+    var stats = data.stats,a,t,albums = $.getAlbums();
+    for(a in albums){
+        var alb = $.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
+        stats.favalbum.results[alb.title] = stats.favalbum.results[alb.id] || {
+            votes: 0,
+            percentage: 0
+        };
+        delete stats.favalbum.results[alb.id];
+        stats.favtracks[alb.title] = {results: {}};
+        for(t in tracks){
+            var trk = $.getTrack(tracks[t]);
+            stats.favtracks[alb.title].results[trk.title] = (stats.favtracks[alb.id] || {results:{}}).results[trk.id] || {
+                votes: 0,
+                percentage: 0
+            };
+            delete (stats.favtracks[alb.id] || {results:{}}).results[trk.id];
+        }
+        delete stats.favtracks[alb.id];
+    }
+    Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
+}
+
+$.getCommunityMembers = function(){
+    return JSON.parse(Ti.App.Properties.getString("communitymembers") || JSON.stringify(0));
+}
+
+$.getCommunityStatistics = function(){
+    return JSON.parse(Ti.App.Properties.getString("communitystats") || JSON.stringify(0));
+}
+    
+
     
     
-    
-    
-    
-    
+// ******************* static data *************************
     
     // TODO - fix this poop, store as serialised text, update when necessary
     var data = {
@@ -1245,3 +1302,8 @@ $.ajax({
     
     return $;
 })();
+
+
+
+
+    

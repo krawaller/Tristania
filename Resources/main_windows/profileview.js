@@ -3,17 +3,15 @@ Ti.include("../assets/utils.js");
 win.title = "Profile view";
 
 function titlifyData(d){
-    var albums = $.getAlbums();
+    var tracks = {}, albums = $.getAlbums();
     if (d.favalbum){
         d.favalbum = $.getAlbum(d.favalbum).title;
     }
-    d.favtracks = {};
+    d.favtracks = d.favtracks || {};
     for(var a in albums){
-        var album = albums[a];
-        if (d[album.id]){
-            d.favtracks[ album.title ] = $.getTrack(d[album.id]).title;
-        }
+        tracks[ albums[a].title ] = d.favtracks[albums[a].id] ? $.getTrack(d.favtracks[albums[a].id]).title : "";
     }
+    d.favtracks = tracks;
     return d;
 }
 

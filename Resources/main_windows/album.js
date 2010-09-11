@@ -18,7 +18,7 @@ function fixTrack(t){
                 }).show();
                 e.source.backgroundImage = "../pics/icon_unstar.png";
                 currentElem = null;
-                $.removeUserData(album.id);
+                $.setFavouriteTrack(album.id);
                 return;
             }
             if (currentElem){
@@ -26,7 +26,7 @@ function fixTrack(t){
             }
             e.source.backgroundImage = "../pics/icon_star.png";
             currentElem = e.source;
-            $.setUserData(album.id,t.id);
+            $.setFavouriteTrack(album.id,t.id);
             $.create({
                 type: "AlertDialog",
                 title: "Favourite selected",
@@ -92,7 +92,7 @@ win.rightNavButton = $.create({
 
 // ************** Select current favourite, if any! ***********************
 
-var currentFav = $.getUserData(album.id),
+var currentFav = $.getFavouriteTrack(album.id), //$.getUserData(album.id),
     tlist = view.childrenById.trackList.childrenById,
     currentElem = currentFav ? 
         album.bonustracks ? 

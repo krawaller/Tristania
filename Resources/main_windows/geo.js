@@ -3,19 +3,11 @@ Ti.include("../assets/utils.js");
 var map;
 
 if(!Ti.App.Properties.getBool('communitized')){
-	var a = Ti.UI.createAlertDialog({
-		title: 'Join the community?',
-		message: 'Blabla...',
-		buttonNames: ['OK','Cancel']
-	});
-	a.show();
-	a.addEventListener('click', function(e){
-		if(e.index == 0){
-			Ti.App.Properties.setBool('communitized', true);
-			// Coords, Favoritlåtar
-			render();
-		}
-	});
+    Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
+	Ti.UI.createAlertDialog({
+		title: 'Join the community!',
+		message: 'Before you can see the map you must fill in your data and upload it!',
+	}).show();
 } else {
 	render();
 }

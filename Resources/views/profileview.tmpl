@@ -8,7 +8,9 @@
   <h2 class="headline">Favourites</h2>
   <div class="content">
     <dl class="wide">
-       <dt>Album:</dt><dd><#= data.favalbum #></dd>
+       <dt>Favourite album:</dt><dd><#= data.favalbum #></dd>
+    </dl>
+    <dl class="wide">
        <# for(var a in data.favtracks){ #>
            <dt><#= a #>:</dt><dd><#= data.favtracks[a] #></dd>
        <# } #>
