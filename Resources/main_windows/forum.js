@@ -55,7 +55,9 @@ var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndica
 
 function getREST(path,page,perpage){
     var bit = (page>1 ? path.replace("/?wap2","/"+((page-1)*perpage)+"/?wap2") : path || "");
-    REST = "http://query.yahooapis.com/v1/public/yql?q=use%20%22http%3A%2F%2F79.99.1.153%2Fyql%2Ftrist%2Ftristania_forum.xml%22%20as%20tf%3B%20select%20*%20from%20tf%20where%20path%20%3D%20%22" + bit.replace(":","%3A").replace("/","%2F").replace("?","%3F") + "%22&format=json";
+    REST = 'http://query.yahooapis.com/v1/public/yql?q=use "http://79.99.1.153/yql/trist/tristania_forum.xml?20" as tf; select * from tf where path = "@bit"&format=json'.esc({
+		bit: bit
+	});
     Ti.API.log(["REST",bit,REST]);
     return REST;
 }
@@ -91,7 +93,7 @@ function pageControl(){
 }
 
 function receiveData(d){
-if (!d.query || !d.query.results || !d.query.results.res){
+if (!d.query || !d.query.results || !d.query.results.res){
     Ti.API.error("WTF?!?!");
     Ti.API.log(d);
     return;

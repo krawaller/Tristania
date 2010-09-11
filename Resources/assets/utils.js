@@ -193,6 +193,13 @@ var defopts = {
 
 String.prototype.clean = function(){ return this.replace(/\xA0/g, '').replace(/\s+/g, ' '); };
 
+/**
+ * Insert @parameters into string
+ * @param {Object} obj
+ * @param {Object} plain
+ */
+String.prototype.esc = function(obj, plain){ return this.replace(/@([A-Za-z_]+)/g, function($0, $1){ return typeof obj[$1] != "undefined" ? (plain ? ($.isFunc(plain) ? plain(obj[$1]) : obj[$1]) : encodeURI(obj[$1])) : $0; }); };
+
 var $ = (function(){
     var $ = {
         merge: function(){

@@ -35,13 +35,13 @@ APP TODO-LIST
 
   FORUM
   
-[ ] Fix link encoding!! Right now, links with ' or " and whatnot breaks. Example: Go to 
+[X] Fix link encoding!! Right now, links with ' or " and whatnot breaks. Example: Go to 
     general music -> liv kristines leave's eyes, or Rubicon -> "rubicon" reviews
 [ ] graceful error handling!
-[ ] Fix linebreaks in posts! Right now, \n in post text does not translate to <br/>
-[ ] Nicify quoting! Example: go to Rubicon -> Favourite track of rubicon, scroll down
+[X] Fix linebreaks in posts! Right now, \n in post text does not translate to <br/>
+[X] Nicify quoting! Example: go to Rubicon -> Favourite track of rubicon, scroll down
     to fourth post
-[ ] Make links clickable! Example: go to band news -> rubicon release party treats, check
+[X] Make links clickable! Example: go to band news -> rubicon release party treats, check
     bottom of first post
 ( ) Make paging button look selected when paging screen is showing!
     
