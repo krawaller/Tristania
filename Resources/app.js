@@ -11,11 +11,6 @@ if (!Ti.App.Properties.getBool("hasFixtures")){ // first time app is run! we sto
     Ti.App.Properties.setBool("hasFixtures",true);
 }
 
-
-$.updateData();
-Ti.App.addEventListener("resume",$.updateData);
-
-
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 //Ti.UI.setBackgroundColor('#000');
 //Ti.UI.setBackgroundImage("pics/tristaniabgloading.jpg");
@@ -125,3 +120,34 @@ Ti.App.addEventListener('openUrl', function(e){
 	tabGroup.activeTab.open(win);
 	spinner.show();
 });
+
+
+
+
+/************************** User data server code *************************/
+
+// this event fires from profileedit.js when user profile is successfully updated
+Ti.App.addEventListener("uploadready",function(e){
+    Ti.App.Properties.setBool("userdataentered",true);
+    Ti.App.Properties.setBool("uploadready",true);
+});
+
+function uploadUserData(){
+Ti.API.log("Testing if user data should be uploaded");
+    if (Ti.App.Properties.getBool("uploadready")){
+        var userdata = $.getUserData();
+        Ti.API.log("Uploading user data to server!");
+        // if successful
+        Ti.App.Properties.setBool("uploadready",false);
+    }
+    else {
+Ti.API.log("Nope, no new userdata saved.");
+    }
+}
+
+function doOnResume(){
+    $.updateData(); Ti.API.log("wtf?"); uploadUserData(); Ti.API.log("hmm...");
+}
+
+Ti.App.addEventListener("resume",doOnResume);
+doOnResume();

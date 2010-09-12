@@ -775,6 +775,40 @@ $.receiveCommunityData = function(data){
     Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
 }
 
+Ti.App.Properties.setString("communitymembers",JSON.stringify({
+        45: {
+            guid: 45,
+            username: "shithead",
+            presentation: "i'm a poophead",
+            coords: {latitude: 59.32488, longitude: 18.0690},
+            favalbum: "rubicon",
+            favtracks: {
+                widowsweeds: "evenfall"
+            }
+        },
+        46: {
+            guid: 46,
+            username: "shithead2",
+            presentation: "i'm a poophead!!",
+            coords: {latitude: 59.32489, longitude: 18.0691},
+            favalbum: "beyondtheveil",
+            favtracks: {
+                widowsweeds: "angellore",
+                ashes: "libre"
+            }
+        },
+        999: {
+            guid: 999,
+            username: "shithead3",
+            presentation: "i'm a MEGA poophead!!!!!",
+            coords: {latitude: 59.32485, longitude: 18.0688},
+            favalbum: "illumination",
+            favtracks: {
+                illumination: "mercyside"
+            }
+        },
+    }));
+
 $.getCommunityMembers = function(){
     return JSON.parse(Ti.App.Properties.getString("communitymembers") || JSON.stringify(0));
 }
