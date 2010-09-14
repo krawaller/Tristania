@@ -4,7 +4,7 @@ if (win.backButtonTitle == "Info") {
     win.backButtonTitle = "Bio";
 }
 
-var bio = $.getMember(win.data.id);
+var bio = $.getMember(win.data.id, true);
 
 win.title = bio.name;
 

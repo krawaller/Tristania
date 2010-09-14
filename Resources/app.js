@@ -151,3 +151,8 @@ function doOnResume(){
 
 Ti.App.addEventListener("resume",doOnResume);
 doOnResume();
+
+
+
+
+Ti.API.log(Ti.App.Properties.getString("comments"));

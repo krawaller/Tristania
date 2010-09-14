@@ -497,9 +497,9 @@ var $ = (function(){
             }
             return ret;
         },
-        getMember: function(id){
+        getMember: function(id,comments){
             var member = data.members[id];
-            return !member ? 0 : $.merge({id:id, presentation: $.getPresentation(id), comments: $.getComments(id)},data.members[id]);
+            return !member ? 0 : $.merge({id:id, presentation: $.getPresentation(id)}, comments ? {comments: $.getComments(id)}:{} , data.members[id]);
         },
         getAlbums: function(){
             var ret = [];
@@ -624,7 +624,7 @@ var $ = (function(){
         
 // loading news from tristania.com RSS feed
 $.ajax({
-    silent: true,
+    silent: false,
     url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feed%20where%20url%20%3D%20%22http%3A%2F%2Fwww.tristania.com%2F2010%2Findex.php%2Ffeed%22&format=json",
     success: function(data){
 	    var newslist = [], rows = data.query.results.item instanceof Array ? data.query.results.item : [data.query.results.item];
@@ -647,12 +647,13 @@ $.ajax({
     success: function(data){
         var store = {
             presentations: {},
-            comments: [],
+            comments: {},
             selectedvideos: [],
             selectedphotoalbums: []
         },
             rows = data.query.results.row,
             len = rows.length;
+Ti.API.log("------------- DATA! --------");
         for(var i=0;i<len;i++){
             var table = rows[i].col1, j = i+1;
             switch(table){
@@ -679,7 +680,7 @@ $.ajax({
                         store.comments[about].push({
                             by: rows[j].col0,
                             date: rows[j].col2,
-                            content: rows[j].col3.replace(/"/g,"")
+                            content: rows[j].col3.replace(/"$/,"").replace(/^"/,"")
                         });
                         j++;
                     }
