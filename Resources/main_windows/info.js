@@ -27,33 +27,10 @@ win.add( $.create({
         }
     },{
         styleClass: "categoryButton",
-        text: "Application", 
+        text: "History",
         top: 250,
         click: function(e){
-            Ti.UI.currentTab.open($.create({ type: "Window", url:'about.js' }));
+            Ti.UI.currentTab.open($.create({ type: "Window", url:'history.js' }));
         }
     }]
 }));
-
-/*
-win.add($.create({
-
-}));
-
-win.add($.create({
-    text: "Bio",
-    styleClass: "categoryButton",
-    top: 80,
-    click: function(e){
-        Ti.UI.currentTab.open($.create({ type: "Window", url:'biolist.js' }));
-    }
-}));
-
-win.add($.create({
-    text: "Discography",
-    styleClass: "categoryButton",
-    top: 150,
-    click: function(e){
-        Ti.UI.currentTab.open($.create({ type: "Window", url:'discography.js' }));
-    }
-})); */

@@ -584,6 +584,9 @@ var $ = (function(){
         getAppData: function(){
             return JSON.parse(Ti.App.Properties.getString("appdata"));
         },
+        getHistory: function(){
+            return JSON.parse(Ti.App.Properties.getString("history") || JSON.stringify({info:"<div class='subtitle'>from moo</div><div class='content'><p>History bla bla bla</p><p>Wee wee wee!</p></div>"}));
+        },
         
 // USER-ENTERED DATA
         
@@ -659,7 +662,14 @@ Ti.API.log("------------- DATA! --------");
             switch(table){
                 case "APPDATA":
                     store.appdata = {
-                        info: rows[i+1].col0.replace(/"/g,""),
+                        info: rows[i+1].col0.replace(/"$/,"").replace(/^"/,""),
+                        date: rows[i+1].col1
+                    };
+                    i+= 1;
+                    break;
+                case "HISTORY":
+                    store.history = {
+                        info: rows[i+1].col0.replace(/"$/,"").replace(/^"/,""),
                         date: rows[i+1].col1
                     };
                     i+= 1;
@@ -714,6 +724,7 @@ Ti.API.log("------------- DATA! --------");
 		Ti.App.Properties.setString("presentations",JSON.stringify(store.presentations));
 		Ti.App.Properties.setString("selectedvideos",JSON.stringify(store.selectedvideos));
 		Ti.App.Properties.setString("photoalbums",JSON.stringify(store.selectedphotoalbums));
+		Ti.App.Properties.setString("photoalbums",JSON.stringify(store.history));
 		Ti.API.log("UPDATED DATA! YEAH!");
     }
 });
