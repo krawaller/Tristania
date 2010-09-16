@@ -3,6 +3,7 @@ RDATA = {
         Ti.API.log("...loading "+what);
         $.ajax($.merge({
             url: RDATA.sources[what].url,
+			quoteFix: RDATA.sources[what].quoteFix,
             success: function(data){
                 RDATA.sources[what].success(data);
                 Ti.API.log("......loaded "+what+"!");
@@ -35,7 +36,8 @@ RDATA = {
         },
         spreadsheet: {
             url: "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%20%3D%20%22https%3A%2F%2Fspreadsheets.google.com%2Fpub%3Fkey%3D0AtXFhtKoQjGsdHpOSUd0TThVSHBRQlNPQUNQTkZQSUE%26hl%3Den%26output%3Dcsv%22&format=json&callback=",
-            success: function(data){
+            quoteFix: true,
+			success: function(data){
                 var store = {
                     presentations: {},
                     comments: {},
@@ -106,6 +108,7 @@ RDATA = {
                             break;
                     }
                 }
+				
                 Ti.App.Properties.setString("appdata",JSON.stringify(store.appdata));
         		Ti.App.Properties.setString("comments",JSON.stringify(store.comments));
         		Ti.App.Properties.setString("presentations",JSON.stringify(store.presentations));

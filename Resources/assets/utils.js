@@ -283,7 +283,12 @@ var $ = (function(){
                     var response;
                     switch (opts.dataType) {
                         case 'json':
-                            response = JSON.parse(this.responseText);
+						    var text = this.responseText;
+							if(opts.quoteFix){ // Testing
+							    Ti.API.info([' ==== TRYING TO FIX QUOTES']);
+								text = text.replace(/\\"\\"([^ \/>]|$)/g, '\\"$1');
+							}
+                            response = JSON.parse(text);
 							
 							if(response.error){ // För helvete jacob, detta spränger allt utom YQL queries! :P || !(response.query && response.query.results)){
 								Ti.API.error("=== Couldn't fetch " + xhr.opts.url + " because: "+response.error.message);
