@@ -5,11 +5,15 @@ var map, community = LDATA.getCommunityMembers();
 
 if(!community){
 // TODO vary this message depending on status
-    Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
-	Ti.UI.createAlertDialog({
+    
+	var a = Ti.UI.createAlertDialog({
 		title: 'Join the community!',
 		message: 'Before you can see the map you must fill in your data and upload it!',
-	}).show();
+	});
+	a.addEventListener('click', function(){
+		Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
+	});
+	a.show();
 } else {
 	render();
 }
