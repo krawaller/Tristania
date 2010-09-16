@@ -25,6 +25,7 @@ var view = ($.create({
         styleClass: "optionsbutton",
         click: function(e){
             view.childrenById.result.text = "Loading...";
+			Ti.API.info(['==== LOAD'])
             RDATA.loadAll({},function(w){
                 view.childrenById.result.text +="\n...updated "+w+"!";
             });

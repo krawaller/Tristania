@@ -137,16 +137,20 @@ Ti.App.addEventListener("uploadready",function(e){
 });
 
 function uploadUserData(){
-Ti.API.log("Testing if user data should be uploaded");
+	Ti.API.log("Testing if user data should be uploaded");
     if (Ti.App.Properties.getBool("uploadready")){
         var userdata = LDATA.getUserData();
         Ti.API.log("Uploading user data to server!");
-        RDATA.uploadUserData(userdata);
+        RDATA.uploadUserData(userdata, function(){
+			RDATA.load("community", {}, function(){
+				Ti.App.fireEvent('communityrefresh');
+			});
+		});
         // if successful
         Ti.App.Properties.setBool("uploadready",false);
     }
     else {
-Ti.API.log("Nope, no new userdata saved.");
+		Ti.API.log("Nope, no new userdata saved.");
     }
 }
 

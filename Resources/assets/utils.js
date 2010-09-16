@@ -285,16 +285,35 @@ var $ = (function(){
                         case 'json':
 						    var text = this.responseText;
 							if(opts.quoteFix){ // Testing
-							    Ti.API.info([' ==== TRYING TO FIX QUOTES']);
+							    Ti.API.info([' ==== TRYING TO FIX QUOTES FOR ' + opts.url]);
 								text = text.replace(/\\"\\"([^ \/>]|$)/g, '\\"$1');
 							}
                             response = JSON.parse(text);
 							
 							if(response.error){ // För helvete jacob, detta spränger allt utom YQL queries! :P || !(response.query && response.query.results)){
-								Ti.API.error("=== Couldn't fetch " + xhr.opts.url + " because: "+response.error.message);
-								Ti.API.log(this.responseText);
-								//this.defError();
-								//loader.hide();
+								// Automatically resolve CouchDB conflicts
+								if (response.error == 'conflict') {
+								    $.ajax(
+										$.extend($.extend({}, xhr.opts), 
+										{
+											type: 'GET',
+											success: function(data){
+												var d = JSON.parse(xhr.opts.data);
+												d._rev = data._rev;
+												$.ajax($.extend($.extend({}, xhr.opts), { 
+													data: JSON.stringify(d) 
+												}));
+											},
+											data: null
+										})
+									);
+								}
+								else {
+									Ti.API.error(["=== Couldn't fetch " + xhr.opts.url + " because: " + response.error.message, opts]);
+									Ti.API.log(this.responseText);
+									//this.defError();
+									//loader.hide();
+								}
 								return;
 							}
                             break;
@@ -324,6 +343,11 @@ var $ = (function(){
 			    }
 			}
             xhr.open(opts.type, opts.url + (!opts.cache ? '?' + new Date().getTime() : ''));
+			if(opts.headers){
+				for(var name in opts.headers){
+					xhr.setRequestHeader(name, opts.headers[name]);
+				}
+			}
             xhr.send(data);
         },
         ajaxSetup: function(opts){ $.merge(ajaxDefaults, opts); },

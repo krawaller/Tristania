@@ -2,6 +2,7 @@ Ti.include("../assets/utils.js");
 Ti.include("../assets/localdata.js");
 
 win.title = "Profile";
+win.geo.closeOnFocus = true;
 
 function populateFields(){
     view.childrenById.presentation.value = LDATA.getUserData("presentation");
@@ -80,6 +81,7 @@ var oldcoords = LDATA.getUserData("coords"),
                 }).show();
                 return;
             }
+			win.geo.closeOnFocus = false;
             LDATA.setUserData("presentation",view.childrenById.presentation.value);
             LDATA.setUserData("username",view.childrenById.username.value);
             $.create({

@@ -1,5 +1,23 @@
 RDATA = {
-    uploadUserData: function(userdata){
+    uploadUserData: function(userdata, callback){
+		var id = Ti.Platform.id;
+
+		$.ajax({
+			url: 'http://kra.couchone.com/tristania/' + id,
+			data: JSON.stringify($.extend(userdata), { _rev: Ti.App.Properties.getString('_rev')}),
+			type: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"Referer": "app://se.krawaller.tristania"
+			},
+			success: function(data){
+				Ti.API.info(['wooot', data]);
+				if (data.ok) {
+					Ti.App.Properties.setString('_rev', data.rev)
+					callback();
+				}
+			}
+		});
     },
     load: function(what,o,callback){
         Ti.API.log("...loading "+what);
@@ -136,12 +154,23 @@ RDATA = {
         	}
         },
         community: {
-            url: "",
+            url: "http://kra.couchone.com/tristania/_design/v1.0/_view/community",
             success: function(data){
                 // storing community members
-                Ti.App.Properties.setString("communitymembers",JSON.stringify(data.members));
+				
+				var members = data.rows.map(function(row){
+					var d = row.value;
+					d.guid = d._id;
+					delete d._id;
+					delete d._rev;
+					return d;
+				});
+				
+                Ti.App.Properties.setString("communitymembers",JSON.stringify(members));
                 // deal with titlifying stats and storing them
-                var stats = data.stats,a,t,albums = $.getAlbums();
+                
+				//TODO: Please fix David!
+				/*var stats = data.stats,a,t,albums = $.getAlbums();
                 for(a in albums){
                     var alb = $.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
                     stats.favalbum.results[alb.title] = stats.favalbum.results[alb.id] || {
@@ -160,7 +189,7 @@ RDATA = {
                     }
                     delete stats.favtracks[alb.id];
                 }
-                Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
+                Ti.App.Properties.setString("communitystats",JSON.stringify(stats));*/
             }
         }
     }
