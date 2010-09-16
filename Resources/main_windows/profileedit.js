@@ -70,7 +70,7 @@ var oldcoords = LDATA.getUserData("coords"),
                 errormsg += "No coords data, please enable geolocation! ";
             }
             if (newcoords){
-                $.setUserData("coords",newcoords);
+                LDATA.setUserData("coords",newcoords);
             }
             if (errormsg.length > 0){
                 $.create({
@@ -80,8 +80,8 @@ var oldcoords = LDATA.getUserData("coords"),
                 }).show();
                 return;
             }
-            $.setUserData("presentation",view.childrenById.presentation.value);
-            $.setUserData("username",view.childrenById.username.value);
+            LDATA.setUserData("presentation",view.childrenById.presentation.value);
+            LDATA.setUserData("username",view.childrenById.username.value);
             $.create({
                 type: "AlertDialog",
                 title: "Data saved",
