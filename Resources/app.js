@@ -1,4 +1,6 @@
 Ti.include("assets/utils.js");
+Ti.include("assets/localdata.js");
+Ti.include("assets/remotedata.js");
 
 // deal with data fixture
 if (!Ti.App.Properties.getBool("hasFixtures")){ // first time app is run! we store fixtures in the database
@@ -131,13 +133,15 @@ Ti.App.addEventListener('openUrl', function(e){
 Ti.App.addEventListener("uploadready",function(e){
     Ti.App.Properties.setBool("userdataentered",true);
     Ti.App.Properties.setBool("uploadready",true);
+    uploadUserData();
 });
 
 function uploadUserData(){
 Ti.API.log("Testing if user data should be uploaded");
     if (Ti.App.Properties.getBool("uploadready")){
-        var userdata = $.getUserData();
+        var userdata = LDATA.getUserData();
         Ti.API.log("Uploading user data to server!");
+        RDATA.uploadUserData(userdata);
         // if successful
         Ti.App.Properties.setBool("uploadready",false);
     }
@@ -146,13 +150,12 @@ Ti.API.log("Nope, no new userdata saved.");
     }
 }
 
-Ti.include("assets/remotedata.js");
 function doOnResume(){
     //$.updateData();
     if(Ti.App.Properties.getBool("alwaysupdate")){
         RDATA.loadAll({silent:true},function(w,success){Ti.API.log("WEEEEEE "+w);});
     }
-    //uploadUserData(); // TODO - fix this shit
+    uploadUserData();
 }
 
 Ti.App.addEventListener("resume",doOnResume);
