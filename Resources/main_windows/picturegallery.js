@@ -1,4 +1,5 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
 win.title = win.info ? win.info.title : "Gallery";
 
@@ -85,7 +86,7 @@ function togglePageSelect(){
     (showingPageSelect ? pageSelect : table).animate({duration: 500, opacity: 0});
     (showingPageSelect ? table : pageSelect).animate({duration: 500, opacity: 1});
     showingPageSelect = !showingPageSelect;
-    win.rightNavButton.selected = showingPageSelect;
+    //win.rightNavButton.selected = showingPageSelect;
 }
 
 function pageControl(){
@@ -132,7 +133,7 @@ Ti.API.log(data);
             [{
                 type: "TableViewSection",
                 headerTitle: "Spotlighted",
-                childElements: $.getSelectedPhotoalbums().map(
+                childElements: LDATA.getSelectedPhotoalbums().map(
                     function(i){
                         return {
                             info:{

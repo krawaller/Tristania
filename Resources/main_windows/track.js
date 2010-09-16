@@ -1,6 +1,7 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
-var id = win.data.id, track = $.getTrack(id),  
+var id = win.data.id, track = LDATA.getTrack(id),  
     view = $.create({ type: "View" }),
     trackview = $.create({
         type: "WebView",
@@ -24,7 +25,10 @@ if (!track.instrumental){
     view.add(lyrview);
     win.rightNavButton = $.create({
         type: "TabbedBar",
-        labels: [{image: "../pics/info_light.png"}, {image: "../pics/icon_lyrics.png"} ],
+        labels: [
+            "info", //{image: "../pics/info_light.png"},
+            "lyrics" //{image: "../pics/icon_lyrics.png"}
+        ],
         index: 0,
         click: function(e){
             [lyrview,trackview][e.index].animate({duration: 500, opacity: 0});

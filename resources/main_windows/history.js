@@ -1,6 +1,7 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
-var history = $.getHistory();
+var history = LDATA.getHistory();
 
 win.title = "History";
 

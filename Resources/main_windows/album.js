@@ -1,6 +1,7 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
-var album = $.getAlbum(win.data.id);
+var album = LDATA.getAlbum(win.data.id);
 
 win.title = album.shorttitle;
 
@@ -10,7 +11,7 @@ function fixTrack(t){
         type: "View",
         backgroundImage: "../pics/icon_unstar.png",
         click: function(e){
-            if ($.getUserData(album.id) == t.id){
+            if (LDATA.getUserData(album.id) == t.id){
                 $.create({
                     type: "AlertDialog",
                     title: "Favourite cleared",
@@ -18,7 +19,7 @@ function fixTrack(t){
                 }).show();
                 e.source.backgroundImage = "../pics/icon_unstar.png";
                 currentElem = null;
-                $.setFavouriteTrack(album.id);
+                LDATA.setFavouriteTrack(album.id);
                 return;
             }
             if (currentElem){
@@ -26,11 +27,11 @@ function fixTrack(t){
             }
             e.source.backgroundImage = "../pics/icon_star.png";
             currentElem = e.source;
-            $.setFavouriteTrack(album.id,t.id);
+            LDATA.setFavouriteTrack(album.id,t.id);
             $.create({
                 type: "AlertDialog",
                 title: "Favourite selected",
-                message: "Favourite track on "+album.title+" set to "+$.getTrack(t.id).title+"."
+                message: "Favourite track on "+album.title+" set to "+LDATA.getTrack(t.id).title+"."
             }).show();
         },
         width: "25px",
@@ -56,16 +57,16 @@ var view = $.create({
         id: "trackList",
         type: "TableView",
         opacity: 0,
-        childElements: !album.bonustracks ? $.map($.getTracks(album.tracks),fixTrack) : [{
+        childElements: !album.bonustracks ? $.map(LDATA.getTracks(album.tracks),fixTrack) : [{
             type: "TableViewSection",
             id: "mainTracks",
             headerTitle: "Main tracks",
-            childElements: $.map($.getTracks(album.tracks),fixTrack)
+            childElements: $.map(LDATA.getTracks(album.tracks),fixTrack)
         },{
             type: "TableViewSection",
             id: "bonusTracks",
             headerTitle: "Bonus tracks",
-            childElements: $.map($.getTracks(album.bonustracks),fixTrack)
+            childElements: $.map(LDATA.getTracks(album.bonustracks),fixTrack)
         }]
     },{
         id: "albumInfo",
@@ -80,8 +81,8 @@ win.add(view);
 win.rightNavButton = $.create({ 
     type: "TabbedBar",
     labels:[
-       {image: "../pics/info_light.png"}, 
-       {image: "../pics/icon_tracks.png"}
+       "info", //{image: "../pics/info_light.png"}, 
+       "tracks" //{image: "../pics/icon_tracks.png"}
     ], 
     index:0,
     click: function(e){
@@ -92,7 +93,7 @@ win.rightNavButton = $.create({
 
 // ************** Select current favourite, if any! ***********************
 
-var currentFav = $.getFavouriteTrack(album.id), //$.getUserData(album.id),
+var currentFav = LDATA.getFavouriteTrack(album.id),
     tlist = view.childrenById.trackList.childrenById,
     currentElem = currentFav ? 
         album.bonustracks ? 

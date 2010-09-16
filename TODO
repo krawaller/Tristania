@@ -6,6 +6,8 @@ APP TODO-LIST
 [X] Centralise user data to single object for easier upload
 [X] Make automatic data updating fail silently!
 [ ] Nicer icons for the tabs! icon_tab_info.png, icon_tab_media.png, icon_tab_community.png
+(X) relocate local data handling to separate file
+(X) relocate remote data handling to separate file
 
 
 
@@ -52,11 +54,17 @@ APP TODO-LIST
 [ ] make links clickable
 
 
+  APPLICATION (tab)
+  
+[ ] Finish Data Handling window
+[ ] Fix strange styling in about window
+
+
   DISCOGRAPHY
 
 [X] Allow removal of favourite track
-[ ] Make nicer icon for Tracks button in tabber bar! pics/icon_tracks.png (album.js)
-[ ] Make nicer icon for Lyrics button in tabbed bar! pics/icon_lyrics.png (track.js)
+[-] Make nicer icon for Tracks button in tabber bar! pics/icon_tracks.png (album.js)
+[-] Make nicer icon for Lyrics button in tabbed bar! pics/icon_lyrics.png (track.js)
 ( ) Make favourites selection star icons work better on new background (in album.js tracklisting).
     Observe, the involved icons (icon_star.png, icon_unstar.png) are also used elsewhere, so might
     need new versions for here! (album.js)

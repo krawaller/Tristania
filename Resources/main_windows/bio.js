@@ -1,10 +1,7 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
-if (win.backButtonTitle == "Info") {
-    win.backButtonTitle = "Bio";
-}
-
-var bio = $.getMember(win.data.id, true);
+var bio = LDATA.getMember(win.data.id, true);
 
 win.title = bio.name;
 

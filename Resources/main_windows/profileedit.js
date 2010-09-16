@@ -15,7 +15,7 @@ var oldcoords = $.getUserData("coords"),
     type: "View",
    // height: 500, // doesn't allow for scrolling? need some stupid setting somewhere?
     childElements: [{
-        styleClass: "profilelabel",
+        styleClass: "infolabel",
         text: "Presentation",
         top: 20
     },{
@@ -23,16 +23,16 @@ var oldcoords = $.getUserData("coords"),
         id: "presentation",
         top: 50
     },{
-        styleClass: "profilelabel",
+        styleClass: "infolabel",
         text: "Location",
         top: 140
     },{
-        styleClass: "profiledatalabel",
+        styleClass: "datalabel",
         text: "(location unknown)",
         id: "location",
         top: 150
     },{
-        styleClass: "profilelabel",
+        styleClass: "infolabel",
         text: "Forum user name",
         top: 160
     },{

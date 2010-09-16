@@ -1,10 +1,11 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
 win.title = "Statistics";
 
 /***************************** FAKE A DATA DELIVERY FROM DB **************************/
 
-
+/*
 Ti.API.log("SENDING");
     
     
@@ -64,12 +65,12 @@ $.receiveCommunityData({
          }
      }
 });
-
+*/
 /************************************************************************************/
 
 Ti.API.log("getting statistics!");
 
-var stats = $.getCommunityStatistics();
+var stats = LDATA.getCommunityStatistics();
 if (!stats){
     Ti.UI.create({
         type: "AlertDialog",

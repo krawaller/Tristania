@@ -1,4 +1,5 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
     
 win.title = "Biography";
     
@@ -7,13 +8,13 @@ win.add($.create({
     childElements: [{
         type: "TableViewSection",
         headerTitle:"Members",
-        childElements: $.map($.getMemberList({current:true}),function(n){
+        childElements: $.map(LDATA.getMemberList({current:true}),function(n){
            n.childElements = [{text: n.title, styleClass: "tableviewrowmainlabel"}]; delete n.title;
         })
     },{ 
         type: "TableViewSection",
         headerTitle: "Former members",
-        childElements: $.map($.getMemberList({current:undefined}),function(n){
+        childElements: $.map(LDATA.getMemberList({current:undefined}),function(n){
            n.childElements = [{text: n.title, styleClass: "tableviewrowmainlabel"}]; delete n.title;
         })
     }],

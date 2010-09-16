@@ -14,9 +14,9 @@ var start,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
-    picView = $.createView({ backgroundColor: "#000", opacity: 0 }),
-    addfav = $.createButton({ image: '../pics/icon_unstar.png' }),
-    delfav = $.createButton({image: '../pics/icon_star.png'}),
+    picView = $.create({ type: "View", backgroundColor: "#000", opacity: 0 }),
+    addfav = $.create({ type: "Button", image: '../pics/icon_unstar.png' }),
+    delfav = $.create({ type: "Button", image: '../pics/icon_star.png'}),
     favbutton = $.create({type: "Button",height: 30, width: 30, right: 10, style: Ti.UI.iPhone.SystemButtonStyle.PLAIN, image: '../pics/icon_unstar.png',click:setFav}),
     pagebutton = $.create({type: "Button",height: 30,width: 40, left: 10, opacity: 0, color: "#000", title: "page"}),
     navbar = $.create({type: "View", height: 40, width: 100});
@@ -93,7 +93,8 @@ delfav.addEventListener("click",setFav);
 function createGallery(picurls){
     var views = [],v;
     for (var i=0; i<picurls.length;i++){
-        v = $.createImageView({
+        v = $.create({
+            type: "ImageView",
             image: picurls[i], // TODO - fix image size
             width:  320,
     		height: 480
@@ -102,7 +103,8 @@ function createGallery(picurls){
         urls.push(picurls[i]);
     }
     max = views.length;
-    scrollView = $.createScrollableView({
+    scrollView = $.create({
+        type: "ScrollableView",
         views:views,
     	showPagingControl:true,
     	pagingControlHeight:30,

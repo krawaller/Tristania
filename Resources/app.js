@@ -146,14 +146,14 @@ Ti.API.log("Nope, no new userdata saved.");
     }
 }
 
+Ti.include("assets/remotedata.js");
 function doOnResume(){
-    $.updateData(); Ti.API.log("wtf?"); uploadUserData(); Ti.API.log("hmm...");
+    //$.updateData();
+    if(Ti.App.Properties.getBool("alwaysupdate")){
+        RDATA.loadAll({silent:true},function(w,success){Ti.API.log("WEEEEEE "+w);});
+    }
+    //uploadUserData(); // TODO - fix this shit
 }
 
 Ti.App.addEventListener("resume",doOnResume);
 doOnResume();
-
-
-
-
-Ti.API.log(Ti.App.Properties.getString("comments"));

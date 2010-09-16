@@ -1,4 +1,5 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
 win.title = "Videos";
 
@@ -23,7 +24,7 @@ function renderList(vids){
 }
 
 function render(what){
-	renderList($[what == OFFICIAL ? "getOfficialVideos" : "getSelectedVideos"]());
+	renderList(LDATA[what == OFFICIAL ? "getOfficialVideos" : "getSelectedVideos"]());
 }
 
 win.rightNavButton = $.create({

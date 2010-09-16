@@ -1,6 +1,7 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
-var map, community = $.getCommunityMembers();
+var map, community = LDATA.getCommunityMembers();
 
 if(!community){
 // TODO vary this message depending on status
@@ -14,7 +15,7 @@ if(!community){
 }
 
 function render(){
-    var usercoords = $.getUserData("coords") || {latitude: 59.32485, longitude: 18.0699};
+    var usercoords = LDATA.getUserData("coords") || {latitude: 59.32485, longitude: 18.0699};
 	map = Titanium.Map.createView({
 		mapType: Titanium.Map.STANDARD_TYPE,
 		region: {
