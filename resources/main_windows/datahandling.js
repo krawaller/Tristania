@@ -3,7 +3,7 @@ Ti.include("../assets/remotedata.js");
     
 win.title = "Data handling";
 
-win.add($.create({
+var view = ($.create({
     type: "View",
     childElements: [{
         styleClass: "infolabel",
@@ -15,16 +15,29 @@ win.add($.create({
         value: Ti.App.Properties.getBool("alwaysupdate") || false,
         eventListeners: {
             change: function(e){
-Ti.API.log("alwaysupdate set to "+e.value);
                 Ti.App.Properties.setBool("alwaysupdate",e.value);
             }
         }
     },{
         type: "Button",
         title: "Load data now",
+        top: 90,
         styleClass: "optionsbutton",
         click: function(e){
-            RDATA.loadAll({});
+            view.childrenById.result.text = "Loading...";
+            RDATA.loadAll({},function(w){
+                view.childrenById.result.text +="\n...updated "+w+"!";
+            });
         }
+    },{
+        type: "Label",
+        styleClass: "resultlabel",
+        top: 120,
+        left: 20,
+        id: "result",
+        text: "",
+        
     }]
 }));
+
+win.add(view);
