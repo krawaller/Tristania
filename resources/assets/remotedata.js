@@ -1,4 +1,6 @@
 RDATA = {
+    uploadUserData: function(userdata){
+    },
     load: function(what,o,callback){
         Ti.API.log("...loading "+what);
         $.ajax($.merge({
