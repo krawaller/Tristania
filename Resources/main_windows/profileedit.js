@@ -1,15 +1,16 @@
 Ti.include("../assets/utils.js");
+Ti.include("../assets/localdata.js");
 
 win.title = "Profile";
 
 function populateFields(){
-    view.childrenById.presentation.value = $.getUserData("presentation");
-    view.childrenById.username.value = $.getUserData("username");
+    view.childrenById.presentation.value = LDATA.getUserData("presentation");
+    view.childrenById.username.value = LDATA.getUserData("username");
     view.childrenById.location.value = newcoords ? newcoords.latitude + ", "+newcoords.longitude : 
                                        oldcoords ? oldcoords.latitude + ", "+oldcoords.longitude : "(location unknown)";
 }
 
-var oldcoords = $.getUserData("coords"),
+var oldcoords = LDATA.getUserData("coords"),
     newcoords,
     view = $.create({
     type: "View",
