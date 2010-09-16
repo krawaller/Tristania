@@ -11,7 +11,7 @@ function fixTrack(t){
         type: "View",
         backgroundImage: "../pics/icon_unstar.png",
         click: function(e){
-            if (LDATA.getUserData(album.id) == t.id){
+            if (LDATA.getFavouriteTrack(album.id) == t.id){
                 $.create({
                     type: "AlertDialog",
                     title: "Favourite cleared",

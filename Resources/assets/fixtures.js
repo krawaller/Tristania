@@ -3,7 +3,7 @@
         appdata: {
             info: "<div class='content'>The app content has still not been updated from the net. Please start the app when phone is connected!</div>",
             date: "never"
-        }
+        },
         presentations: {
             widowsweeds: "<p>First full length album, which defined the gothic metal genre.</p>",
             beyondtheveil: "<p>Continuing the path embarked upon with Widow's Weeds, Beyond the Veil secured Tristania's claim to the gothic metal throne.</p>",
