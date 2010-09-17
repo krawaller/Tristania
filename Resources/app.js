@@ -28,7 +28,7 @@ var tabGroup = $.create({
  {title:"Application",url:"apptab.js"}].map(function(t){
     tabGroup.addTab( $.create({
         type: "Tab",
-        icon:"pics/icon_tab_"+t.title+".png",
+        icon:"pics/icon_tab_"+t.title.toLowerCase()+".png",
         title:t.title,
         window:$.create({
             type:"Window",
