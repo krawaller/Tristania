@@ -170,34 +170,14 @@ RDATA = {
 				
                 Ti.App.Properties.setString("communitymembers",JSON.stringify(com));
                 // deal with titlifying stats and storing them
-                
-				//if (!LDATA){
-				//    Ti.include("localdata.js");
-				//}
-				
-				return; // TODO - make sure response call contains stats!
-				
-				var stats = data.stats,a,t,albums = LDATA.getAlbums();
-                for(a in albums){
-                    var alb = LDATA.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
-                    stats.favalbum.results[alb.title] = stats.favalbum.results[alb.id] || {
-                        votes: 0,
-                        percentage: 0
-                    };
-                    delete stats.favalbum.results[alb.id];
-                    stats.favtracks[alb.title] = {results: {}};
-                    for(t in tracks){
-                        var trk = LDATA.getTrack(tracks[t]);
-                        stats.favtracks[alb.title].results[trk.title] = (stats.favtracks[alb.id] || {results:{}}).results[trk.id] || {
-                            votes: 0,
-                            percentage: 0
-                        };
-                        delete (stats.favtracks[alb.id] || {results:{}}).results[trk.id];
-                    }
-                    delete stats.favtracks[alb.id];
-                }
-                Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
+            }
+        },
+        statistics: {
+            url: "http://kra.couchone.com/tristania/_design/v1.0/_view/stats",
+            success: function(data){
+                Ti.App.Properties.setString("communitystats",JSON.stringify(data.rows[0].value));
+                Ti.App.Properties.setBool("titlifiedstats",false);
             }
         }
     }
-}
+};

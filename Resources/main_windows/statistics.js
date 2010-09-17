@@ -3,74 +3,44 @@ Ti.include("../assets/localdata.js");
 
 win.title = "Statistics";
 
-/***************************** FAKE A DATA DELIVERY FROM DB **************************/
-
-/*
-Ti.API.log("SENDING");
-    
-    
-$.receiveCommunityData({
-    members: {
-        666: {
-            username: "shithead",
-            presentation: "mooo boo",
-            favalbum: "rubicon",
-            favtracks: {
-                rubicon: "yearoftherat",
-            }
-        }
-    },
-    stats: {
-         members: 45,
-         favalbum: {
-             votes: 2,
-             results: {
-                 rubicon: {
-                     votes: 1,
-                     percentage: 50,
-                 },
-                 ashes: {
-                     votes: 1,
-                     percentage: 50
-                 }
-             }
-         },
-         favtracks: {
-             rubicon: {
-                 votes: 3,
-                 results: {
-                     yearoftherat: {
-                         votes: 1,
-                         percentage: 33
-                     },
-                     thepassing: {
-                         votes: 5,
-                         percentage: 33
-                     },
-                     illuminationtrack: {
-                         votes: 2,
-                         percentage: 33
-                     }
-                 }
-             },
-             beyondtheveil: {
-                 votes: 5,
-                 results: {
-                     angina: {
-                         votes: 5,
-                         percentage: 100
-                     }
-                 }
-             }
-         }
-     }
-});
-*/
+/***************************** old code **************************/
 /************************************************************************************/
 
 Ti.API.log("getting statistics!");
 
-var stats = LDATA.getCommunityStatistics();
+
+
+function titlifyStats(stats){
+    if (Ti.App.Properties.getBool("titlifiedstats") || !stats){
+        return stats;
+    }
+    var a,t,albums = LDATA.getAlbums();
+    for(a in albums){
+        var alb = LDATA.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
+        stats.favalbum.results[alb.title] = stats.favalbum.results[alb.id] || {
+            votes: 0,
+            percentage: 0
+        };
+        delete stats.favalbum.results[alb.id];
+        stats.favtracks[alb.title] = {results: {}};
+        for(t in tracks){
+            var trk = LDATA.getTrack(tracks[t]);
+            stats.favtracks[alb.title].results[trk.title] = (stats.favtracks[alb.id] || {results:{}}).results[trk.id] || {
+                votes: 0,
+                percentage: 0
+            };
+            delete (stats.favtracks[alb.id] || {results:{}}).results[trk.id];
+        }
+        delete stats.favtracks[alb.id];
+    }
+    Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
+    Ti.App.Properties.setBool("titlifiedstats",true);
+    return stats;
+}
+
+var stats = titlifyStats(LDATA.getCommunityStatistics());
+Ti.API.log(stats);
+
 if (!stats){
     Ti.UI.create({
         type: "AlertDialog",
@@ -79,6 +49,5 @@ if (!stats){
     }).show();
 }
 else {
-Ti.API.log(stats);
     win.add($.create({type: "WebView", templateFile: "statistics.tmpl", templateData: stats }));
 }
