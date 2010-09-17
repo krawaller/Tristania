@@ -71,9 +71,9 @@ Ti.API.log("Preparing to add "+(keys.length-1)+" members!");
 	function addNeedle(){
 	    var member = community.members[keys[index]];
         if (member.guid != Ti.Platform.id){
-Ti.API.log("...adding "+member.username+" with id "+member.guid+" (platform is "+Ti.Platform.id+")");
+Ti.API.log("...adding "+member.username+" with id "+member.guid+" (platform is "+Ti.Platform.id+") ");
             map.addAnnotation(Ti.Map.createAnnotation({
-                latitute: member.coords.latitude,
+                latitude: member.coords.latitude,
                 longitude: member.coords.longitude,
                 title: member.username,
                 animate: false,
