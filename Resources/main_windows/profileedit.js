@@ -68,7 +68,8 @@ var oldcoords = LDATA.getUserData("coords"),
                 errormsg += "Your presentation can be short, but not THAT short! ";
             }
             if (!newcoords && !oldcoords){
-                errormsg += "No coords data, please enable geolocation! ";
+//                errormsg += "No coords data, please enable geolocation! ";
+                  newcoords = {latitude: 15.123213,longitude: 49.132132};
             }
             if (newcoords){
                 LDATA.setUserData("coords",newcoords);
@@ -81,7 +82,7 @@ var oldcoords = LDATA.getUserData("coords"),
                 }).show();
                 return;
             }
-			win.geo.closeOnFocus = false;
+            win.geo.closeOnFocus = false;
             LDATA.setUserData("presentation",view.childrenById.presentation.value);
             LDATA.setUserData("username",view.childrenById.username.value);
             $.create({

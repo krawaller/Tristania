@@ -2,7 +2,6 @@ Ti.include("../assets/utils.js");
 Ti.include("../assets/localdata.js");
 
 var map, community;
-Ti.API.info(['com', community]);
 
 if(!(LDATA.getUserData("username") && LDATA.getUserData("presentation"))){
 // TODO vary this message depending on status
@@ -31,6 +30,7 @@ if(!(LDATA.getUserData("username") && LDATA.getUserData("presentation"))){
 
 function render(){
 	community = LDATA.getCommunityMembers();
+Ti.API.info(['ALL:', community]);
     var usercoords = LDATA.getUserData("coords") || {latitude: 59.32485, longitude: 18.0699};
 	if(map){ win.remove(map); }
 	map = Titanium.Map.createView({
@@ -46,45 +46,44 @@ function render(){
 		regionFit: true,
 		// userLocation: true,
 		annotations: []
-	});
+    });
 	win.add(map);
-	map.addEventListener("click",function(e){
+	
+    map.addEventListener("click",function(e){
         if(e.annotation && e.clicksource == "rightButton"){
-            Ti.UI.currentTab.open($.create({ type: "Window", url:'profileview.js',user: community[e.annotation.guid] }));
+            Ti.UI.currentTab.open($.create({ type: "Window", url:'profileview.js',user: community.members[e.annotation.guid] }));
         }
-	});
-Ti.API.log("Adding you!");
+    });
+
 	map.addAnnotation(Ti.Map.createAnnotation({
 		latitude : usercoords.latitude,
 		longitude : usercoords.longitude,
-		title : "You!!",
-//      subtitle : 'Laddar...', 
+		title : "You!",
 		animate : false,
 		image : '../pics/placemark_you.png',
         rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
         guid: -666
 	}));
-Ti.API.log(community);
-	var communityarray = [], index = 0;
-	for(var m in community){
-	    communityarray.push(m);
-	}
-Ti.API.log("Preparing to add "+communityarray.length+" members!");
+
+	var keys = community.keys, index = 0;
+
+Ti.API.log("Preparing to add "+(keys.length-1)+" members!");
 	function addNeedle(){
-Ti.API.log("adding member "+index);
-	    var member = community[communityarray[index]];
-Ti.API.log("...which is "+member.username);
-	    map.addAnnotation(Ti.Map.createAnnotation({
-	        latitute: member.coords.latitude,
-	        longitude: member.coords.longitude,
-	        title: member.username,
-	        animate: false,
-	        image: '../pics/placemark.png',
-	        rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
-            guid: member.guid
-	    }));
-	    index++;
-        if (index<communityarray.length){
+	    var member = community.members[keys[index]];
+        if (member.guid != Ti.Platform.id){
+Ti.API.log("...adding "+member.username+" with id "+member.guid+" (platform is "+Ti.Platform.id+")");
+            map.addAnnotation(Ti.Map.createAnnotation({
+                latitute: member.coords.latitude,
+                longitude: member.coords.longitude,
+                title: member.username,
+                animate: false,
+                image: '../pics/placemark.png',
+                rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+                guid: member.guid
+       	    }));
+       	}
+            index++;
+        if (index<keys.length){
             setTimeout(addNeedle,index);
         }
 	}
@@ -111,7 +110,7 @@ var btn = $.create({
             styleClass: "optionsbutton",
             top: 10,
             click: function(){
-                Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
+                Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js', geo: win }));
             }
         },{
             title: "Statistics",

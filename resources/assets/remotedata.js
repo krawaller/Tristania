@@ -158,21 +158,28 @@ RDATA = {
             success: function(data){
                 // storing community members
 				
-				var members = data.rows.map(function(row){
+				var com = {keys:[],members:{}};
+				data.rows.map(function(row){
 					var d = row.value;
 					d.guid = d._id;
 					delete d._id;
 					delete d._rev;
-					return d;
+					com.members[d.guid] = d;
+					com.keys.push(d.guid);
 				});
 				
-                Ti.App.Properties.setString("communitymembers",JSON.stringify(members));
+                Ti.App.Properties.setString("communitymembers",JSON.stringify(com));
                 // deal with titlifying stats and storing them
                 
-				//TODO: Please fix David!
-				/*var stats = data.stats,a,t,albums = $.getAlbums();
+				//if (!LDATA){
+				//    Ti.include("localdata.js");
+				//}
+				
+				return; // TODO - make sure response call contains stats!
+				
+				var stats = data.stats,a,t,albums = LDATA.getAlbums();
                 for(a in albums){
-                    var alb = $.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
+                    var alb = LDATA.getAlbum(albums[a].id), tracks = alb.tracks.concat(alb.bonustracks || []);
                     stats.favalbum.results[alb.title] = stats.favalbum.results[alb.id] || {
                         votes: 0,
                         percentage: 0
@@ -180,7 +187,7 @@ RDATA = {
                     delete stats.favalbum.results[alb.id];
                     stats.favtracks[alb.title] = {results: {}};
                     for(t in tracks){
-                        var trk = $.getTrack(tracks[t]);
+                        var trk = LDATA.getTrack(tracks[t]);
                         stats.favtracks[alb.title].results[trk.title] = (stats.favtracks[alb.id] || {results:{}}).results[trk.id] || {
                             votes: 0,
                             percentage: 0
@@ -189,7 +196,7 @@ RDATA = {
                     }
                     delete stats.favtracks[alb.id];
                 }
-                Ti.App.Properties.setString("communitystats",JSON.stringify(stats));*/
+                Ti.App.Properties.setString("communitystats",JSON.stringify(stats));
             }
         }
     }

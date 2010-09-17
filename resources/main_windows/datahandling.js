@@ -1,5 +1,6 @@
 Ti.include("../assets/utils.js");
 Ti.include("../assets/remotedata.js");
+Ti.include("../assets/localdata.js");
     
 win.title = "Data handling";
 
