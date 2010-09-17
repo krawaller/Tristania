@@ -9,7 +9,7 @@ function fixTrack(t){
     t.childElements = [{
         id: "favButton",
         type: "View",
-        backgroundImage: "../pics/icon_unstar.png",
+        backgroundImage: "../pics/icon_unstar_dark.png",
         click: function(e){
             if (LDATA.getFavouriteTrack(album.id) == t.id){
                 $.create({
@@ -17,15 +17,15 @@ function fixTrack(t){
                     title: "Favourite cleared",
                     message: "No favourite track selected"
                 }).show();
-                e.source.backgroundImage = "../pics/icon_unstar.png";
+                e.source.backgroundImage = "../pics/icon_unstar_dark.png";
                 currentElem = null;
                 LDATA.setFavouriteTrack(album.id);
                 return;
             }
             if (currentElem){
-                currentElem.backgroundImage = "../pics/icon_unstar.png";
+                currentElem.backgroundImage = "../pics/icon_unstar_dark.png";
             }
-            e.source.backgroundImage = "../pics/icon_star.png";
+            e.source.backgroundImage = "../pics/icon_star_dark.png";
             currentElem = e.source;
             LDATA.setFavouriteTrack(album.id,t.id);
             $.create({
@@ -102,7 +102,7 @@ var currentFav = LDATA.getFavouriteTrack(album.id),
         
 if (currentElem){
     currentElem = currentElem.childrenById.favButton;
-    currentElem.backgroundImage = "../pics/icon_star.png";
+    currentElem.backgroundImage = "../pics/icon_star_dark.png";
 }
 
 

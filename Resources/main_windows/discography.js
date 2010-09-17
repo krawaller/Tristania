@@ -11,7 +11,7 @@ var albums = LDATA.getAlbums(),
     images = albums.map(function(a){ return "../pics/"+a.pic; }),
     addfav = $.create({
         type: "Button",
-        image: '../pics/icon_unstar.png', 
+        image: '../pics/icon_unstar_light.png', 
         click: function(e){
             Ti.UI.createAlertDialog({ title: 'Album selected', message: 'Favourite album set to '+albums[cfv.selected].title }).show();
             LDATA.setUserData("favalbum",albums[cfv.selected].id);
@@ -20,7 +20,7 @@ var albums = LDATA.getAlbums(),
     }),
     delfav = $.create({
         type: "Button",
-        image: '../pics/icon_star.png', 
+        image: '../pics/icon_star_light.png', 
         click: function(e){
             Ti.UI.createAlertDialog({ title: 'Favourite cleared', message: "No favourite album set" }).show();
             LDATA.removeUserData("favalbum");

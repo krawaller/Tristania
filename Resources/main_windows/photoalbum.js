@@ -15,9 +15,9 @@ var start,
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
     picView = $.create({ type: "View", backgroundColor: "#000", opacity: 0 }),
-    addfav = $.create({ type: "Button", image: '../pics/icon_unstar.png' }),
-    delfav = $.create({ type: "Button", image: '../pics/icon_star.png'}),
-    favbutton = $.create({type: "Button",height: 30, width: 30, right: 10, style: Ti.UI.iPhone.SystemButtonStyle.PLAIN, image: '../pics/icon_unstar.png',click:setFav}),
+    addfav = $.create({ type: "Button", image: '../pics/icon_unstar_light.png' }),
+    delfav = $.create({ type: "Button", image: '../pics/icon_star_light.png'}),
+    favbutton = $.create({type: "Button",height: 30, width: 30, right: 10, style: Ti.UI.iPhone.SystemButtonStyle.PLAIN, image: '../pics/icon_unstar_light.png',click:setFav}),
     pagebutton = $.create({type: "Button",height: 30,width: 40, left: 10, opacity: 0, color: "#000", title: "page"}),
     navbar = $.create({type: "View", height: 40, width: 100});
 navbar.add(favbutton);
@@ -59,10 +59,10 @@ function favs(){ return Ti.App.Properties.getList('favPics') || []; }
 
 function updateView(){
     // update favourites button
-//    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
+//    fav.backgroundImage = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar_light.png' : '../pics/icon_star_light.png';
     win.rightNavButton = favs().indexOf(urls[win.sv.currentPage]) == -1 ? addfav : delfav;
-//    favbutton.image = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png';
-//    favbutton.animate({image:favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar.png' : '../pics/icon_star.png',duration:100});
+//    favbutton.image = favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar_light.png' : '../pics/icon_star_light.png';
+//    favbutton.animate({image:favs().indexOf(urls[win.sv.currentPage]) == -1 ? '../pics/icon_unstar_light.png' : '../pics/icon_star_light.png',duration:100});
     // update title    
     win.setTitle((win.sv.currentPage+1)+"/"+max);
 }
