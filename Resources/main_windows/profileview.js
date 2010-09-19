@@ -16,4 +16,14 @@ function titlifyData(d){
     return d;
 }
 
+if (!win.user){
+    win.rightNavButton = $.create({
+        type: "Button",
+        title: "edit",
+        click: function(e){
+            Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js' }));
+        }
+    });
+}
+
 win.add($.create({type: "WebView", templateFile: "profileview.tmpl", templateData: titlifyData(win.user || LDATA.getUserData())}));

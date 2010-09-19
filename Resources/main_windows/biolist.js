@@ -3,7 +3,7 @@ Ti.include("../assets/localdata.js");
     
 win.title = "Biography";
     
-win.add($.create({
+var view = $.create({
     type: "TableView",
     childElements: [{
         type: "TableViewSection",
@@ -22,5 +22,10 @@ win.add($.create({
         var win = $.create({ type: "Window", url:'bio.js' });
         win.data = e.rowData.def;
         Ti.UI.currentTab.open(win);
-    }
-}));
+    },
+    opacity: 0
+});
+
+view.animate({opacity:1,duration:500});
+
+win.add(view);

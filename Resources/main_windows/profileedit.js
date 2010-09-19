@@ -2,7 +2,9 @@ Ti.include("../assets/utils.js");
 Ti.include("../assets/localdata.js");
 
 win.title = "Profile";
-win.geo.closeOnFocus = !(LDATA.getUserData("username") && LDATA.getUserData("presentation"));
+if (win.geo){
+    win.geo.closeOnFocus = !(LDATA.getUserData("username") && LDATA.getUserData("presentation"));
+}
 
 function populateFields(){
     view.childrenById.presentation.value = LDATA.getUserData("presentation");
@@ -77,6 +79,7 @@ var oldcoords = LDATA.getUserData("coords"),
             }
             if (!newcoords && !oldcoords){
                 errormsg += "No coords data, please enable geolocation! ";
+//newcoords = {latitude: 15.123213,longitude: 49.132132};
             }
 Ti.API.log(["new:",newcoords,"old:",oldcoords]);
             if (newcoords){
@@ -90,7 +93,9 @@ Ti.API.log(["new:",newcoords,"old:",oldcoords]);
                 }).show();
                 return;
             }
-            win.geo.closeOnFocus = false;
+            if (win.geo){
+                win.geo.closeOnFocus = false;
+            }
             LDATA.setUserData("presentation",view.childrenById.presentation.value);
             LDATA.setUserData("username",view.childrenById.username.value);
             $.create({
@@ -114,7 +119,7 @@ Titanium.Geolocation.purpose = "Including you on the Tristania Fan Map";
 Titanium.Geolocation.getCurrentPosition(function(e){
 Ti.API.log("WEEE position callback!");
     view.childrenById.spinner.hide();
-//e.coords = e.coords || {latitude: 15.123213,longitude: 49.132132};
+// e.coords = e.coords || {latitude: 15.123213,longitude: 49.132132};
     if (!e.coords || e.error) {
    //     if (win == Ti.UI.currentWindow){
             $.create({

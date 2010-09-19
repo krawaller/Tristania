@@ -4,6 +4,7 @@ win.title = "Media";
 
 var view = $.create({
     type: "View",
+    opacity: 0,
     childElements: [{
         text: "Pictures",
         styleClass: "categoryButton",

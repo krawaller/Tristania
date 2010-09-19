@@ -216,6 +216,7 @@ win.addEventListener("focus",updateFavourites);
 
 
 function updateFavourites(){
-    if (!table || win.info) {return;}
+    if (!table || !table.childrenById[0].childrenById.fav) {Ti.API.log("nah, no update"); return;}
+    Ti.API.log("Setting fav text to "+(Ti.App.Properties.getList('favPics') || []).length);
     table.childrenById[0].childrenById.fav.childrenById.num.text = "("+(Ti.App.Properties.getList('favPics') || []).length+")";
 }

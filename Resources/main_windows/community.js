@@ -4,6 +4,7 @@ win.title = "Community";
 
 var view = $.create({
     type: "View",
+    opacity: 0,
     childElements: [{
         text: "Map",
         styleClass: "categoryButton",

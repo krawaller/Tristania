@@ -620,7 +620,7 @@ var LDATA = (function(){
             return JSON.parse(Ti.App.Properties.getString("appdata"));
         },
         getHistory: function(){
-            return JSON.parse(Ti.App.Properties.getString("history") || JSON.stringify({info:"<div class='subtitle'>from moo</div><div class='content'><p>History bla bla bla</p><p>Wee wee wee!</p></div>"}));
+            return JSON.parse(Ti.App.Properties.getString("history") || JSON.stringify({info:"<div class='content'><p>Not yet loaded!</p></div>"}));
         },
         
 // USER-ENTERED DATA

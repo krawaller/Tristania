@@ -38,7 +38,8 @@ function titlifyStats(stats){
     return stats;
 }
 
-var stats = titlifyStats(LDATA.getCommunityStatistics());
+var stats = titlifyStats(LDATA.getCommunityStatistics()),
+    spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG });
 
 if (!stats){
     $.create({
@@ -51,5 +52,16 @@ if (!stats){
     }).show();
 }
 else {
-    win.add($.create({type: "WebView", templateFile: "statistics.tmpl", templateData: stats }));
+    win.add(spinner);
+    spinner.show();
+    win.add($.create({
+        type: "WebView",
+        templateFile: "statistics.tmpl",
+        templateData: stats,
+        eventListeners: {
+            load: function(e){
+                spinner.hide();
+            }
+        }
+    }));
 }

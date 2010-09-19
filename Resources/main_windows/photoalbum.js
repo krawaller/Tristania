@@ -14,7 +14,18 @@ var start,
     urls = [], // TODO - really need this as global var? Hacky!
     max = win.info.num == -666 ? favs().length : win.info.pics,
     scrollView,
-    picView = $.create({ type: "View", backgroundColor: "#000", opacity: 0 }),
+    spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndicatorStyle.BIG }),
+    picView = $.create({
+        type: "View",
+        backgroundColor: "#000", 
+        opacity: 0,
+        eventListeners: {
+            load: function(e){
+                picView.animate({duration:500,opacity:1});
+                spinner.hide();
+            }
+        }
+    }),
     addfav = $.create({ type: "Button", image: '../pics/icon_unstar_light.png' }),
     delfav = $.create({ type: "Button", image: '../pics/icon_star_light.png'}),
     favbutton = $.create({type: "Button",height: 30, width: 30, right: 10, style: Ti.UI.iPhone.SystemButtonStyle.PLAIN, image: '../pics/icon_unstar_light.png',click:setFav}),
@@ -23,8 +34,9 @@ var start,
 navbar.add(favbutton);
 navbar.add(pagebutton);
 win.add(picView);
-win.rightNavButton = addfav; //navbar;
-picView.animate({duration:500,opacity:1});
+if (!(win.info.num == -666 && favs().length == 0)){
+    win.rightNavButton = addfav; //navbar;
+}
 
 
     // ********** Dealing with hiding of UI when clicking pic *************
@@ -127,6 +139,8 @@ function buildRemoteGallery(res){
 
 if (win.info.num != -666){
 Ti.API.log("REMOTE GALLERY LOAD LOAD LOAD !!");
+    win.add(spinner);
+    spinner.show();
     $.ajax({
         url: getREST(win.info && win.info.page),
         success: buildRemoteGallery
