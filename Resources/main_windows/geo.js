@@ -53,7 +53,7 @@ Ti.API.info(['ALL:', community]);
 		},
 		animate: false,
 		regionFit: true,
-		// userLocation: true,
+	    userLocation: false,
 		annotations: []
     });
 	win.add(map);

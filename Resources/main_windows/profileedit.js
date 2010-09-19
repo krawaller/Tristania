@@ -126,7 +126,7 @@ Ti.API.log("WEEE position callback!");
     }
     else {
         newcoords = {latitude: e.coords.latitude, longitude: e.coords.longitude};
-        view.childrenById.location.value = newcoords.latitude + ", "+newcoords.longitude;
+        view.childrenById.location.title = newcoords.latitude + ", "+newcoords.longitude;
     }
 });
 
