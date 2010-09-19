@@ -5,7 +5,7 @@ APP TODO-LIST
 
 [X] Centralise user data to single object for easier upload
 [X] Make automatic data updating fail silently!
-[ ] Nicer icons for the tabs! icon_tab_info.png, icon_tab_media.png, icon_tab_community.png
+[X] Nicer icons for the tabs! icon_tab_info.png, icon_tab_media.png, icon_tab_community.png
 (X) relocate local data handling to separate file
 (X) relocate remote data handling to separate file
 
@@ -20,7 +20,7 @@ APP TODO-LIST
 
   PHOTO GALLERY
 
-[ ] Truncate subheadlines when needed! example: go to concerts, check 2005 subheadline
+[X] Truncate subheadlines when needed! example: go to concerts, check 2005 subheadline
 [ ] Graceful error handling
 ( ) Make images not jump a few pixels when showing navigation is toggled in photoalbum.js
 ( ) Add possibility to save pics
@@ -56,8 +56,8 @@ APP TODO-LIST
 
   APPLICATION (tab)
   
-[ ] Finish Data Handling window
-[ ] Fix strange styling in about window
+[X] Finish Data Handling window
+[X] Fix strange styling in about window
 
 
   DISCOGRAPHY
@@ -71,11 +71,11 @@ APP TODO-LIST
     
   MAP
 
-[ ] Make nicer icon for options button! (icon_options.png)
-[ ] Make couchDB database
+[X] Make nicer icon for options button! (icon_options.png)
+[X] Make couchDB database
 [X] Add options screen
 [X] Profile editing screen
-[ ] Style options and profile editing
+[X] Style options and profile editing
 [X] Statistics screen
 [X] Pin profile screen
-[ ] Make the shit actually work :)
+[X] Make the shit actually work :)

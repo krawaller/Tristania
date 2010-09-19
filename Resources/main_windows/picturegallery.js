@@ -75,7 +75,7 @@ function fixRow(row){
         childElements: [{text: row.title, styleClass: "tableviewrowmainlabel"}]
     };
     if (row.desc){
-        ret.childElements.push({text: row.desc, styleClass: "tableviewrowsublabel"});
+        ret.childElements.push({text: row.desc.length>50?row.desc.substr(0,58)+"...":row.desc, styleClass: "tableviewrowsublabel"});
     }
     if (row.pics && !row.page){
         ret.childElements.push({text: "("+(row.albums?row.albums+"/":"")+row.pics+")", styleClass: "tableviewrowsidelabel"});
