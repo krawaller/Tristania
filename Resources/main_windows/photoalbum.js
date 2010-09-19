@@ -38,7 +38,6 @@ if (!(win.info.num == -666 && favs().length == 0)){
     win.rightNavButton = addfav; //navbar;
 }
 
-
     // ********** Dealing with hiding of UI when clicking pic *************
 
 win.addEventListener('touchstart', function(e){
