@@ -24,7 +24,9 @@ navbar.add(favbutton);
 navbar.add(pagebutton);
 win.add(picView);
 win.rightNavButton = addfav; //navbar;
-picView.animate({duration:500,opacity:1});
+picView.addEventListener('load', function(){
+	picView.animate({duration:500,opacity:1});
+});
 
 
     // ********** Dealing with hiding of UI when clicking pic *************
