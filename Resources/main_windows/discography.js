@@ -4,7 +4,7 @@ Ti.include("../assets/localdata.js");
 win.title = "Discography";
 
 function updateView(){
-    win.rightNavButton = (LDATA.getUserData("favalbum") === albums[cfv.selected].id) ? delfav : addfav;
+    win.rightNavButton = (LDATA.getUserData("favalbum") === albums[cfv.selected || 0].id) ? delfav : addfav;
 }
 
 var albums = LDATA.getAlbums(),

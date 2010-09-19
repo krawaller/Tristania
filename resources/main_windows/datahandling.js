@@ -25,10 +25,16 @@ var view = ($.create({
         top: 140,
         styleClass: "optionsbutton",
         click: function(e){
+            var n = {
+                spreadsheet: "content",
+                videos: "video list",
+                community: "community map",
+                statistics: "community statistics"
+            };
             view.childrenById.result.text = "Loading...";
 			Ti.API.info(['==== LOAD'])
             RDATA.loadAll({},function(w){
-                view.childrenById.result.text +="\n...updated "+w+"!";
+                view.childrenById.result.text +="\n...updated "+(n[w] || w)+"!";
             });
         }
     },{

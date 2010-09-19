@@ -1,35 +1,44 @@
 Ti.include("../assets/utils.js");
 Ti.include("../assets/localdata.js");
 
-var map, community;
+var map, community, rendered = false;
 
-if(!(LDATA.getUserData("username") && LDATA.getUserData("presentation"))){
-// TODO vary this message depending on status
-    
-	var a = Ti.UI.createAlertDialog({
+if(!LDATA.getUserData("username")){
+    $.create({
+        type: "AlertDialog",
 		buttonNames: ['OK','Cancel'],
 		cancel: 1,
+		click: function(e){
+            if (e.index == 0) {
+			    Ti.UI.currentTab.open($.create({
+				    type: "Window",
+                    url: 'profileedit.js',
+                    geo: win
+		        }));
+            } else {
+                win.close();
+            }
+		},
 		title: 'Join the community!',
 		message: 'Before you can see the map you must fill in your data and upload it!',
-	});
-	a.addEventListener('click', function(e){
-		if (e.index == 0) {
-			Ti.UI.currentTab.open($.create({
-				type: "Window",
-				url: 'profileedit.js',
-				geo: win
-			}));
-		} else {
-			win.close();
-		}
-	});
-	a.show();
+	}).show();
+} else if (!LDATA.getCommunityMembers()) {
+    $.create({
+        type: "AlertDialog",
+		click: function(e){ win.close(); },
+		title: 'Community not yet downloaded!',
+		message: 'The application has not yet downloaded the community map.',
+	}).show();
 } else {
-	render();
+    render();
 }
 
 function render(){
 	community = LDATA.getCommunityMembers();
+    if (rendered || !community || !LDATA.getUserData("username")){
+        return;
+    }
+    rendered = true;
 Ti.API.info(['ALL:', community]);
     var usercoords = LDATA.getUserData("coords") || {latitude: 59.32485, longitude: 18.0699};
 	if(map){ win.remove(map); }
@@ -137,6 +146,9 @@ win.addEventListener('focus', function(){
 	Ti.API.info(['closeOnFocus', win.closeOnFocus]);
 	if(win.closeOnFocus){ 
 		setTimeout(function(){ win.close(); }, 500);
+	}
+	else {
+	    render();
 	}
 });
 

@@ -135,7 +135,7 @@ var defopts = {
     "textarea": {
         height:70,
         width:300,
-        font:{fontSize:20,fontFamily:'Marker Felt', fontWeight:'bold'},
+        font:{fontSize:16,fontFamily:'Marker Felt', fontWeight:'normal'},
         color:'#888',
         textAlign:'left',
         appearance:Titanium.UI.KEYBOARD_APPEARANCE_ALERT,	
@@ -143,9 +143,10 @@ var defopts = {
     },
     
     "textfield": {
-        color:'#336699',
+        color:'#888',
         height:35,
         width:250,
+        font:{fontSize:16,fontFamily:'Marker Felt', fontWeight:'normal'},
         keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
         returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,
         borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -207,6 +208,10 @@ var defopts = {
     "datalabel" : {
         width: 320,
         height: 20,
+        font: {
+            fontSize: 12,
+            fontStyle: "italic"
+        },
         textAlign: "center"
     },
  
