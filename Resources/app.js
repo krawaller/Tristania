@@ -47,6 +47,7 @@ tabGroup.open({ transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
  * Add means of navigation and an action sheet to let the user favorize the url.
  * @param {object} event object
  */
+ 
 Ti.App.addEventListener('openUrl', function(e){
 	var openUrlEvent = e;
 
@@ -126,8 +127,7 @@ Ti.App.addEventListener('openUrl', function(e){
 
 
 
-
-/************************** User data server code *************************/
+//************************* User data server code ************************* /
 
 // this event fires from profileedit.js when user profile is successfully updated
 Ti.App.addEventListener("uploadready",function(e){
@@ -164,6 +164,12 @@ function doOnResume(){
 
 Ti.App.addEventListener("resume",doOnResume);
 doOnResume();
+
+
+
+
+
+
 
 // Force load
 function forceLoad(){
