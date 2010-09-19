@@ -37,11 +37,10 @@ var tabGroup = $.create({
         })
     }) );
 });
-
+Ti.UI.setBackgroundImage("pics/tristaniabg.jpg");
 // open tab group
 tabGroup.open({ transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
 
-Ti.UI.setBackgroundImage("pics/tristaniabg.jpg");
 
 /**
  * Open a url in a new window.

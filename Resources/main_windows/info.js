@@ -1,9 +1,22 @@
 Ti.include("../assets/utils.js");
     
 win.title = "Info";
+var spinner = Ti.UI.createActivityIndicator({
+	width: 80,
+	height: 80,
+	borderRadius: 20,
+	backgroundColor: '#000',
+	opacity: 0.8,
+	zIndex: 1337,
+	style: Titanium.UI.iPhone.ActivityIndicatorStyle.BIG
+});
+win.add(spinner);
+spinner.show();
 
-win.add( $.create({
+setTimeout(function(){
+var view = $.create({
     type: "View",
+	opacity: 0,
     childElements: [{
         styleClass: "categoryButton",
         text: "News",
@@ -33,4 +46,8 @@ win.add( $.create({
             Ti.UI.currentTab.open($.create({ type: "Window", url:'history.js' }));
         }
     }]
-}));
+});
+win.add(view);
+spinner.hide();
+view.animate({opacity: 1, duration: 500});
+}, 200);

@@ -2,8 +2,9 @@ Ti.include("../assets/utils.js");
     
 win.title = "Application";
 
-win.add( $.create({
+var view = $.create({
     type: "View",
+	opacity: 0,
     childElements: [{
         styleClass: "categoryButton",
         text: "About",
@@ -19,4 +20,6 @@ win.add( $.create({
             Ti.UI.currentTab.open($.create({ type: "Window", url:'datahandling.js' }));
         }
     }]
-}));
+});
+win.add(view);
+view.animate({opacity: 1, duration: 500});

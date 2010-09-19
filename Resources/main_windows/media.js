@@ -2,7 +2,7 @@ Ti.include("../assets/utils.js");
     
 win.title = "Media";
 
-win.add( $.create({
+var view = $.create({
     type: "View",
     childElements: [{
         text: "Pictures",
@@ -19,4 +19,6 @@ win.add( $.create({
             Ti.UI.currentTab.open($.create({ type: "Window", url:'vids.js' }));
         }
     }]
-}));
+})
+win.add(view);
+view.animate({opacity: 1, duration: 500});

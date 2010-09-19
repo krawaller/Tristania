@@ -2,7 +2,7 @@ Ti.include("../assets/utils.js");
     
 win.title = "Community";
 
-win.add( $.create({
+var view = $.create({
     type: "View",
     childElements: [{
         text: "Map",
@@ -34,4 +34,6 @@ win.add( $.create({
             Ti.UI.currentTab.open($.create({ type: "Window", url:'facebook.js' }));
         }
     }]
-}));
+});
+win.add(view);
+view.animate({opacity: 1, duration: 500});
