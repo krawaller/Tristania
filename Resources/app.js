@@ -11,6 +11,7 @@ if (!Ti.App.Properties.getBool("hasFixtures")){ // first time app is run! we sto
         Ti.App.Properties.setString(p,JSON.stringify(fixtures[p]));
     }
     Ti.App.Properties.setBool("hasFixtures",true);
+    Ti.App.Properties.setBool("alwaysupdate",true); // default
 }
 
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
@@ -156,7 +157,7 @@ function uploadUserData(){
 
 function doOnResume(){
     //$.updateData();
-    if(Ti.App.Properties.getBool("alwaysupdate")){
+    if(!!Ti.App.Properties.getBool("alwaysupdate")){
         RDATA.loadAll({silent:true},function(w,success){Ti.API.log("WEEEEEE "+w);});
     }
     uploadUserData();

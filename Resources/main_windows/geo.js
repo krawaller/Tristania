@@ -94,7 +94,7 @@ Ti.API.log("...adding "+member.username+" with id "+member.guid+" (platform is "
 
 var btn = $.create({
         type: "Button",
-        image: "../pics/icon_options.png",
+        image: "../pics/icon_tab_application.png", //icon_options.png",
         click: function(){
             optionsView.animate({duration: 500, opacity: showingOptions ? 0 : 1});
             showingOptions = !showingOptions;
@@ -106,27 +106,27 @@ var btn = $.create({
         opacity: 0,
         backgroundColor: "#000",
         childElements: [{
-            title: "Your profile",
+            title: "Edit profile",
             styleClass: "optionsbutton",
-            top: 10,
+            top: 60,
             click: function(){
                 Ti.UI.currentTab.open($.create({ type: "Window", url:'profileedit.js', geo: win }));
             }
         },{
             title: "Statistics",
             styleClass: "optionsbutton",
-            top: 60,
+            top: 110,
             click: function(){
                 Ti.UI.currentTab.open($.create({ type: "Window", url:'statistics.js' }));
             }
-        },{
+        }/*,{
             title: "Profile view test",
             styleClass: "optionsbutton",
-            top: 110,
+            top: 160,
             click: function(){
                 Ti.UI.currentTab.open($.create({ type: "Window", url:'profileview.js' }));
             }
-        }]
+        }*/]
     }),
     showingOptions = false;
     

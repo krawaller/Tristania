@@ -39,13 +39,15 @@ function titlifyStats(stats){
 }
 
 var stats = titlifyStats(LDATA.getCommunityStatistics());
-Ti.API.log(stats);
 
 if (!stats){
-    Ti.UI.create({
+    $.create({
         type: "AlertDialog",
         title: "No statistics",
-        message: "You haven't yet received any statistics from the server. Please try later!"
+        message: "You haven't yet received any statistics from the server. Please try later!",
+        click: function(e){
+            win.close();
+        }
     }).show();
 }
 else {

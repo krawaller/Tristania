@@ -152,7 +152,9 @@ var defopts = {
     },
     
     "slider":{},
-    "switch":{},
+    "switch":{
+        selectedColor: "#333"
+    },
     
  // ***************Styleclasses **************
  
@@ -178,14 +180,29 @@ var defopts = {
     "optionsbutton": {
         type: "Button",
         width: 200,
-        height: 30
+        height: 30,
+        color: "#333",
+        selectedColor: "#000",
+        backgroundSelectedColor: "#333",
+        backgroundSelectedImage: undefined,
+        backgroundSelectedGradient: undefined
     },
     
     "infolabel" : {
         height: 30,
-        color: "red",
+        color: "#333",
+        font: {
+            fontSize: 16
+        },
         width: 320,
         textAlign: "center"
+    },
+    "resultlabel" : {
+        color: "#333",
+        font: {
+            fontSize: 14,
+            fontStyle: "italic"
+        }
     },
     "datalabel" : {
         width: 320,

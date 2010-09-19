@@ -21,9 +21,13 @@ var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndica
             click: function(e){
                 var val = Math.round(pageSelect.childrenById.slider.value);
                 togglePageSelect();
-                win.remove(table);
+                if (table){
+                    win.remove(table);
+                }
                 spinner.show();
-                win.rightNavButton.title = "page "+val+"/"+pages;
+                if (win.rightNavButton){
+                    win.rightNavButton.title = "page "+val+"/"+pages;
+                }
                 $.ajax({
                     url: getREST(Math.round(val),win.info ? win.info.type : "category"),
                     success: function(d){
@@ -38,7 +42,7 @@ var spinner = Ti.UI.createActivityIndicator({ style: Ti.UI.iPhone.ActivityIndica
             height: 20,
             color: "#FFF",
             id: "label",
-            text: "page",
+            text: "page 1",
             textAlign: "center"
         },{
             type: "Slider",

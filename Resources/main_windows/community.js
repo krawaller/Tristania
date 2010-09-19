@@ -5,7 +5,7 @@ win.title = "Community";
 win.add( $.create({
     type: "View",
     childElements: [{
-        text: "Geo",
+        text: "Map",
         styleClass: "categoryButton",
         top: 40,
         click: function(e){
