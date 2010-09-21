@@ -89,8 +89,10 @@ var LDATA = (function(){
                 lineup: ["mary","kjetiln","einar","ole","anders","tarald","gyri"],
                 tracks: ["yearoftherat","protection","patriotgames","thepassing","exile","sirens","vulture","amnesia","magicalfix","illuminationtrack"],
                 bonustracks: ["theemeraldpiper","caprice"],
-                producer: "Waldemar Sorychta",
-                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Sigmund Olgart Vegge, growls"]
+                coproducer: "Waldemar Sorychta",
+                producers: ["Anders Høyvik Hidle","Ole Vistnes"],
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Sigmund Olgart Vegge, growls"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=387667807"
             },
             illumination: {
                 title: "Illumination",
@@ -102,7 +104,8 @@ var LDATA = (function(){
                 tracks: ["mercyside","sanguinesky","openground","theravens","destinationdeparture","down","fate","lotus","sacrilege","deadlands"],
                 bonustracks: ["inthewake","abinitio"],
                 producer: "Waldemar Sorychta",
-                contributors: ["Vorph, growls","Indigo string quartet, strings"]
+                contributors: ["Vorph, growls","Indigo string quartet, strings"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=208839961"
             },
             ashes: {
                 title: "Ashes",
@@ -114,7 +117,8 @@ var LDATA = (function(){
                 tracks: ["libre","equilibrium","thewretched","cure","circus","shadowman","endogenesis","bird"],
                 bonustracks: ["thegate"],
                 producer: "Børge Finstad",
-                contributors: ["Hans Joseph Groh, cello"]
+                contributors: ["Hans Joseph Groh, cello"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=168360812"
             },
             worldofglass: {
                 title: "World of Glass",
@@ -126,7 +130,8 @@ var LDATA = (function(){
                 tracks: ["theshiningpath","wormwood","tendertriponearth","lost","deadlocked","sellingout","hatredgrows","worldofglass","crusheddreams"],
                 bonustracks: ["themodernend"],
                 producer: "Terje Refsnes",
-                contributors: ["Ronny Thorsen, growls","Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"]
+                contributors: ["Ronny Thorsen, growls","Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=391391146"
             },
             beyondtheveil: {
                 title: "Beyond the Veil",
@@ -137,7 +142,8 @@ var LDATA = (function(){
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth"],
                 tracks: ["beyondtheveil","aphelion","asequelofdecay","opusrelinque","letheanriver","ofruinsandarednightfall","simbelmyne","angina","heretique","dementia"],
                 producer: "Terje Refsnes",
-                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"]
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins","Jan Kenneth Barkved, clean vocals"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=391401523"
             },
             widowsweeds: {
                 title: "Widow's weeds",
@@ -148,7 +154,8 @@ var LDATA = (function(){
                 lineup: ["vibeke","morten","einar","rune","anders","kenneth"],
                 tracks: ["preludium","evenfall","paleenchantress","decemberelegy","midwintertears","angellore","mylostlenore","wastelandscaress","postludium"],
                 producer: "Terje Refsnes",
-                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins"]
+                contributors: ["Østen Bergøy, clean vocals","Pete Johansen, violins"],
+                itunes: "http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewAlbum?id=391410353"
             },
             tristania: {
                 title: "Tristania",

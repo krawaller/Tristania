@@ -49,6 +49,10 @@ tabGroup.open({ transition: Ti.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT });
  */
  
 Ti.App.addEventListener('openUrl', function(e){
+    if (e.url.substr(0,23) == "http://phobos.apple.com"){
+        Ti.Platform.openURL(e.url);
+        return;
+    }
 	var openUrlEvent = e;
 
 	// Define and bind webview navigation

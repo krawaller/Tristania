@@ -9,13 +9,31 @@
          <li><#= H.renderMemberLink(m) #> </li> 
         <# } #>
       </ul></dd>
-      <dt>Producer:</dt><dd><#=data.producer#></dd>
+      <# if(data.producer){ #>
+        <dt>Producer:</dt>
+        <dd><#= data.producer #>
+      <# } #>
+      <# if(data.producers){ #>
+        <dt>Producers:</dt><dd><ul>
+        <# for(var i=0; i<data.producers.length; i++){ var m = data.producers[i]; #>
+         <li><#= H.renderMemberLink(m) #> </li> 
+        <# } #>
+        </ul></dd>
+      <# } #>
+      <# if(data.coproducer){ #>
+        <dt>Co-producer:</dt>
+        <dd><#= data.coproducer #>
+      <# } #>
       <# if(data.contributors){ #>
         <dt>Contributors:</dt><dd><ul>
         <# for(var i=0; i<data.contributors.length; i++){ #>
          <li><#= data.contributors[i] #> </li> 
         <# } #>
         </ul></dd>
+      <# } #>
+      <# if(data.itunes){ #>
+        <dt>iTunes:</dt>
+        <dd><a href="<#= data.itunes #>">link</a></dd>
       <# } #>
     </dl>
   </div>
