@@ -310,7 +310,14 @@ var $ = (function(){
 							    Ti.API.info([' ==== TRYING TO FIX QUOTES FOR ' + opts.url]);
 								text = text.replace(/\\"\\"([^ \/>]|$)/g, '\\"$1');
 							}
-                            response = JSON.parse(text);
+							try {
+                                response = JSON.parse(text);
+                            }
+                            catch(e){
+                                Ti.API.error(e);
+                                Ti.API.error(text);
+                                throw "WTF?!"+e;
+                            }
 							
 							if(response.error){ // För helvete jacob, detta spränger allt utom YQL queries! :P || !(response.query && response.query.results)){
 								// Automatically resolve CouchDB conflicts

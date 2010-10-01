@@ -629,6 +629,9 @@ var LDATA = (function(){
         getHistory: function(){
             return JSON.parse(Ti.App.Properties.getString("history") || JSON.stringify({info:"<div class='content'><p>Not yet loaded!</p></div>"}));
         },
+        getTourDates: function(){
+            return JSON.parse(Ti.App.Properties.getString("tourdates"));
+        },
         
 // USER-ENTERED DATA
         

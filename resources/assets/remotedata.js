@@ -178,6 +178,12 @@ RDATA = {
                 Ti.App.Properties.setString("communitystats",JSON.stringify(data.rows[0].value));
                 Ti.App.Properties.setBool("titlifiedstats",false);
             }
+        },
+        tourdates: {
+            url: "http://query.yahooapis.com/v1/public/yql?q=use%20%22http%3A%2F%2F79.99.1.153%2Fyql%2Ftrist%2Ftristania_tour.xml%22%20as%20t%3B%20select%20*%20from%20t&format=json&diagnostics=true",
+            success: function(data){
+                Ti.App.Properties.setString("tourdates",JSON.stringify(data.query.results.res));
+            }
         }
     }
 };
