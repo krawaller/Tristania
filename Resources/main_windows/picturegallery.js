@@ -127,7 +127,14 @@ function clickRow(e){
 
 function renderList(data){
     spinner.hide();
-Ti.API.log(data);
+    if (!data || !data.query || !data.query.results){
+        $.create({
+            type: "AlertDialog",
+            title: "Error",
+            message: "Gallery seems to be offline. Please try again later!"
+        }).show();
+        return;
+    }
     pages = data.query.results.res.pages || 1;
     table = $.create({
         opacity: 0,
