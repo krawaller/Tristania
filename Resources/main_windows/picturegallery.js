@@ -131,7 +131,10 @@ function renderList(data){
         $.create({
             type: "AlertDialog",
             title: "Error",
-            message: "Gallery seems to be offline. Please try again later!"
+            message: "Gallery seems to be offline. Please try again later!",
+            click: function(){
+                win.close();
+            }
         }).show();
         return;
     }
