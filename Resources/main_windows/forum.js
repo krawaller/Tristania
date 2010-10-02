@@ -93,11 +93,17 @@ function pageControl(){
 }
 
 function receiveData(d){
-if (!d.query || !d.query.results || !d.query.results.res){
-    Ti.API.error("WTF?!?!");
-    Ti.API.log(d);
-    return;
-}
+    if (!d.query || !d.query.results || !d.query.results.res || !d.query.results.res){
+        $.create({
+            type: "AlertDialog",
+            title: "Error",
+            message: "Forum seems to be offline. Please try again later!",
+            click: function(){
+                win.close();
+            }
+        }).show();
+        return;
+    }
     d = d.query.results.res;
     win.title = d.title || win.title;
 Ti.API.log("POOP!");
