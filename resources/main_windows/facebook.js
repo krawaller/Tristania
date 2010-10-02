@@ -23,6 +23,17 @@ $.ajax({
 });
 
 function receiveData(d){
+    if (!d){
+        $.create({
+            type: "AlertDialog",
+            title: "Error",
+            message: "Couldn't reach Facebook feed. Please try again later!",
+            click: function(){
+                win.close();
+            }
+        }).show();
+        return;
+    }
     if (typeof d != "object"){
         d = JSON.parse(d);
     }

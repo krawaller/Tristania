@@ -1,3 +1,7 @@
+String.prototype.truncate = function(len){
+    return this.length > len ? this.substr(0,len)+"..." : this+"";
+};
+
 var noop = function(){}, 
     ajaxDefaults = {
         cache: true,

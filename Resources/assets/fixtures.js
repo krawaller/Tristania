@@ -1,5 +1,6 @@
     var fixtures = {
         comments: {},
+        tourdates: {past: [], upcoming: []},
         appdata: {
             info: "<div class='content'>The app content has still not been updated from the net. Please start the app when phone is connected, or go to Application / Data handling and select download data from there.</div>",
             date: "never"
