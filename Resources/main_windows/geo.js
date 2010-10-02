@@ -67,7 +67,7 @@ Ti.API.info(['ALL:', community]);
 	map.addAnnotation(Ti.Map.createAnnotation({
 		latitude : usercoords.latitude,
 		longitude : usercoords.longitude,
-		title : "You!",
+		title : LDATA.getUserData("username"),
 		animate : false,
 		image : '../pics/placemark_you.png',
         rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
