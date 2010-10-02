@@ -103,7 +103,7 @@ Ti.API.log("...adding "+member.username+" with id "+member.guid+" (platform is "
 
 var btn = $.create({
         type: "Button",
-        image: "../pics/icon_tab_application.png", //icon_options.png",
+        image: "../pics/icon_options.png",
         click: function(){
             optionsView.animate({duration: 500, opacity: showingOptions ? 0 : 1});
             showingOptions = !showingOptions;
