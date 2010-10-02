@@ -4,6 +4,6 @@
 #>
 <div class="unit"> 
   <div class="subtitle"><#= msg.created_time.substr(0,10) #></div>
-  <div class="content"><#= msg.message.replace("\n","<br/>") #></div>
+  <div class="content"><#= H.linkify(msg.message.replace("\n","<br/>")) #></div>
 </div>
 <# } } #>
