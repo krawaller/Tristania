@@ -35,18 +35,18 @@ if(!LDATA.getUserData("username")){
 
 function render(){
 	community = LDATA.getCommunityMembers();
-    if (rendered || !community || !LDATA.getUserData("username")){
+    if (rendered || !community || !LDATA.getUserData("username") || !LDATA.getUserData("coords")){
         return;
     }
     rendered = true;
 Ti.API.info(['ALL:', community]);
-    var usercoords = LDATA.getUserData("coords") || {latitude: 59.32485, longitude: 18.0699};
+    var usercoords = LDATA.getUserData("coords"); // || {latitude: 59.32485, longitude: 18.0699};
 	if(map){ win.remove(map); }
 	map = Titanium.Map.createView({
 		mapType: Titanium.Map.STANDARD_TYPE,
 		region: {
-			latitude: usercoords.latitude, // 59.32485,
-			longitude: usercoords.longitude, // 18.0699,
+			latitude: usercoords.latitude,
+			longitude: usercoords.longitude,
 			animate: false,
 			latitudeDelta: 0.04,
 			longitudeDelta: 0.04
@@ -54,7 +54,15 @@ Ti.API.info(['ALL:', community]);
 		animate: false,
 		regionFit: true,
 	    userLocation: false,
-		annotations: []
+		annotations: [{
+	    	latitude : usercoords.latitude,
+		    longitude : usercoords.longitude,
+    		title : LDATA.getUserData("username"),
+	    	animate : false,
+		    image : '../pics/placemark_you.png',
+            rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
+            guid: -666
+	    }]
     });
 	win.add(map);
 	
@@ -64,7 +72,7 @@ Ti.API.info(['ALL:', community]);
         }
     });
 
-	map.addAnnotation(Ti.Map.createAnnotation({
+/*	map.addAnnotation(Ti.Map.createAnnotation({
 		latitude : usercoords.latitude,
 		longitude : usercoords.longitude,
 		title : LDATA.getUserData("username"),
@@ -72,7 +80,7 @@ Ti.API.info(['ALL:', community]);
 		image : '../pics/placemark_you.png',
         rightButton: Titanium.UI.iPhone.SystemButton.DISCLOSURE,
         guid: -666
-	}));
+	})); */
 
 	var keys = community.keys, index = 0;
 

@@ -16,6 +16,7 @@ function fixDate(info){
     return {
         type: "TableViewRow",
         hasChild: info.href ? true : false,
+        className: info.href ? "withlink" : "nolink",
         childElements: [{
             styleClass: "tableviewrowmainlabel",
             text: info.venue+", "+info.date
